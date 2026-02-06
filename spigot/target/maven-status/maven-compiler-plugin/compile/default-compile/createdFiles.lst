@@ -1,3 +1,4 @@
+org\pytenix\module\modules\signs\SignsModule.class
 org\pytenix\module\modules\player\LiveChatModule.class
 org\pytenix\TranslatorService.class
 org\pytenix\placeholder\PlaceholderService.class
@@ -19,6 +20,7 @@ org\pytenix\gradient\GradientService.class
 org\pytenix\module\modules\chat\MessageSequencer.class
 org\pytenix\module\modules\hologram\HologramModule.class
 org\pytenix\brigde\SpigotBridge.class
+org\pytenix\module\modules\signs\SignViewListener.class
 org\pytenix\module\modules\chat\MessageSequencer$QueuedMessage.class
 org\pytenix\module\modules\gui\listener\PacketListener.class
 org\pytenix\module\TranslatorModule.class

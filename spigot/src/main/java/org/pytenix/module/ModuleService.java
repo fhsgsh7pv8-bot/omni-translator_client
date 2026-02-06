@@ -5,6 +5,7 @@ import org.pytenix.module.modules.chat.PluginChatModule;
 import org.pytenix.module.modules.gui.InventoryModule;
 import org.pytenix.module.modules.hologram.HologramModule;
 import org.pytenix.module.modules.player.LiveChatModule;
+import org.pytenix.module.modules.signs.SignsModule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class ModuleService {
         registerModule(new PluginChatModule(spigotTranslator));
         registerModule(new LiveChatModule(spigotTranslator));
         registerModule(new HologramModule(spigotTranslator));
+        registerModule(new SignsModule(spigotTranslator));
     }
 
 
