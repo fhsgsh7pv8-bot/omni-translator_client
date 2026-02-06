@@ -1,0 +1,5 @@
+name: proxy
+version: 1.0-SNAPSHOT
+main: org.pytenix.BungeeTranslator
+author: PytenixOG
+description: Globaler Übersetzer-Proxy

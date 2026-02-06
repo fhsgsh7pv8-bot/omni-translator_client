@@ -1,0 +1,21 @@
+name: AITranslator
+version: '1.0'
+main: org.pytenix.SpigotTranslator
+api-version: '1.21' # Auf 1.21 aktualisiert, da du Paper 1.21 nutzt
+author: PytenixOG
+description: Übersetzt Chat-Pakete asynchron via OpenAI
+folia-supported: true
+dependencies:
+  server:
+    packetevents:
+      load: BEFORE
+      required: true
+      join-classpath: true
+softdepend:
+  - ProtocolLib
+  - ProtocolSupport
+  - ViaVersion
+  - ViaBackwards
+  - ViaRewind
+  - Geyser-Spigot
+

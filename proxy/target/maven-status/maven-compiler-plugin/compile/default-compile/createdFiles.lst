@@ -1,0 +1,8 @@
+org\pytenix\RestfulService.class
+org\pytenix\model\TranslationRequest.class
+org\pytenix\RestfulService$QueuedRequest.class
+org\pytenix\model\TranslationResponse.class
+org\pytenix\RestfulService$WebSocketListener.class
+org\pytenix\VelocityTranslator.class
+org\pytenix\VelocityBridge.class
+org\pytenix\CaffeineCache.class

@@ -1,0 +1,9 @@
+{
+  "id": "translator",
+  "name": "TranslatorProxy",
+  "version": "1.0-SNAPSHOT",
+  "description": "Proxy-seitiges System für Echtzeit-Übersetzungen",
+  "main": "org.pytenix.VelocityTranslator",
+  "authors": ["PytenixOG"],
+  "dependencies": []
+}
