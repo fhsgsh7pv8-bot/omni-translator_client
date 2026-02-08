@@ -19,9 +19,11 @@ org\pytenix\module\modules\player\ChatPacketListener$MessageVersion.class
 org\pytenix\gradient\GradientService.class
 org\pytenix\module\modules\chat\MessageSequencer.class
 org\pytenix\module\modules\hologram\HologramModule.class
+org\pytenix\placeholder\WordProtector$ProtectionResult.class
 org\pytenix\brigde\SpigotBridge.class
 org\pytenix\module\modules\signs\SignViewListener.class
 org\pytenix\module\modules\chat\MessageSequencer$QueuedMessage.class
+org\pytenix\placeholder\WordProtector.class
 org\pytenix\module\modules\gui\listener\PacketListener.class
 org\pytenix\module\TranslatorModule.class
 org\pytenix\placeholder\impl\ExtendedPlaceholder.class

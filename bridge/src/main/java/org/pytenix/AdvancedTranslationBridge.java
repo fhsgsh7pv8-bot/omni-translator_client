@@ -112,7 +112,6 @@ public abstract class AdvancedTranslationBridge {
         try {
             PacketWrapper wrapper = PacketWrapper.parseFrom(data);
 
-            System.out.println("asdasdas");
             if (wrapper.hasBatch()) {
                 TranslationBatch batch = wrapper.getBatch();
                 if (originServer != null) {

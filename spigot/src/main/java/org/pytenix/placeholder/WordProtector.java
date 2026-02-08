@@ -24,7 +24,7 @@ public class WordProtector {
         for (String word : words) {
             if (word.length() > 1) {
                 builder.addKeyword(word);
-                System.out.println("ADDED KEYWORD " + word);
+
             }
         }
 
@@ -33,12 +33,10 @@ public class WordProtector {
 
     public ProtectionResult protect(String text) {
         if (trie == null || text == null || text.isEmpty()) {
-            System.out.println("EMPTY MAP: " + text);
             return new ProtectionResult(text, Collections.emptyMap());
         }
         Collection<Emit> emits = trie.parseText(text);
         if (emits.isEmpty()) {
-            System.out.println("EMPTY MAP: " + text);
             return new ProtectionResult(text, Collections.emptyMap());
         }
 
@@ -63,7 +61,6 @@ public class WordProtector {
             sb.replace(emit.getStart(), emit.getEnd() + 1, placeholder);
         }
 
-        System.out.println("REPLAZAMENTS : " + new Gson().toJson(replacements));
         return new ProtectionResult(sb.toString(), replacements);
     }
 

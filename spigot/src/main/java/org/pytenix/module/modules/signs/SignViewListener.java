@@ -62,7 +62,7 @@ public class SignViewListener implements PacketListener {
         int type = packet.getType();
         if (type != 9 && type != 7) return;
 
-        System.out.println("SIGN DETECTED!");
+
 
         User user = event.getUser();
         Player player = org.bukkit.Bukkit.getPlayer(user.getUUID()); //SAFER
