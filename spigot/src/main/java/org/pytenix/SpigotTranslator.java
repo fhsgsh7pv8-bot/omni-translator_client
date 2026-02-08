@@ -108,6 +108,8 @@ public class SpigotTranslator extends JavaPlugin {
     public void applyConfigUpdate(ConfigUpdate newConfig) {
         this.configUpdate = newConfig;
 
+        getPlaceholderService().updateProtectedWords(configUpdate.getBlacklistedWords());
+
 
         getTaskScheduler().runAsync(() -> {
             try {

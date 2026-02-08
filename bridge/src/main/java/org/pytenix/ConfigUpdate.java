@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 @Setter @Getter @AllArgsConstructor
 public class ConfigUpdate {
@@ -14,6 +16,9 @@ public class ConfigUpdate {
 
     String licenseKey;
     HashMap<String,Boolean> modules;
+
+
+    Set<String> blacklistedWords;
 
 
     public ConfigUpdate()
@@ -35,6 +40,7 @@ public class ConfigUpdate {
 
         configUpdate.setModules(hash);
         configUpdate.setLicenseKey(licenseKey);
+        configUpdate.setBlacklistedWords(new HashSet<>());
 
         return configUpdate;
     }

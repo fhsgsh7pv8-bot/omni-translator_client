@@ -13,6 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+@Getter
 public class PlaceholderService {
 
     final SpigotTranslator spigotTranslator;
@@ -27,20 +28,35 @@ public class PlaceholderService {
     public final Pattern PRICE_PATTERN = Pattern.compile("\\d+(?:[.,]\\d+)*");
     public final Pattern SYSTEM_PROTECTION_PATTERN = Pattern.compile("(?:\\{[a-zA-Z]\\d+\\})|(?:\\[#[A-Z]+-\\d+#\\])");
 
-    @Getter
+
     final PlayernameProtector playernameProtector;
+    final WordProtector wordProtector;
+
     Cache<UUID, PlayernameProtector.ProtectionResult> cachedNames = CacheBuilder.newBuilder()
+            .expireAfterWrite(30, TimeUnit.SECONDS).build();
+
+    Cache<UUID, WordProtector.ProtectionResult> cachedWords = CacheBuilder.newBuilder()
             .expireAfterWrite(30, TimeUnit.SECONDS).build();
 
     public final Pattern COLOR_PATTERN = Pattern.compile("(?:§x(?:§[0-9a-fA-F]){6})|(?:§[0-9a-fA-Fk-orK-OR])");
     public PlaceholderService(SpigotTranslator spigotTranslator) {
         this.registeredPlaceholders = new TreeMap<>();
+        this.wordProtector = new WordProtector();
         this.spigotTranslator = spigotTranslator;
         this.playernameProtector = new PlayernameProtector(spigotTranslator);
+
+        if(spigotTranslator.getConfigUpdate() != null)
+            updateProtectedWords(spigotTranslator.getConfigUpdate().getBlacklistedWords() != null ?
+                    spigotTranslator.getConfigUpdate().getBlacklistedWords() : new HashSet<>());
+
 
         registerPlaceholder(0, new ExtendedPlaceholder("SKIP", () -> SYSTEM_PROTECTION_PATTERN));
         registerPlaceholder(1, new ExtendedPlaceholder("C", () -> COLOR_PATTERN));
         registerPlaceholder(10, new ExtendedPlaceholder("N", () -> PRICE_PATTERN));
+    }
+
+    public void updateProtectedWords(Set<String> words) {
+        this.wordProtector.build(words);
     }
 
     public boolean registerPlaceholder(int priority, ExtendedPlaceholder placeholder) {
@@ -76,6 +92,11 @@ public class PlaceholderService {
         if (atomicPattern == null || text == null || text.isEmpty()) return text;
 
 
+        WordProtector.ProtectionResult wordResult = wordProtector.protect(text);
+        if (!wordResult.replacements().isEmpty()) {
+            cachedWords.put(id, wordResult);
+            text = wordResult.maskedText();
+        }
 
         PlayernameProtector.ProtectionResult result = playernameProtector.maskNames(text);
         if (!result.replacements().isEmpty()) {
@@ -134,7 +155,7 @@ public class PlaceholderService {
         for (ExtendedPlaceholder ph : reverseList) {
            if(ph.placeholder().equals("SKIP")) continue;
 
-            Map<Integer, String> cache = ph.cachedValues().getIfPresent(id);
+           Map<Integer, String> cache = ph.cachedValues().getIfPresent(id);
             if (cache == null || cache.isEmpty()) continue;
 
             for (Map.Entry<Integer, String> entry : cache.entrySet()) {
@@ -148,6 +169,12 @@ public class PlaceholderService {
         if (cachedNames.getIfPresent(id) != null) {
             text = playernameProtector.restoreNames(text, cachedNames.getIfPresent(id).replacements());
             cachedNames.invalidate(id);
+        }
+
+        if(cachedWords.getIfPresent(id) != null)
+        {
+            text = wordProtector.restore(text, cachedWords.getIfPresent(id).replacements());
+            cachedWords.invalidate(id);
         }
 
         return text;
