@@ -92,11 +92,6 @@ public class PlaceholderService {
         if (atomicPattern == null || text == null || text.isEmpty()) return text;
 
 
-        WordProtector.ProtectionResult wordResult = wordProtector.protect(text);
-        if (!wordResult.replacements().isEmpty()) {
-            cachedWords.put(id, wordResult);
-            text = wordResult.maskedText();
-        }
 
         PlayernameProtector.ProtectionResult result = playernameProtector.maskNames(text);
         if (!result.replacements().isEmpty()) {
@@ -145,7 +140,16 @@ public class PlaceholderService {
         }
         sb.append(text.substring(lastEnd));
 
-        return sb.toString();
+
+        text = sb.toString();
+
+        WordProtector.ProtectionResult wordResult = wordProtector.protect(text);
+        if (!wordResult.replacements().isEmpty()) {
+            cachedWords.put(id, wordResult);
+            text = wordResult.maskedText();
+        }
+
+        return text;
     }
 
     public String fromPlaceholders(UUID id, String text) {

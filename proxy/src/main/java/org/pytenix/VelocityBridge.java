@@ -66,6 +66,10 @@ public class VelocityBridge extends AdvancedTranslationBridge {
         if (javaConfig.getModules() != null) {
             builder.putAllModules(javaConfig.getModules());
         }
+        if(javaConfig.getBlacklistedWords() != null)
+        {
+            builder.addAllWords(javaConfig.getBlacklistedWords());
+        }
         return builder.build();
     }
 

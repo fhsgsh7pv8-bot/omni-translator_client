@@ -8,31 +8,32 @@ option java_outer_classname = "NetworkPackets";
 
 message ConfigPacket {
   string license_key = 1;
-  map<string, bool> modules = 2; // Map für Module (z.B. "chat": true)
+  map<string, bool> modules = 2;
+  repeated string words = 3;
 }
 
-// 1. Eine einzelne Übersetzung
+
 message TranslationRequest {
-  bytes request_id = 1; // UUID als String
+  bytes request_id = 1;
   string text = 2;
   string target_lang = 3;
   string module = 4;
 }
 
 message ConfigRequestPacket {
-  int64 timestamp = 1; // Optional, um das Paket einzigartig zu machen
+  int64 timestamp = 1;
 }
 
-// 2. Das Batch-Paket (enthält viele Requests)
+
 message TranslationBatch {
   string origin_server = 1;
   repeated TranslationRequest requests = 2;
 
-  // Für die Antwort:
-  repeated string results = 3; // Index entspricht requests-Index
+
+  repeated string results = 3;
 }
 
-// 3. Chunking (Wenn > 30KB)
+
 message Chunk {
   string transmission_id = 1;
   int32 part_index = 2;
@@ -40,7 +41,7 @@ message Chunk {
   bytes data = 4;
 }
 
-// 4. Der Umschlag (Das, was wirklich gesendet wird)
+
 message PacketWrapper {
   oneof payload {
     TranslationBatch batch = 1;

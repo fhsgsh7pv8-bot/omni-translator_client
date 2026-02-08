@@ -32,18 +32,10 @@ public final class NetworkPackets {
         getLicenseKeyBytes();
 
     /**
-     * <pre>
-     * Map für Module (z.B. "chat": true)
-     * </pre>
-     *
      * <code>map&lt;string, bool&gt; modules = 2;</code>
      */
     int getModulesCount();
     /**
-     * <pre>
-     * Map für Module (z.B. "chat": true)
-     * </pre>
-     *
      * <code>map&lt;string, bool&gt; modules = 2;</code>
      */
     boolean containsModules(
@@ -55,33 +47,46 @@ public final class NetworkPackets {
     java.util.Map<java.lang.String, java.lang.Boolean>
     getModules();
     /**
-     * <pre>
-     * Map für Module (z.B. "chat": true)
-     * </pre>
-     *
      * <code>map&lt;string, bool&gt; modules = 2;</code>
      */
     java.util.Map<java.lang.String, java.lang.Boolean>
     getModulesMap();
     /**
-     * <pre>
-     * Map für Module (z.B. "chat": true)
-     * </pre>
-     *
      * <code>map&lt;string, bool&gt; modules = 2;</code>
      */
     boolean getModulesOrDefault(
         java.lang.String key,
         boolean defaultValue);
     /**
-     * <pre>
-     * Map für Module (z.B. "chat": true)
-     * </pre>
-     *
      * <code>map&lt;string, bool&gt; modules = 2;</code>
      */
     boolean getModulesOrThrow(
         java.lang.String key);
+
+    /**
+     * <code>repeated string words = 3;</code>
+     * @return A list containing the words.
+     */
+    java.util.List<java.lang.String>
+        getWordsList();
+    /**
+     * <code>repeated string words = 3;</code>
+     * @return The count of words.
+     */
+    int getWordsCount();
+    /**
+     * <code>repeated string words = 3;</code>
+     * @param index The index of the element to return.
+     * @return The words at the given index.
+     */
+    java.lang.String getWords(int index);
+    /**
+     * <code>repeated string words = 3;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the words at the given index.
+     */
+    com.google.protobuf.ByteString
+        getWordsBytes(int index);
   }
   /**
    * Protobuf type {@code org.pytenix.proto.ConfigPacket}
@@ -97,6 +102,8 @@ public final class NetworkPackets {
     }
     private ConfigPacket() {
       licenseKey_ = "";
+      words_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -197,10 +204,6 @@ public final class NetworkPackets {
       return internalGetModules().getMap().size();
     }
     /**
-     * <pre>
-     * Map für Module (z.B. "chat": true)
-     * </pre>
-     *
      * <code>map&lt;string, bool&gt; modules = 2;</code>
      */
     @java.lang.Override
@@ -218,10 +221,6 @@ public final class NetworkPackets {
       return getModulesMap();
     }
     /**
-     * <pre>
-     * Map für Module (z.B. "chat": true)
-     * </pre>
-     *
      * <code>map&lt;string, bool&gt; modules = 2;</code>
      */
     @java.lang.Override
@@ -229,10 +228,6 @@ public final class NetworkPackets {
       return internalGetModules().getMap();
     }
     /**
-     * <pre>
-     * Map für Module (z.B. "chat": true)
-     * </pre>
-     *
      * <code>map&lt;string, bool&gt; modules = 2;</code>
      */
     @java.lang.Override
@@ -245,10 +240,6 @@ public final class NetworkPackets {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <pre>
-     * Map für Module (z.B. "chat": true)
-     * </pre>
-     *
      * <code>map&lt;string, bool&gt; modules = 2;</code>
      */
     @java.lang.Override
@@ -261,6 +252,43 @@ public final class NetworkPackets {
         throw new java.lang.IllegalArgumentException();
       }
       return map.get(key);
+    }
+
+    public static final int WORDS_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList words_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    /**
+     * <code>repeated string words = 3;</code>
+     * @return A list containing the words.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getWordsList() {
+      return words_;
+    }
+    /**
+     * <code>repeated string words = 3;</code>
+     * @return The count of words.
+     */
+    public int getWordsCount() {
+      return words_.size();
+    }
+    /**
+     * <code>repeated string words = 3;</code>
+     * @param index The index of the element to return.
+     * @return The words at the given index.
+     */
+    public java.lang.String getWords(int index) {
+      return words_.get(index);
+    }
+    /**
+     * <code>repeated string words = 3;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the words at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getWordsBytes(int index) {
+      return words_.getByteString(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -286,6 +314,9 @@ public final class NetworkPackets {
           internalGetModules(),
           ModulesDefaultEntryHolder.defaultEntry,
           2);
+      for (int i = 0; i < words_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, words_.getRaw(i));
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -308,6 +339,14 @@ public final class NetworkPackets {
         size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(2, modules__);
       }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < words_.size(); i++) {
+          dataSize += computeStringSizeNoTag(words_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getWordsList().size();
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -327,6 +366,8 @@ public final class NetworkPackets {
           .equals(other.getLicenseKey())) return false;
       if (!internalGetModules().equals(
           other.internalGetModules())) return false;
+      if (!getWordsList()
+          .equals(other.getWordsList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -343,6 +384,10 @@ public final class NetworkPackets {
       if (!internalGetModules().getMap().isEmpty()) {
         hash = (37 * hash) + MODULES_FIELD_NUMBER;
         hash = (53 * hash) + internalGetModules().hashCode();
+      }
+      if (getWordsCount() > 0) {
+        hash = (37 * hash) + WORDS_FIELD_NUMBER;
+        hash = (53 * hash) + getWordsList().hashCode();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -499,6 +544,8 @@ public final class NetworkPackets {
         bitField0_ = 0;
         licenseKey_ = "";
         internalGetMutableModules().clear();
+        words_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
@@ -538,6 +585,10 @@ public final class NetworkPackets {
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.modules_ = internalGetModules();
           result.modules_.makeImmutable();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          words_.makeImmutable();
+          result.words_ = words_;
         }
       }
 
@@ -593,6 +644,16 @@ public final class NetworkPackets {
         internalGetMutableModules().mergeFrom(
             other.internalGetModules());
         bitField0_ |= 0x00000002;
+        if (!other.words_.isEmpty()) {
+          if (words_.isEmpty()) {
+            words_ = other.words_;
+            bitField0_ |= 0x00000004;
+          } else {
+            ensureWordsIsMutable();
+            words_.addAll(other.words_);
+          }
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -633,6 +694,12 @@ public final class NetworkPackets {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 26: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureWordsIsMutable();
+                words_.add(s);
+                break;
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -749,10 +816,6 @@ public final class NetworkPackets {
         return internalGetModules().getMap().size();
       }
       /**
-       * <pre>
-       * Map für Module (z.B. "chat": true)
-       * </pre>
-       *
        * <code>map&lt;string, bool&gt; modules = 2;</code>
        */
       @java.lang.Override
@@ -770,10 +833,6 @@ public final class NetworkPackets {
         return getModulesMap();
       }
       /**
-       * <pre>
-       * Map für Module (z.B. "chat": true)
-       * </pre>
-       *
        * <code>map&lt;string, bool&gt; modules = 2;</code>
        */
       @java.lang.Override
@@ -781,10 +840,6 @@ public final class NetworkPackets {
         return internalGetModules().getMap();
       }
       /**
-       * <pre>
-       * Map für Module (z.B. "chat": true)
-       * </pre>
-       *
        * <code>map&lt;string, bool&gt; modules = 2;</code>
        */
       @java.lang.Override
@@ -797,10 +852,6 @@ public final class NetworkPackets {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <pre>
-       * Map für Module (z.B. "chat": true)
-       * </pre>
-       *
        * <code>map&lt;string, bool&gt; modules = 2;</code>
        */
       @java.lang.Override
@@ -821,10 +872,6 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <pre>
-       * Map für Module (z.B. "chat": true)
-       * </pre>
-       *
        * <code>map&lt;string, bool&gt; modules = 2;</code>
        */
       public Builder removeModules(
@@ -844,10 +891,6 @@ public final class NetworkPackets {
         return internalGetMutableModules().getMutableMap();
       }
       /**
-       * <pre>
-       * Map für Module (z.B. "chat": true)
-       * </pre>
-       *
        * <code>map&lt;string, bool&gt; modules = 2;</code>
        */
       public Builder putModules(
@@ -861,10 +904,6 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <pre>
-       * Map für Module (z.B. "chat": true)
-       * </pre>
-       *
        * <code>map&lt;string, bool&gt; modules = 2;</code>
        */
       public Builder putAllModules(
@@ -872,6 +911,117 @@ public final class NetworkPackets {
         internalGetMutableModules().getMutableMap()
             .putAll(values);
         bitField0_ |= 0x00000002;
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringArrayList words_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureWordsIsMutable() {
+        if (!words_.isModifiable()) {
+          words_ = new com.google.protobuf.LazyStringArrayList(words_);
+        }
+        bitField0_ |= 0x00000004;
+      }
+      /**
+       * <code>repeated string words = 3;</code>
+       * @return A list containing the words.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getWordsList() {
+        words_.makeImmutable();
+        return words_;
+      }
+      /**
+       * <code>repeated string words = 3;</code>
+       * @return The count of words.
+       */
+      public int getWordsCount() {
+        return words_.size();
+      }
+      /**
+       * <code>repeated string words = 3;</code>
+       * @param index The index of the element to return.
+       * @return The words at the given index.
+       */
+      public java.lang.String getWords(int index) {
+        return words_.get(index);
+      }
+      /**
+       * <code>repeated string words = 3;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the words at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getWordsBytes(int index) {
+        return words_.getByteString(index);
+      }
+      /**
+       * <code>repeated string words = 3;</code>
+       * @param index The index to set the value at.
+       * @param value The words to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWords(
+          int index, java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureWordsIsMutable();
+        words_.set(index, value);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string words = 3;</code>
+       * @param value The words to add.
+       * @return This builder for chaining.
+       */
+      public Builder addWords(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureWordsIsMutable();
+        words_.add(value);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string words = 3;</code>
+       * @param values The words to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllWords(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureWordsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, words_);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string words = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWords() {
+        words_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string words = 3;</code>
+       * @param value The bytes of the words to add.
+       * @return This builder for chaining.
+       */
+      public Builder addWordsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ensureWordsIsMutable();
+        words_.add(value);
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -943,10 +1093,6 @@ public final class NetworkPackets {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * UUID als String
-     * </pre>
-     *
      * <code>bytes request_id = 1;</code>
      * @return The requestId.
      */
@@ -989,10 +1135,6 @@ public final class NetworkPackets {
         getModuleBytes();
   }
   /**
-   * <pre>
-   * 1. Eine einzelne Übersetzung
-   * </pre>
-   *
    * Protobuf type {@code org.pytenix.proto.TranslationRequest}
    */
   public static final class TranslationRequest extends
@@ -1034,10 +1176,6 @@ public final class NetworkPackets {
     public static final int REQUEST_ID_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString requestId_ = com.google.protobuf.ByteString.EMPTY;
     /**
-     * <pre>
-     * UUID als String
-     * </pre>
-     *
      * <code>bytes request_id = 1;</code>
      * @return The requestId.
      */
@@ -1351,10 +1489,6 @@ public final class NetworkPackets {
       return builder;
     }
     /**
-     * <pre>
-     * 1. Eine einzelne Übersetzung
-     * </pre>
-     *
      * Protobuf type {@code org.pytenix.proto.TranslationRequest}
      */
     public static final class Builder extends
@@ -1566,10 +1700,6 @@ public final class NetworkPackets {
 
       private com.google.protobuf.ByteString requestId_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <pre>
-       * UUID als String
-       * </pre>
-       *
        * <code>bytes request_id = 1;</code>
        * @return The requestId.
        */
@@ -1578,10 +1708,6 @@ public final class NetworkPackets {
         return requestId_;
       }
       /**
-       * <pre>
-       * UUID als String
-       * </pre>
-       *
        * <code>bytes request_id = 1;</code>
        * @param value The requestId to set.
        * @return This builder for chaining.
@@ -1594,10 +1720,6 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <pre>
-       * UUID als String
-       * </pre>
-       *
        * <code>bytes request_id = 1;</code>
        * @return This builder for chaining.
        */
@@ -1892,10 +2014,6 @@ public final class NetworkPackets {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * Optional, um das Paket einzigartig zu machen
-     * </pre>
-     *
      * <code>int64 timestamp = 1;</code>
      * @return The timestamp.
      */
@@ -1939,10 +2057,6 @@ public final class NetworkPackets {
     public static final int TIMESTAMP_FIELD_NUMBER = 1;
     private long timestamp_ = 0L;
     /**
-     * <pre>
-     * Optional, um das Paket einzigartig zu machen
-     * </pre>
-     *
      * <code>int64 timestamp = 1;</code>
      * @return The timestamp.
      */
@@ -2279,10 +2393,6 @@ public final class NetworkPackets {
 
       private long timestamp_ ;
       /**
-       * <pre>
-       * Optional, um das Paket einzigartig zu machen
-       * </pre>
-       *
        * <code>int64 timestamp = 1;</code>
        * @return The timestamp.
        */
@@ -2291,10 +2401,6 @@ public final class NetworkPackets {
         return timestamp_;
       }
       /**
-       * <pre>
-       * Optional, um das Paket einzigartig zu machen
-       * </pre>
-       *
        * <code>int64 timestamp = 1;</code>
        * @param value The timestamp to set.
        * @return This builder for chaining.
@@ -2307,10 +2413,6 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <pre>
-       * Optional, um das Paket einzigartig zu machen
-       * </pre>
-       *
        * <code>int64 timestamp = 1;</code>
        * @return This builder for chaining.
        */
@@ -2425,39 +2527,23 @@ public final class NetworkPackets {
         int index);
 
     /**
-     * <pre>
-     * Für die Antwort:
-     * </pre>
-     *
      * <code>repeated string results = 3;</code>
      * @return A list containing the results.
      */
     java.util.List<java.lang.String>
         getResultsList();
     /**
-     * <pre>
-     * Für die Antwort:
-     * </pre>
-     *
      * <code>repeated string results = 3;</code>
      * @return The count of results.
      */
     int getResultsCount();
     /**
-     * <pre>
-     * Für die Antwort:
-     * </pre>
-     *
      * <code>repeated string results = 3;</code>
      * @param index The index of the element to return.
      * @return The results at the given index.
      */
     java.lang.String getResults(int index);
     /**
-     * <pre>
-     * Für die Antwort:
-     * </pre>
-     *
      * <code>repeated string results = 3;</code>
      * @param index The index of the value to return.
      * @return The bytes of the results at the given index.
@@ -2466,10 +2552,6 @@ public final class NetworkPackets {
         getResultsBytes(int index);
   }
   /**
-   * <pre>
-   * 2. Das Batch-Paket (enthält viele Requests)
-   * </pre>
-   *
    * Protobuf type {@code org.pytenix.proto.TranslationBatch}
    */
   public static final class TranslationBatch extends
@@ -2593,10 +2675,6 @@ public final class NetworkPackets {
     private com.google.protobuf.LazyStringArrayList results_ =
         com.google.protobuf.LazyStringArrayList.emptyList();
     /**
-     * <pre>
-     * Für die Antwort:
-     * </pre>
-     *
      * <code>repeated string results = 3;</code>
      * @return A list containing the results.
      */
@@ -2605,10 +2683,6 @@ public final class NetworkPackets {
       return results_;
     }
     /**
-     * <pre>
-     * Für die Antwort:
-     * </pre>
-     *
      * <code>repeated string results = 3;</code>
      * @return The count of results.
      */
@@ -2616,10 +2690,6 @@ public final class NetworkPackets {
       return results_.size();
     }
     /**
-     * <pre>
-     * Für die Antwort:
-     * </pre>
-     *
      * <code>repeated string results = 3;</code>
      * @param index The index of the element to return.
      * @return The results at the given index.
@@ -2628,10 +2698,6 @@ public final class NetworkPackets {
       return results_.get(index);
     }
     /**
-     * <pre>
-     * Für die Antwort:
-     * </pre>
-     *
      * <code>repeated string results = 3;</code>
      * @param index The index of the value to return.
      * @return The bytes of the results at the given index.
@@ -2828,10 +2894,6 @@ public final class NetworkPackets {
       return builder;
     }
     /**
-     * <pre>
-     * 2. Das Batch-Paket (enthält viele Requests)
-     * </pre>
-     *
      * Protobuf type {@code org.pytenix.proto.TranslationBatch}
      */
     public static final class Builder extends
@@ -3403,10 +3465,6 @@ public final class NetworkPackets {
         bitField0_ |= 0x00000004;
       }
       /**
-       * <pre>
-       * Für die Antwort:
-       * </pre>
-       *
        * <code>repeated string results = 3;</code>
        * @return A list containing the results.
        */
@@ -3416,10 +3474,6 @@ public final class NetworkPackets {
         return results_;
       }
       /**
-       * <pre>
-       * Für die Antwort:
-       * </pre>
-       *
        * <code>repeated string results = 3;</code>
        * @return The count of results.
        */
@@ -3427,10 +3481,6 @@ public final class NetworkPackets {
         return results_.size();
       }
       /**
-       * <pre>
-       * Für die Antwort:
-       * </pre>
-       *
        * <code>repeated string results = 3;</code>
        * @param index The index of the element to return.
        * @return The results at the given index.
@@ -3439,10 +3489,6 @@ public final class NetworkPackets {
         return results_.get(index);
       }
       /**
-       * <pre>
-       * Für die Antwort:
-       * </pre>
-       *
        * <code>repeated string results = 3;</code>
        * @param index The index of the value to return.
        * @return The bytes of the results at the given index.
@@ -3452,10 +3498,6 @@ public final class NetworkPackets {
         return results_.getByteString(index);
       }
       /**
-       * <pre>
-       * Für die Antwort:
-       * </pre>
-       *
        * <code>repeated string results = 3;</code>
        * @param index The index to set the value at.
        * @param value The results to set.
@@ -3471,10 +3513,6 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <pre>
-       * Für die Antwort:
-       * </pre>
-       *
        * <code>repeated string results = 3;</code>
        * @param value The results to add.
        * @return This builder for chaining.
@@ -3489,10 +3527,6 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <pre>
-       * Für die Antwort:
-       * </pre>
-       *
        * <code>repeated string results = 3;</code>
        * @param values The results to add.
        * @return This builder for chaining.
@@ -3507,10 +3541,6 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <pre>
-       * Für die Antwort:
-       * </pre>
-       *
        * <code>repeated string results = 3;</code>
        * @return This builder for chaining.
        */
@@ -3522,10 +3552,6 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <pre>
-       * Für die Antwort:
-       * </pre>
-       *
        * <code>repeated string results = 3;</code>
        * @param value The bytes of the results to add.
        * @return This builder for chaining.
@@ -3639,10 +3665,6 @@ public final class NetworkPackets {
     com.google.protobuf.ByteString getData();
   }
   /**
-   * <pre>
-   * 3. Chunking (Wenn &gt; 30KB)
-   * </pre>
-   *
    * Protobuf type {@code org.pytenix.proto.Chunk}
    */
   public static final class Chunk extends
@@ -3941,10 +3963,6 @@ public final class NetworkPackets {
       return builder;
     }
     /**
-     * <pre>
-     * 3. Chunking (Wenn &gt; 30KB)
-     * </pre>
-     *
      * Protobuf type {@code org.pytenix.proto.Chunk}
      */
     public static final class Builder extends
@@ -4448,10 +4466,6 @@ public final class NetworkPackets {
     org.pytenix.proto.generated.NetworkPackets.PacketWrapper.PayloadCase getPayloadCase();
   }
   /**
-   * <pre>
-   * 4. Der Umschlag (Das, was wirklich gesendet wird)
-   * </pre>
-   *
    * Protobuf type {@code org.pytenix.proto.PacketWrapper}
    */
   public static final class PacketWrapper extends
@@ -4872,10 +4886,6 @@ public final class NetworkPackets {
       return builder;
     }
     /**
-     * <pre>
-     * 4. Der Umschlag (Das, was wirklich gesendet wird)
-     * </pre>
-     *
      * Protobuf type {@code org.pytenix.proto.PacketWrapper}
      */
     public static final class Builder extends
@@ -5806,27 +5816,27 @@ public final class NetworkPackets {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rpackets.proto\022\021org.pytenix.proto\"\222\001\n\014C" +
+      "\n\rpackets.proto\022\021org.pytenix.proto\"\241\001\n\014C" +
       "onfigPacket\022\023\n\013license_key\030\001 \001(\t\022=\n\007modu" +
       "les\030\002 \003(\0132,.org.pytenix.proto.ConfigPack" +
-      "et.ModulesEntry\032.\n\014ModulesEntry\022\013\n\003key\030\001" +
-      " \001(\t\022\r\n\005value\030\002 \001(\010:\0028\001\"[\n\022TranslationRe" +
-      "quest\022\022\n\nrequest_id\030\001 \001(\014\022\014\n\004text\030\002 \001(\t\022" +
-      "\023\n\013target_lang\030\003 \001(\t\022\016\n\006module\030\004 \001(\t\"(\n\023" +
-      "ConfigRequestPacket\022\021\n\ttimestamp\030\001 \001(\003\"s" +
-      "\n\020TranslationBatch\022\025\n\rorigin_server\030\001 \001(" +
-      "\t\0227\n\010requests\030\002 \003(\0132%.org.pytenix.proto." +
-      "TranslationRequest\022\017\n\007results\030\003 \003(\t\"W\n\005C" +
-      "hunk\022\027\n\017transmission_id\030\001 \001(\t\022\022\n\npart_in" +
-      "dex\030\002 \001(\005\022\023\n\013total_parts\030\003 \001(\005\022\014\n\004data\030\004" +
-      " \001(\014\"\360\001\n\rPacketWrapper\0224\n\005batch\030\001 \001(\0132#." +
-      "org.pytenix.proto.TranslationBatchH\000\022)\n\005" +
-      "chunk\030\002 \001(\0132\030.org.pytenix.proto.ChunkH\000\022" +
-      "1\n\006config\030\003 \001(\0132\037.org.pytenix.proto.Conf" +
-      "igPacketH\000\022@\n\016config_request\030\004 \001(\0132&.org" +
-      ".pytenix.proto.ConfigRequestPacketH\000B\t\n\007" +
-      "payloadB-\n\033org.pytenix.proto.generatedB\016" +
-      "NetworkPacketsb\006proto3"
+      "et.ModulesEntry\022\r\n\005words\030\003 \003(\t\032.\n\014Module" +
+      "sEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\010:\0028\001\"[" +
+      "\n\022TranslationRequest\022\022\n\nrequest_id\030\001 \001(\014" +
+      "\022\014\n\004text\030\002 \001(\t\022\023\n\013target_lang\030\003 \001(\t\022\016\n\006m" +
+      "odule\030\004 \001(\t\"(\n\023ConfigRequestPacket\022\021\n\tti" +
+      "mestamp\030\001 \001(\003\"s\n\020TranslationBatch\022\025\n\rori" +
+      "gin_server\030\001 \001(\t\0227\n\010requests\030\002 \003(\0132%.org" +
+      ".pytenix.proto.TranslationRequest\022\017\n\007res" +
+      "ults\030\003 \003(\t\"W\n\005Chunk\022\027\n\017transmission_id\030\001" +
+      " \001(\t\022\022\n\npart_index\030\002 \001(\005\022\023\n\013total_parts\030" +
+      "\003 \001(\005\022\014\n\004data\030\004 \001(\014\"\360\001\n\rPacketWrapper\0224\n" +
+      "\005batch\030\001 \001(\0132#.org.pytenix.proto.Transla" +
+      "tionBatchH\000\022)\n\005chunk\030\002 \001(\0132\030.org.pytenix" +
+      ".proto.ChunkH\000\0221\n\006config\030\003 \001(\0132\037.org.pyt" +
+      "enix.proto.ConfigPacketH\000\022@\n\016config_requ" +
+      "est\030\004 \001(\0132&.org.pytenix.proto.ConfigRequ" +
+      "estPacketH\000B\t\n\007payloadB-\n\033org.pytenix.pr" +
+      "oto.generatedB\016NetworkPacketsb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -5837,7 +5847,7 @@ public final class NetworkPackets {
     internal_static_org_pytenix_proto_ConfigPacket_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_pytenix_proto_ConfigPacket_descriptor,
-        new java.lang.String[] { "LicenseKey", "Modules", });
+        new java.lang.String[] { "LicenseKey", "Modules", "Words", });
     internal_static_org_pytenix_proto_ConfigPacket_ModulesEntry_descriptor =
       internal_static_org_pytenix_proto_ConfigPacket_descriptor.getNestedTypes().get(0);
     internal_static_org_pytenix_proto_ConfigPacket_ModulesEntry_fieldAccessorTable = new

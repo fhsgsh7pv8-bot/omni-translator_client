@@ -9,6 +9,7 @@ option java_outer_classname = "NetworkPackets";
 message ConfigPacket {
   string license_key = 1;
   map<string, bool> modules = 2;
+  repeated string words = 3;
 }
 
 

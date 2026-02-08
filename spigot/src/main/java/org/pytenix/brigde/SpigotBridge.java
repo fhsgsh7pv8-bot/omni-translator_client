@@ -8,11 +8,9 @@ import org.pytenix.UuidUtil;
 import org.pytenix.gradient.GradientService;
 import org.pytenix.proto.generated.NetworkPackets;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 public class SpigotBridge extends AdvancedTranslationBridge {
     private final SpigotTranslator plugin;
@@ -42,6 +40,7 @@ public class SpigotBridge extends AdvancedTranslationBridge {
             update.setLicenseKey(packet.getLicenseKey());
 
             update.setModules(new HashMap<>(packet.getModulesMap()));
+            update.setBlacklistedWords(new HashSet<>(packet.getWordsList()));
 
             plugin.applyConfigUpdate(update);
 
