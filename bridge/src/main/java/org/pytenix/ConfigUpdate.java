@@ -46,7 +46,8 @@ public class ConfigUpdate {
         LIVE_CHAT("live_chat"),
         GUI("gui"),
         HOLOGRAM("hologram"),
-        PLUGIN_CHAT("plugin_chat");
+        PLUGIN_CHAT("plugin_chat"),
+        SIGNS("signs");
 
 
         String moduleName;
