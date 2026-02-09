@@ -30,13 +30,12 @@ public class SpigotBridge extends AdvancedTranslationBridge {
     protected void handleConfigRequest(String originServer) {}
 
     @Override
-    protected void handleConfigUpdate(NetworkPackets.ConfigPacket packet) {
+    protected void handleConfigUpdate(NetworkPackets.ServerConfiguration packet) {
 
 
         plugin.getTaskScheduler().runAsync(() -> {
 
             ServerConfiguration update = new ServerConfiguration();
-            update.setLicenseKey(packet.getLicenseKey());
 
             update.setModules(new HashMap<>(packet.getModulesMap()));
             update.setBlacklistedWords(new HashSet<>(packet.getWordsList()));

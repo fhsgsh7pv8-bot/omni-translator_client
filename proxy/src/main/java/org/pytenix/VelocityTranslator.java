@@ -8,7 +8,11 @@ import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import lombok.Getter;
 import lombok.Setter;
+import org.pytenix.config.ConfigService;
+import org.pytenix.config.ConfigurationFile;
 import org.slf4j.Logger;
+
+import java.io.File;
 
 @Plugin(
         id = "translator",
@@ -38,6 +42,9 @@ public class VelocityTranslator {
     @Getter
     VelocityBridge velocityBridge;
 
+    final ConfigService configService;
+    final ConfigurationFile configurationFile;
+
 
     @Inject
     public VelocityTranslator(ProxyServer server, Logger logger) {
@@ -45,6 +52,15 @@ public class VelocityTranslator {
         this.proxyServer = server;
         this.logger = logger;
         this.caffeineCache = new CaffeineCache();
+
+        this.configService = new ConfigService();
+
+        if(!configService.exists("config.json")) {
+            configService.saveConfig("config.json",new ConfigurationFile("DEIN-LIZENZ-SCHLÜSSEL"));
+            System.out.println("[AITranslator] Please check in config.json for the license key!");
+        }
+        this.configurationFile = configService.loadConfig("config.json",ConfigurationFile.class);
+
 
     }
 
@@ -55,9 +71,11 @@ public class VelocityTranslator {
     public void onProxyInitialization(ProxyInitializeEvent event) {
 
         this.velocityBridge = new VelocityBridge(this);
+        velocityBridge.setSecretKey(configurationFile.getLicenseKey());
+
         server.getEventManager().register(this,velocityBridge );
 
-        this.restfulService = new RestfulService(this,velocityBridge,"DEIN-TEST-KEY",server); //CONFIG ANBINDUNG
+        this.restfulService = new RestfulService(this,velocityBridge, configurationFile.getLicenseKey(),server); //CONFIG ANBINDUNG
 
 
         logger.info("Translator Proxy erfolgreich gestartet!");

@@ -12,6 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.pytenix.brigde.ConnectionListener;
 import org.pytenix.brigde.SpigotBridge;
+import org.pytenix.config.ConfigService;
+import org.pytenix.config.ConfigurationFile;
 import org.pytenix.gradient.GradientService;
 import org.pytenix.module.ModuleService;
 import org.pytenix.placeholder.PlaceholderService;
@@ -59,10 +61,23 @@ public class SpigotTranslator extends JavaPlugin {
             .expireAfterWrite(30, TimeUnit.SECONDS).build();
 
 
-
+    ConfigService configService;
+    ConfigurationFile configurationFile;
 
     @Override
     public void onEnable() {
+
+        this.configService = new ConfigService();
+
+        if(!configService.exists("config.json")) {
+            configService.saveConfig("config.json",new ConfigurationFile("DEIN-LIZENZ-SCHLÜSSEL"));
+            System.out.println("[AITranslator] Please check in config.json for the license key!");
+        }
+        this.configurationFile = configService.loadConfig("config.json",ConfigurationFile.class);
+
+
+
+
 
         this.serverName = this.getServer().getName();
         this.taskScheduler = new TaskScheduler(this);
@@ -75,6 +90,8 @@ public class SpigotTranslator extends JavaPlugin {
         this.placeholderService = new PlaceholderService(this);
 
         this.spigotBridge = new SpigotBridge(this);
+        spigotBridge.setSecretKey(configurationFile.getLicenseKey());
+
         this.translatorService = new TranslatorService(this);
 
         initializePattern();
@@ -91,16 +108,15 @@ public class SpigotTranslator extends JavaPlugin {
         if (!configFile.exists()) {
 
             getLogger().info("Keine lokale Config gefunden. Nutze Default bis Proxy sendet.");
-            this.serverConfiguration = ServerConfiguration.createDefault("DEIN-TEST-KEY");
+            this.serverConfiguration = ServerConfiguration.createDefault("DEIN-LIZENZ-SCHLÜSSEL");
             return;
         }
 
         try {
             this.serverConfiguration = mapper.readValue(configFile, ServerConfiguration.class);
-            getLogger().info("Lokale Config geladen (Lizenz: " + serverConfiguration.getLicenseKey() + ")");
         } catch (IOException e) {
             getLogger().severe("Konnte lokale Config nicht laden: " + e.getMessage());
-            this.serverConfiguration = ServerConfiguration.createDefault("DEIN-TEST-KEY");
+            this.serverConfiguration = ServerConfiguration.createDefault("DEIN-LIZENZ-SCHLÜSSEL");
         }
     }
 

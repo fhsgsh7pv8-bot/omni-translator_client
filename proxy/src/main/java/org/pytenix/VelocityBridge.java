@@ -34,7 +34,7 @@ public class VelocityBridge extends AdvancedTranslationBridge {
     });
 
     @Override
-    protected void handleConfigUpdate(NetworkPackets.ConfigPacket configPacket) {
+    protected void handleConfigUpdate(NetworkPackets.ServerConfiguration configPacket) {
     }
 
     @Override
@@ -44,7 +44,7 @@ public class VelocityBridge extends AdvancedTranslationBridge {
             return;
         }
 
-        NetworkPackets.ConfigPacket packet = convertToProto(proxy.getCachedConfig());
+        NetworkPackets.ServerConfiguration packet = convertToProto(proxy.getCachedConfig());
         sendConfigProto(packet, originServer);
         System.out.println("Cached Config an startenden Server gesendet: " + originServer);
     }
@@ -59,9 +59,8 @@ public class VelocityBridge extends AdvancedTranslationBridge {
         return result;
     }
 
-    private NetworkPackets.ConfigPacket convertToProto(ServerConfiguration javaConfig) {
-        NetworkPackets.ConfigPacket.Builder builder = NetworkPackets.ConfigPacket.newBuilder()
-                .setLicenseKey(javaConfig.getLicenseKey() == null ? "" : javaConfig.getLicenseKey());
+    private NetworkPackets.ServerConfiguration convertToProto(ServerConfiguration javaConfig) {
+        NetworkPackets.ServerConfiguration.Builder builder = NetworkPackets.ServerConfiguration.newBuilder();
 
         if (javaConfig.getModules() != null) {
             builder.putAllModules(javaConfig.getModules());
@@ -76,7 +75,7 @@ public class VelocityBridge extends AdvancedTranslationBridge {
     public void broadcastConfigUpdate(ServerConfiguration javaConfig) {
         proxy.setCachedConfig(javaConfig);
 
-        NetworkPackets.ConfigPacket packet = convertToProto(javaConfig);
+        NetworkPackets.ServerConfiguration packet = convertToProto(javaConfig);
 
         for (RegisteredServer server : proxy.getProxyServer().getAllServers()) {
             sendConfigProto(packet, server.getServerInfo().getName());
@@ -170,7 +169,7 @@ public class VelocityBridge extends AdvancedTranslationBridge {
         if (data.length < 30000) {
 
             PacketWrapper wrapper = PacketWrapper.newBuilder().setBatch(batch).build();
-            dispatchRaw(wrapper.toByteArray(), targetServer);
+            dispatchRaw(secureWrap(wrapper.toByteArray()), targetServer);
         } else {
 
             sendChunkedResponse(data, targetServer);
@@ -197,7 +196,8 @@ public class VelocityBridge extends AdvancedTranslationBridge {
                     .build();
 
             PacketWrapper wrapper = PacketWrapper.newBuilder().setChunk(chunk).build();
-            dispatchRaw(wrapper.toByteArray(), targetServer);
+            byte[] secured = secureWrap(wrapper.toByteArray());
+            dispatchRaw(secured, targetServer);
         }
     }
 

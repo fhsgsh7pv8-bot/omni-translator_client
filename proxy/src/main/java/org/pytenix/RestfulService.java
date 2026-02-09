@@ -95,10 +95,7 @@ public class RestfulService {
     private void handleConfigUpdate(ServerConfiguration config) {
         System.out.println("[OmniTranslator] Neue Config empfangen & wird verteilt.");
 
-
-
         velocityTranslator.setCachedConfig(config);
-
         velocityBridge.broadcastConfigUpdate(config);
     }
 

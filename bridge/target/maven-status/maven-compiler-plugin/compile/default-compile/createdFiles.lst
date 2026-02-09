@@ -13,12 +13,15 @@ org\pytenix\proto\generated\NetworkPackets$PacketWrapper$1.class
 org\pytenix\proto\generated\NetworkPackets$ServerConfiguration$Builder.class
 org\pytenix\proto\generated\NetworkPackets$ConfigRequestPacketOrBuilder.class
 org\pytenix\proto\generated\NetworkPackets$TranslationBatch$Builder.class
+org\pytenix\HmacService.class
 org\pytenix\AdvancedTranslationBridge$DeduplicationKey.class
+org\pytenix\config\ConfigurationFile.class
 org\pytenix\proto\generated\NetworkPackets$TranslationRequest$1.class
 org\pytenix\proto\generated\NetworkPackets$ChunkOrBuilder.class
 org\pytenix\proto\generated\NetworkPackets$TranslationBatch$1.class
 org\pytenix\ServerConfiguration.class
 org\pytenix\proto\generated\NetworkPackets$Chunk$1.class
+org\pytenix\config\ConfigService.class
 org\pytenix\proto\generated\NetworkPackets$PacketWrapper$PayloadCase.class
 org\pytenix\proto\generated\NetworkPackets$ConfigRequestPacket.class
 org\pytenix\SerializationUtil.class
