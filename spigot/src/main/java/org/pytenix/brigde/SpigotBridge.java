@@ -2,7 +2,7 @@ package org.pytenix.brigde;
 
 import org.bukkit.Bukkit;
 import org.pytenix.AdvancedTranslationBridge;
-import org.pytenix.ConfigUpdate;
+import org.pytenix.ServerConfiguration;
 import org.pytenix.SpigotTranslator;
 import org.pytenix.UuidUtil;
 import org.pytenix.gradient.GradientService;
@@ -10,7 +10,6 @@ import org.pytenix.proto.generated.NetworkPackets;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 public class SpigotBridge extends AdvancedTranslationBridge {
     private final SpigotTranslator plugin;
@@ -36,7 +35,7 @@ public class SpigotBridge extends AdvancedTranslationBridge {
 
         plugin.getTaskScheduler().runAsync(() -> {
 
-            ConfigUpdate update = new ConfigUpdate();
+            ServerConfiguration update = new ServerConfiguration();
             update.setLicenseKey(packet.getLicenseKey());
 
             update.setModules(new HashMap<>(packet.getModulesMap()));

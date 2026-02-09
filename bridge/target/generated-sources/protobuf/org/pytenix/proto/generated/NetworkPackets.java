@@ -15,8 +15,8 @@ public final class NetworkPackets {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface ConfigPacketOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.ConfigPacket)
+  public interface ServerConfigurationOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.ServerConfiguration)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -89,18 +89,18 @@ public final class NetworkPackets {
         getWordsBytes(int index);
   }
   /**
-   * Protobuf type {@code org.pytenix.proto.ConfigPacket}
+   * Protobuf type {@code org.pytenix.proto.ServerConfiguration}
    */
-  public static final class ConfigPacket extends
+  public static final class ServerConfiguration extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:org.pytenix.proto.ConfigPacket)
-      ConfigPacketOrBuilder {
+      // @@protoc_insertion_point(message_implements:org.pytenix.proto.ServerConfiguration)
+      ServerConfigurationOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ConfigPacket.newBuilder() to construct.
-    private ConfigPacket(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ServerConfiguration.newBuilder() to construct.
+    private ServerConfiguration(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ConfigPacket() {
+    private ServerConfiguration() {
       licenseKey_ = "";
       words_ =
           com.google.protobuf.LazyStringArrayList.emptyList();
@@ -110,12 +110,12 @@ public final class NetworkPackets {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new ConfigPacket();
+      return new ServerConfiguration();
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigPacket_descriptor;
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ServerConfiguration_descriptor;
     }
 
     @SuppressWarnings({"rawtypes"})
@@ -133,9 +133,9 @@ public final class NetworkPackets {
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigPacket_fieldAccessorTable
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ServerConfiguration_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.pytenix.proto.generated.NetworkPackets.ConfigPacket.class, org.pytenix.proto.generated.NetworkPackets.ConfigPacket.Builder.class);
+              org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.class, org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.Builder.class);
     }
 
     public static final int LICENSE_KEY_FIELD_NUMBER = 1;
@@ -183,7 +183,7 @@ public final class NetworkPackets {
           java.lang.String, java.lang.Boolean> defaultEntry =
               com.google.protobuf.MapEntry
               .<java.lang.String, java.lang.Boolean>newDefaultInstance(
-                  org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigPacket_ModulesEntry_descriptor, 
+                  org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ServerConfiguration_ModulesEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.BOOL,
@@ -357,10 +357,10 @@ public final class NetworkPackets {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.ConfigPacket)) {
+      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.ServerConfiguration)) {
         return super.equals(obj);
       }
-      org.pytenix.proto.generated.NetworkPackets.ConfigPacket other = (org.pytenix.proto.generated.NetworkPackets.ConfigPacket) obj;
+      org.pytenix.proto.generated.NetworkPackets.ServerConfiguration other = (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) obj;
 
       if (!getLicenseKey()
           .equals(other.getLicenseKey())) return false;
@@ -394,44 +394,44 @@ public final class NetworkPackets {
       return hash;
     }
 
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseFrom(byte[] data)
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseFrom(java.io.InputStream input)
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -439,26 +439,26 @@ public final class NetworkPackets {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseDelimitedFrom(java.io.InputStream input)
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseDelimitedFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -471,7 +471,7 @@ public final class NetworkPackets {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.ConfigPacket prototype) {
+    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.ServerConfiguration prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -487,15 +487,15 @@ public final class NetworkPackets {
       return builder;
     }
     /**
-     * Protobuf type {@code org.pytenix.proto.ConfigPacket}
+     * Protobuf type {@code org.pytenix.proto.ServerConfiguration}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.ConfigPacket)
-        org.pytenix.proto.generated.NetworkPackets.ConfigPacketOrBuilder {
+        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.ServerConfiguration)
+        org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigPacket_descriptor;
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ServerConfiguration_descriptor;
       }
 
       @SuppressWarnings({"rawtypes"})
@@ -523,12 +523,12 @@ public final class NetworkPackets {
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigPacket_fieldAccessorTable
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ServerConfiguration_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                org.pytenix.proto.generated.NetworkPackets.ConfigPacket.class, org.pytenix.proto.generated.NetworkPackets.ConfigPacket.Builder.class);
+                org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.class, org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.Builder.class);
       }
 
-      // Construct using org.pytenix.proto.generated.NetworkPackets.ConfigPacket.newBuilder()
+      // Construct using org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.newBuilder()
       private Builder() {
 
       }
@@ -552,17 +552,17 @@ public final class NetworkPackets {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigPacket_descriptor;
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ServerConfiguration_descriptor;
       }
 
       @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.ConfigPacket getDefaultInstanceForType() {
-        return org.pytenix.proto.generated.NetworkPackets.ConfigPacket.getDefaultInstance();
+      public org.pytenix.proto.generated.NetworkPackets.ServerConfiguration getDefaultInstanceForType() {
+        return org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
       }
 
       @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.ConfigPacket build() {
-        org.pytenix.proto.generated.NetworkPackets.ConfigPacket result = buildPartial();
+      public org.pytenix.proto.generated.NetworkPackets.ServerConfiguration build() {
+        org.pytenix.proto.generated.NetworkPackets.ServerConfiguration result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -570,14 +570,14 @@ public final class NetworkPackets {
       }
 
       @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.ConfigPacket buildPartial() {
-        org.pytenix.proto.generated.NetworkPackets.ConfigPacket result = new org.pytenix.proto.generated.NetworkPackets.ConfigPacket(this);
+      public org.pytenix.proto.generated.NetworkPackets.ServerConfiguration buildPartial() {
+        org.pytenix.proto.generated.NetworkPackets.ServerConfiguration result = new org.pytenix.proto.generated.NetworkPackets.ServerConfiguration(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.ConfigPacket result) {
+      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.ServerConfiguration result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.licenseKey_ = licenseKey_;
@@ -626,16 +626,16 @@ public final class NetworkPackets {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.pytenix.proto.generated.NetworkPackets.ConfigPacket) {
-          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.ConfigPacket)other);
+        if (other instanceof org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) {
+          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.ServerConfiguration)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.ConfigPacket other) {
-        if (other == org.pytenix.proto.generated.NetworkPackets.ConfigPacket.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.ServerConfiguration other) {
+        if (other == org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance()) return this;
         if (!other.getLicenseKey().isEmpty()) {
           licenseKey_ = other.licenseKey_;
           bitField0_ |= 0x00000001;
@@ -1037,23 +1037,23 @@ public final class NetworkPackets {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.ConfigPacket)
+      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.ServerConfiguration)
     }
 
-    // @@protoc_insertion_point(class_scope:org.pytenix.proto.ConfigPacket)
-    private static final org.pytenix.proto.generated.NetworkPackets.ConfigPacket DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:org.pytenix.proto.ServerConfiguration)
+    private static final org.pytenix.proto.generated.NetworkPackets.ServerConfiguration DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.ConfigPacket();
+      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.ServerConfiguration();
     }
 
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigPacket getDefaultInstance() {
+    public static org.pytenix.proto.generated.NetworkPackets.ServerConfiguration getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ConfigPacket>
-        PARSER = new com.google.protobuf.AbstractParser<ConfigPacket>() {
+    private static final com.google.protobuf.Parser<ServerConfiguration>
+        PARSER = new com.google.protobuf.AbstractParser<ServerConfiguration>() {
       @java.lang.Override
-      public ConfigPacket parsePartialFrom(
+      public ServerConfiguration parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1072,17 +1072,17 @@ public final class NetworkPackets {
       }
     };
 
-    public static com.google.protobuf.Parser<ConfigPacket> parser() {
+    public static com.google.protobuf.Parser<ServerConfiguration> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ConfigPacket> getParserForType() {
+    public com.google.protobuf.Parser<ServerConfiguration> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public org.pytenix.proto.generated.NetworkPackets.ConfigPacket getDefaultInstanceForType() {
+    public org.pytenix.proto.generated.NetworkPackets.ServerConfiguration getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4434,19 +4434,19 @@ public final class NetworkPackets {
     org.pytenix.proto.generated.NetworkPackets.ChunkOrBuilder getChunkOrBuilder();
 
     /**
-     * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
      * @return Whether the config field is set.
      */
     boolean hasConfig();
     /**
-     * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
      * @return The config.
      */
-    org.pytenix.proto.generated.NetworkPackets.ConfigPacket getConfig();
+    org.pytenix.proto.generated.NetworkPackets.ServerConfiguration getConfig();
     /**
-     * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
      */
-    org.pytenix.proto.generated.NetworkPackets.ConfigPacketOrBuilder getConfigOrBuilder();
+    org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder getConfigOrBuilder();
 
     /**
      * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
@@ -4610,7 +4610,7 @@ public final class NetworkPackets {
 
     public static final int CONFIG_FIELD_NUMBER = 3;
     /**
-     * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
      * @return Whether the config field is set.
      */
     @java.lang.Override
@@ -4618,25 +4618,25 @@ public final class NetworkPackets {
       return payloadCase_ == 3;
     }
     /**
-     * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
      * @return The config.
      */
     @java.lang.Override
-    public org.pytenix.proto.generated.NetworkPackets.ConfigPacket getConfig() {
+    public org.pytenix.proto.generated.NetworkPackets.ServerConfiguration getConfig() {
       if (payloadCase_ == 3) {
-         return (org.pytenix.proto.generated.NetworkPackets.ConfigPacket) payload_;
+         return (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_;
       }
-      return org.pytenix.proto.generated.NetworkPackets.ConfigPacket.getDefaultInstance();
+      return org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
     }
     /**
-     * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
      */
     @java.lang.Override
-    public org.pytenix.proto.generated.NetworkPackets.ConfigPacketOrBuilder getConfigOrBuilder() {
+    public org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder getConfigOrBuilder() {
       if (payloadCase_ == 3) {
-         return (org.pytenix.proto.generated.NetworkPackets.ConfigPacket) payload_;
+         return (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_;
       }
-      return org.pytenix.proto.generated.NetworkPackets.ConfigPacket.getDefaultInstance();
+      return org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
     }
 
     public static final int CONFIG_REQUEST_FIELD_NUMBER = 4;
@@ -4691,7 +4691,7 @@ public final class NetworkPackets {
         output.writeMessage(2, (org.pytenix.proto.generated.NetworkPackets.Chunk) payload_);
       }
       if (payloadCase_ == 3) {
-        output.writeMessage(3, (org.pytenix.proto.generated.NetworkPackets.ConfigPacket) payload_);
+        output.writeMessage(3, (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_);
       }
       if (payloadCase_ == 4) {
         output.writeMessage(4, (org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) payload_);
@@ -4715,7 +4715,7 @@ public final class NetworkPackets {
       }
       if (payloadCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, (org.pytenix.proto.generated.NetworkPackets.ConfigPacket) payload_);
+          .computeMessageSize(3, (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_);
       }
       if (payloadCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
@@ -5426,9 +5426,9 @@ public final class NetworkPackets {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          org.pytenix.proto.generated.NetworkPackets.ConfigPacket, org.pytenix.proto.generated.NetworkPackets.ConfigPacket.Builder, org.pytenix.proto.generated.NetworkPackets.ConfigPacketOrBuilder> configBuilder_;
+          org.pytenix.proto.generated.NetworkPackets.ServerConfiguration, org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.Builder, org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder> configBuilder_;
       /**
-       * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
        * @return Whether the config field is set.
        */
       @java.lang.Override
@@ -5436,27 +5436,27 @@ public final class NetworkPackets {
         return payloadCase_ == 3;
       }
       /**
-       * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
        * @return The config.
        */
       @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.ConfigPacket getConfig() {
+      public org.pytenix.proto.generated.NetworkPackets.ServerConfiguration getConfig() {
         if (configBuilder_ == null) {
           if (payloadCase_ == 3) {
-            return (org.pytenix.proto.generated.NetworkPackets.ConfigPacket) payload_;
+            return (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_;
           }
-          return org.pytenix.proto.generated.NetworkPackets.ConfigPacket.getDefaultInstance();
+          return org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
         } else {
           if (payloadCase_ == 3) {
             return configBuilder_.getMessage();
           }
-          return org.pytenix.proto.generated.NetworkPackets.ConfigPacket.getDefaultInstance();
+          return org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
         }
       }
       /**
-       * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
        */
-      public Builder setConfig(org.pytenix.proto.generated.NetworkPackets.ConfigPacket value) {
+      public Builder setConfig(org.pytenix.proto.generated.NetworkPackets.ServerConfiguration value) {
         if (configBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5470,10 +5470,10 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
        */
       public Builder setConfig(
-          org.pytenix.proto.generated.NetworkPackets.ConfigPacket.Builder builderForValue) {
+          org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.Builder builderForValue) {
         if (configBuilder_ == null) {
           payload_ = builderForValue.build();
           onChanged();
@@ -5484,13 +5484,13 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
        */
-      public Builder mergeConfig(org.pytenix.proto.generated.NetworkPackets.ConfigPacket value) {
+      public Builder mergeConfig(org.pytenix.proto.generated.NetworkPackets.ServerConfiguration value) {
         if (configBuilder_ == null) {
           if (payloadCase_ == 3 &&
-              payload_ != org.pytenix.proto.generated.NetworkPackets.ConfigPacket.getDefaultInstance()) {
-            payload_ = org.pytenix.proto.generated.NetworkPackets.ConfigPacket.newBuilder((org.pytenix.proto.generated.NetworkPackets.ConfigPacket) payload_)
+              payload_ != org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance()) {
+            payload_ = org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.newBuilder((org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_)
                 .mergeFrom(value).buildPartial();
           } else {
             payload_ = value;
@@ -5507,7 +5507,7 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
        */
       public Builder clearConfig() {
         if (configBuilder_ == null) {
@@ -5526,38 +5526,38 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
        */
-      public org.pytenix.proto.generated.NetworkPackets.ConfigPacket.Builder getConfigBuilder() {
+      public org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.Builder getConfigBuilder() {
         return getConfigFieldBuilder().getBuilder();
       }
       /**
-       * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
        */
       @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.ConfigPacketOrBuilder getConfigOrBuilder() {
+      public org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder getConfigOrBuilder() {
         if ((payloadCase_ == 3) && (configBuilder_ != null)) {
           return configBuilder_.getMessageOrBuilder();
         } else {
           if (payloadCase_ == 3) {
-            return (org.pytenix.proto.generated.NetworkPackets.ConfigPacket) payload_;
+            return (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_;
           }
-          return org.pytenix.proto.generated.NetworkPackets.ConfigPacket.getDefaultInstance();
+          return org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
         }
       }
       /**
-       * <code>.org.pytenix.proto.ConfigPacket config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          org.pytenix.proto.generated.NetworkPackets.ConfigPacket, org.pytenix.proto.generated.NetworkPackets.ConfigPacket.Builder, org.pytenix.proto.generated.NetworkPackets.ConfigPacketOrBuilder> 
+          org.pytenix.proto.generated.NetworkPackets.ServerConfiguration, org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.Builder, org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder> 
           getConfigFieldBuilder() {
         if (configBuilder_ == null) {
           if (!(payloadCase_ == 3)) {
-            payload_ = org.pytenix.proto.generated.NetworkPackets.ConfigPacket.getDefaultInstance();
+            payload_ = org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
           }
           configBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              org.pytenix.proto.generated.NetworkPackets.ConfigPacket, org.pytenix.proto.generated.NetworkPackets.ConfigPacket.Builder, org.pytenix.proto.generated.NetworkPackets.ConfigPacketOrBuilder>(
-                  (org.pytenix.proto.generated.NetworkPackets.ConfigPacket) payload_,
+              org.pytenix.proto.generated.NetworkPackets.ServerConfiguration, org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.Builder, org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder>(
+                  (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_,
                   getParentForChildren(),
                   isClean());
           payload_ = null;
@@ -5773,15 +5773,15 @@ public final class NetworkPackets {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_pytenix_proto_ConfigPacket_descriptor;
+    internal_static_org_pytenix_proto_ServerConfiguration_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_org_pytenix_proto_ConfigPacket_fieldAccessorTable;
+      internal_static_org_pytenix_proto_ServerConfiguration_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_pytenix_proto_ConfigPacket_ModulesEntry_descriptor;
+    internal_static_org_pytenix_proto_ServerConfiguration_ModulesEntry_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_org_pytenix_proto_ConfigPacket_ModulesEntry_fieldAccessorTable;
+      internal_static_org_pytenix_proto_ServerConfiguration_ModulesEntry_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_pytenix_proto_TranslationRequest_descriptor;
   private static final 
@@ -5816,43 +5816,44 @@ public final class NetworkPackets {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rpackets.proto\022\021org.pytenix.proto\"\241\001\n\014C" +
-      "onfigPacket\022\023\n\013license_key\030\001 \001(\t\022=\n\007modu" +
-      "les\030\002 \003(\0132,.org.pytenix.proto.ConfigPack" +
-      "et.ModulesEntry\022\r\n\005words\030\003 \003(\t\032.\n\014Module" +
-      "sEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\010:\0028\001\"[" +
-      "\n\022TranslationRequest\022\022\n\nrequest_id\030\001 \001(\014" +
-      "\022\014\n\004text\030\002 \001(\t\022\023\n\013target_lang\030\003 \001(\t\022\016\n\006m" +
-      "odule\030\004 \001(\t\"(\n\023ConfigRequestPacket\022\021\n\tti" +
-      "mestamp\030\001 \001(\003\"s\n\020TranslationBatch\022\025\n\rori" +
-      "gin_server\030\001 \001(\t\0227\n\010requests\030\002 \003(\0132%.org" +
-      ".pytenix.proto.TranslationRequest\022\017\n\007res" +
-      "ults\030\003 \003(\t\"W\n\005Chunk\022\027\n\017transmission_id\030\001" +
-      " \001(\t\022\022\n\npart_index\030\002 \001(\005\022\023\n\013total_parts\030" +
-      "\003 \001(\005\022\014\n\004data\030\004 \001(\014\"\360\001\n\rPacketWrapper\0224\n" +
-      "\005batch\030\001 \001(\0132#.org.pytenix.proto.Transla" +
-      "tionBatchH\000\022)\n\005chunk\030\002 \001(\0132\030.org.pytenix" +
-      ".proto.ChunkH\000\0221\n\006config\030\003 \001(\0132\037.org.pyt" +
-      "enix.proto.ConfigPacketH\000\022@\n\016config_requ" +
-      "est\030\004 \001(\0132&.org.pytenix.proto.ConfigRequ" +
-      "estPacketH\000B\t\n\007payloadB-\n\033org.pytenix.pr" +
-      "oto.generatedB\016NetworkPacketsb\006proto3"
+      "\n\rpackets.proto\022\021org.pytenix.proto\"\257\001\n\023S" +
+      "erverConfiguration\022\023\n\013license_key\030\001 \001(\t\022" +
+      "D\n\007modules\030\002 \003(\01323.org.pytenix.proto.Ser" +
+      "verConfiguration.ModulesEntry\022\r\n\005words\030\003" +
+      " \003(\t\032.\n\014ModulesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005val" +
+      "ue\030\002 \001(\010:\0028\001\"[\n\022TranslationRequest\022\022\n\nre" +
+      "quest_id\030\001 \001(\014\022\014\n\004text\030\002 \001(\t\022\023\n\013target_l" +
+      "ang\030\003 \001(\t\022\016\n\006module\030\004 \001(\t\"(\n\023ConfigReque" +
+      "stPacket\022\021\n\ttimestamp\030\001 \001(\003\"s\n\020Translati" +
+      "onBatch\022\025\n\rorigin_server\030\001 \001(\t\0227\n\010reques" +
+      "ts\030\002 \003(\0132%.org.pytenix.proto.Translation" +
+      "Request\022\017\n\007results\030\003 \003(\t\"W\n\005Chunk\022\027\n\017tra" +
+      "nsmission_id\030\001 \001(\t\022\022\n\npart_index\030\002 \001(\005\022\023" +
+      "\n\013total_parts\030\003 \001(\005\022\014\n\004data\030\004 \001(\014\"\367\001\n\rPa" +
+      "cketWrapper\0224\n\005batch\030\001 \001(\0132#.org.pytenix" +
+      ".proto.TranslationBatchH\000\022)\n\005chunk\030\002 \001(\013" +
+      "2\030.org.pytenix.proto.ChunkH\000\0228\n\006config\030\003" +
+      " \001(\0132&.org.pytenix.proto.ServerConfigura" +
+      "tionH\000\022@\n\016config_request\030\004 \001(\0132&.org.pyt" +
+      "enix.proto.ConfigRequestPacketH\000B\t\n\007payl" +
+      "oadB-\n\033org.pytenix.proto.generatedB\016Netw" +
+      "orkPacketsb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_org_pytenix_proto_ConfigPacket_descriptor =
+    internal_static_org_pytenix_proto_ServerConfiguration_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_org_pytenix_proto_ConfigPacket_fieldAccessorTable = new
+    internal_static_org_pytenix_proto_ServerConfiguration_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_org_pytenix_proto_ConfigPacket_descriptor,
+        internal_static_org_pytenix_proto_ServerConfiguration_descriptor,
         new java.lang.String[] { "LicenseKey", "Modules", "Words", });
-    internal_static_org_pytenix_proto_ConfigPacket_ModulesEntry_descriptor =
-      internal_static_org_pytenix_proto_ConfigPacket_descriptor.getNestedTypes().get(0);
-    internal_static_org_pytenix_proto_ConfigPacket_ModulesEntry_fieldAccessorTable = new
+    internal_static_org_pytenix_proto_ServerConfiguration_ModulesEntry_descriptor =
+      internal_static_org_pytenix_proto_ServerConfiguration_descriptor.getNestedTypes().get(0);
+    internal_static_org_pytenix_proto_ServerConfiguration_ModulesEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_org_pytenix_proto_ConfigPacket_ModulesEntry_descriptor,
+        internal_static_org_pytenix_proto_ServerConfiguration_ModulesEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_org_pytenix_proto_TranslationRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);

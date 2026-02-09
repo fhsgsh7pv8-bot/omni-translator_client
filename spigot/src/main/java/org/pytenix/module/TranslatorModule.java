@@ -1,12 +1,9 @@
 package org.pytenix.module;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import lombok.Getter;
-import org.bukkit.Bukkit;
 import org.pytenix.SpigotTranslator;
 import org.pytenix.TranslatorService;
 
-import java.util.EventListener;
 import java.util.concurrent.CompletableFuture;
 
 public abstract class TranslatorModule {
@@ -34,7 +31,7 @@ public abstract class TranslatorModule {
 
     public boolean isActive()
     {
-        return spigotTranslator.getConfigUpdate().getModules().getOrDefault(moduleName,true);
+        return spigotTranslator.getServerConfiguration().getModules().getOrDefault(moduleName,true);
     }
 
 

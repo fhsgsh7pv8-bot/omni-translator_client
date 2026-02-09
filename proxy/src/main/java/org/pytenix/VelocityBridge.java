@@ -59,7 +59,7 @@ public class VelocityBridge extends AdvancedTranslationBridge {
         return result;
     }
 
-    private NetworkPackets.ConfigPacket convertToProto(ConfigUpdate javaConfig) {
+    private NetworkPackets.ConfigPacket convertToProto(ServerConfiguration javaConfig) {
         NetworkPackets.ConfigPacket.Builder builder = NetworkPackets.ConfigPacket.newBuilder()
                 .setLicenseKey(javaConfig.getLicenseKey() == null ? "" : javaConfig.getLicenseKey());
 
@@ -73,7 +73,7 @@ public class VelocityBridge extends AdvancedTranslationBridge {
         return builder.build();
     }
 
-    public void broadcastConfigUpdate(ConfigUpdate javaConfig) {
+    public void broadcastConfigUpdate(ServerConfiguration javaConfig) {
         proxy.setCachedConfig(javaConfig);
 
         NetworkPackets.ConfigPacket packet = convertToProto(javaConfig);

@@ -30,7 +30,7 @@ public class VelocityTranslator {
 
 
     @Getter @Setter
-    public ConfigUpdate cachedConfig;
+    public ServerConfiguration cachedConfig;
 
     @Getter
     private final ProxyServer proxyServer;

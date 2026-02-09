@@ -6,7 +6,7 @@ option java_package = "org.pytenix.proto.generated";
 option java_outer_classname = "NetworkPackets";
 
 
-message ConfigPacket {
+message ServerConfiguration {
   string license_key = 1;
   map<string, bool> modules = 2;
   repeated string words = 3;
@@ -46,7 +46,7 @@ message PacketWrapper {
   oneof payload {
     TranslationBatch batch = 1;
     Chunk chunk = 2;
-    ConfigPacket config = 3;
+    ServerConfiguration config = 3;
     ConfigRequestPacket config_request = 4;
   }
 }

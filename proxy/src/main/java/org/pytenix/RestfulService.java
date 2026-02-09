@@ -1,13 +1,10 @@
 package org.pytenix;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.scheduler.ScheduledTask;
-import lombok.Getter;
 import org.pytenix.model.TranslationRequest;
 import org.pytenix.model.TranslationResponse;
 
@@ -95,7 +92,7 @@ public class RestfulService {
     }
 
 
-    private void handleConfigUpdate(ConfigUpdate config) {
+    private void handleConfigUpdate(ServerConfiguration config) {
         System.out.println("[OmniTranslator] Neue Config empfangen & wird verteilt.");
 
 
@@ -223,7 +220,7 @@ public class RestfulService {
 
 
                         if (rootNode.has("type") && rootNode.get("type").asText().equals("CONFIG_UPDATE")) {
-                            ConfigUpdate config = mapper.treeToValue(rootNode, ConfigUpdate.class);
+                            ServerConfiguration config = mapper.treeToValue(rootNode, ServerConfiguration.class);
                             handleConfigUpdate(config);
                             return;
                         }
@@ -234,7 +231,7 @@ public class RestfulService {
                             processResponse(res);
                         } else {
 
-                            ConfigUpdate config = mapper.treeToValue(rootNode, ConfigUpdate.class);
+                            ServerConfiguration config = mapper.treeToValue(rootNode, ServerConfiguration.class);
                             handleConfigUpdate(config);
                         }
 

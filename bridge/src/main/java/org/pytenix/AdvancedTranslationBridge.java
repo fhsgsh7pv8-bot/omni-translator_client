@@ -146,9 +146,9 @@ public abstract class AdvancedTranslationBridge {
 
     protected abstract void handleConfigRequest(String originServer);
 
-    protected abstract void handleConfigUpdate(NetworkPackets.ConfigPacket configPacket);
+    protected abstract void handleConfigUpdate(NetworkPackets.ServerConfiguration configPacket);
 
-    public void sendConfigProto(NetworkPackets.ConfigPacket packet, String targetServer) {
+    public void sendConfigProto(NetworkPackets.ServerConfiguration packet, String targetServer) {
 
         PacketWrapper wrapper = PacketWrapper.newBuilder().setConfig(packet).build();
         dispatchRaw(wrapper.toByteArray(), targetServer);

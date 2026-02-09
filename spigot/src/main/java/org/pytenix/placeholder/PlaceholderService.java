@@ -2,7 +2,6 @@ package org.pytenix.placeholder;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.google.gson.Gson;
 import lombok.Getter;
 import org.pytenix.SpigotTranslator;
 import org.pytenix.placeholder.impl.ExtendedPlaceholder;
@@ -45,9 +44,9 @@ public class PlaceholderService {
         this.spigotTranslator = spigotTranslator;
         this.playernameProtector = new PlayernameProtector(spigotTranslator);
 
-        if(spigotTranslator.getConfigUpdate() != null)
-            updateProtectedWords(spigotTranslator.getConfigUpdate().getBlacklistedWords() != null ?
-                    spigotTranslator.getConfigUpdate().getBlacklistedWords() : new HashSet<>());
+        if(spigotTranslator.getServerConfiguration() != null)
+            updateProtectedWords(spigotTranslator.getServerConfiguration().getBlacklistedWords() != null ?
+                    spigotTranslator.getServerConfiguration().getBlacklistedWords() : new HashSet<>());
 
 
         registerPlaceholder(0, new ExtendedPlaceholder("SKIP", () -> SYSTEM_PROTECTION_PATTERN));

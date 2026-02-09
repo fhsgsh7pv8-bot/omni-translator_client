@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Setter @Getter @AllArgsConstructor
-public class ConfigUpdate {
+public class ServerConfiguration {
 
     private String type = "CONFIG_UPDATE";
 
@@ -21,16 +21,16 @@ public class ConfigUpdate {
     Set<String> blacklistedWords;
 
 
-    public ConfigUpdate()
+    public ServerConfiguration()
     {
 
     }
 
 
 
-    public static ConfigUpdate createDefault(String licenseKey)
+    public static ServerConfiguration createDefault(String licenseKey)
     {
-        ConfigUpdate configUpdate = new ConfigUpdate();
+        ServerConfiguration serverConfiguration = new ServerConfiguration();
 
 
         HashMap<String,Boolean> hash = new HashMap<>();
@@ -38,11 +38,11 @@ public class ConfigUpdate {
             hash.put(value.getModuleName(),true);
         }
 
-        configUpdate.setModules(hash);
-        configUpdate.setLicenseKey(licenseKey);
-        configUpdate.setBlacklistedWords(new HashSet<>());
+        serverConfiguration.setModules(hash);
+        serverConfiguration.setLicenseKey(licenseKey);
+        serverConfiguration.setBlacklistedWords(new HashSet<>());
 
-        return configUpdate;
+        return serverConfiguration;
     }
 
 

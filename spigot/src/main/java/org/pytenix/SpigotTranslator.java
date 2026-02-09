@@ -41,7 +41,7 @@ public class SpigotTranslator extends JavaPlugin {
 
 
     @Getter @Setter
-    ConfigUpdate configUpdate;
+    ServerConfiguration serverConfiguration;
 
     private File configFile;
 
@@ -91,25 +91,25 @@ public class SpigotTranslator extends JavaPlugin {
         if (!configFile.exists()) {
 
             getLogger().info("Keine lokale Config gefunden. Nutze Default bis Proxy sendet.");
-            this.configUpdate = ConfigUpdate.createDefault("DEIN-TEST-KEY");
+            this.serverConfiguration = ServerConfiguration.createDefault("DEIN-TEST-KEY");
             return;
         }
 
         try {
-            this.configUpdate = mapper.readValue(configFile, ConfigUpdate.class);
-            getLogger().info("Lokale Config geladen (Lizenz: " + configUpdate.getLicenseKey() + ")");
+            this.serverConfiguration = mapper.readValue(configFile, ServerConfiguration.class);
+            getLogger().info("Lokale Config geladen (Lizenz: " + serverConfiguration.getLicenseKey() + ")");
         } catch (IOException e) {
             getLogger().severe("Konnte lokale Config nicht laden: " + e.getMessage());
-            this.configUpdate = ConfigUpdate.createDefault("DEIN-TEST-KEY");
+            this.serverConfiguration = ServerConfiguration.createDefault("DEIN-TEST-KEY");
         }
     }
 
 
-    public void applyConfigUpdate(ConfigUpdate newConfig) {
-        this.configUpdate = newConfig;
+    public void applyConfigUpdate(ServerConfiguration newConfig) {
+        this.serverConfiguration = newConfig;
 
 
-        placeholderService.updateProtectedWords(configUpdate.getBlacklistedWords());
+        placeholderService.updateProtectedWords(serverConfiguration.getBlacklistedWords());
 
 
 
