@@ -7,6 +7,7 @@ org\pytenix\module\modules\hologram\PlayerQuitListener.class
 org\pytenix\util\TaskScheduler.class
 org\pytenix\module\modules\player\ChatPacketListener.class
 org\pytenix\placeholder\BasePlaceholder.class
+org\pytenix\placeholder\PlaceholderNormalizer$NormalizationResult.class
 org\pytenix\module\modules\player\ChatRendererCache.class
 org\pytenix\brigde\ConnectionListener.class
 org\pytenix\placeholder\PlayernameProtector.class
@@ -16,6 +17,7 @@ org\pytenix\module\ModuleService.class
 org\pytenix\gradient\GradientService$ExtractionResult.class
 org\pytenix\module\modules\chat\PluginChatModule.class
 org\pytenix\module\modules\player\ChatPacketListener$MessageVersion.class
+org\pytenix\placeholder\PlaceholderNormalizer.class
 org\pytenix\gradient\GradientService.class
 org\pytenix\module\modules\chat\MessageSequencer.class
 org\pytenix\module\modules\hologram\HologramModule.class

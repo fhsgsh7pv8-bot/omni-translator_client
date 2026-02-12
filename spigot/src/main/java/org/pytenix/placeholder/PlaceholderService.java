@@ -37,8 +37,11 @@ public class PlaceholderService {
     Cache<UUID, WordProtector.ProtectionResult> cachedWords = CacheBuilder.newBuilder()
             .expireAfterWrite(30, TimeUnit.SECONDS).build();
 
+    final PlaceholderNormalizer placeholderNormalizer;
+
     public final Pattern COLOR_PATTERN = Pattern.compile("(?:§x(?:§[0-9a-fA-F]){6})|(?:§[0-9a-fA-Fk-orK-OR])");
     public PlaceholderService(SpigotTranslator spigotTranslator) {
+        this.placeholderNormalizer = new PlaceholderNormalizer();
         this.registeredPlaceholders = new TreeMap<>();
         this.wordProtector = new WordProtector();
         this.spigotTranslator = spigotTranslator;
@@ -148,12 +151,16 @@ public class PlaceholderService {
             text = wordResult.maskedText();
         }
 
-        return text;
+
+
+        return placeholderNormalizer.normalizeText(id,text);
     }
 
     public String fromPlaceholders(UUID id, String text) {
         List<ExtendedPlaceholder> reverseList = new ArrayList<>(registeredPlaceholders.values());
         Collections.reverse(reverseList);
+
+        text = placeholderNormalizer.denormalizeText(id,text);
 
         for (ExtendedPlaceholder ph : reverseList) {
            if(ph.placeholder().equals("SKIP")) continue;

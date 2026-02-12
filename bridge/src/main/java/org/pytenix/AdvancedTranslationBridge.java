@@ -129,6 +129,7 @@ public abstract class AdvancedTranslationBridge {
     public CompletableFuture<String> translate(UUID id, String text, String targetLang, String module) {
         if (text == null || text.isEmpty()) return CompletableFuture.completedFuture("");
 
+        System.out.println("TRANSLATE " + text + " -> " + targetLang);
         DeduplicationKey key = new DeduplicationKey(text, targetLang, module);
         CompletableFuture<String> future = new CompletableFuture<>();
 

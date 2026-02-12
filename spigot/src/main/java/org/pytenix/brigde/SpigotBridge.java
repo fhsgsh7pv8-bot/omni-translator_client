@@ -22,7 +22,13 @@ public class SpigotBridge extends AdvancedTranslationBridge {
                 (ch, player, msg) -> this.onReceiveRaw(msg, null));
 
 
-        plugin.getTaskScheduler().runTimerAsync( this::flush, 1, 1);
+        plugin.getTaskScheduler().runTimerAsync(() -> {
+
+            if (!Bukkit.getOnlinePlayers().isEmpty()) {
+                this.flush();
+            }
+
+        }, 1, 1);
 
     }
 
