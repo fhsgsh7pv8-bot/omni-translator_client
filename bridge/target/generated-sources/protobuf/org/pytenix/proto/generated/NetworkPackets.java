@@ -1088,6 +1088,3297 @@ public final class NetworkPackets {
 
   }
 
+  public interface GeoBatchRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.GeoBatchRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+     */
+    java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket> 
+        getRequestsList();
+    /**
+     * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+     */
+    org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket getRequests(int index);
+    /**
+     * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+     */
+    int getRequestsCount();
+    /**
+     * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+     */
+    java.util.List<? extends org.pytenix.proto.generated.NetworkPackets.GeoRequestPacketOrBuilder> 
+        getRequestsOrBuilderList();
+    /**
+     * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+     */
+    org.pytenix.proto.generated.NetworkPackets.GeoRequestPacketOrBuilder getRequestsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code org.pytenix.proto.GeoBatchRequest}
+   */
+  public static final class GeoBatchRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:org.pytenix.proto.GeoBatchRequest)
+      GeoBatchRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GeoBatchRequest.newBuilder() to construct.
+    private GeoBatchRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GeoBatchRequest() {
+      requests_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GeoBatchRequest();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoBatchRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoBatchRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.class, org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.Builder.class);
+    }
+
+    public static final int REQUESTS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket> requests_;
+    /**
+     * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket> getRequestsList() {
+      return requests_;
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends org.pytenix.proto.generated.NetworkPackets.GeoRequestPacketOrBuilder> 
+        getRequestsOrBuilderList() {
+      return requests_;
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+     */
+    @java.lang.Override
+    public int getRequestsCount() {
+      return requests_.size();
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket getRequests(int index) {
+      return requests_.get(index);
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoRequestPacketOrBuilder getRequestsOrBuilder(
+        int index) {
+      return requests_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < requests_.size(); i++) {
+        output.writeMessage(1, requests_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < requests_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, requests_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest)) {
+        return super.equals(obj);
+      }
+      org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest other = (org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest) obj;
+
+      if (!getRequestsList()
+          .equals(other.getRequestsList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getRequestsCount() > 0) {
+        hash = (37 * hash) + REQUESTS_FIELD_NUMBER;
+        hash = (53 * hash) + getRequestsList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.pytenix.proto.GeoBatchRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.GeoBatchRequest)
+        org.pytenix.proto.generated.NetworkPackets.GeoBatchRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoBatchRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoBatchRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.class, org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.Builder.class);
+      }
+
+      // Construct using org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (requestsBuilder_ == null) {
+          requests_ = java.util.Collections.emptyList();
+        } else {
+          requests_ = null;
+          requestsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoBatchRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest getDefaultInstanceForType() {
+        return org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest build() {
+        org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest buildPartial() {
+        org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest result = new org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest result) {
+        if (requestsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            requests_ = java.util.Collections.unmodifiableList(requests_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.requests_ = requests_;
+        } else {
+          result.requests_ = requestsBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest) {
+          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest other) {
+        if (other == org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.getDefaultInstance()) return this;
+        if (requestsBuilder_ == null) {
+          if (!other.requests_.isEmpty()) {
+            if (requests_.isEmpty()) {
+              requests_ = other.requests_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureRequestsIsMutable();
+              requests_.addAll(other.requests_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.requests_.isEmpty()) {
+            if (requestsBuilder_.isEmpty()) {
+              requestsBuilder_.dispose();
+              requestsBuilder_ = null;
+              requests_ = other.requests_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              requestsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getRequestsFieldBuilder() : null;
+            } else {
+              requestsBuilder_.addAllMessages(other.requests_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket m =
+                    input.readMessage(
+                        org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.parser(),
+                        extensionRegistry);
+                if (requestsBuilder_ == null) {
+                  ensureRequestsIsMutable();
+                  requests_.add(m);
+                } else {
+                  requestsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket> requests_ =
+        java.util.Collections.emptyList();
+      private void ensureRequestsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          requests_ = new java.util.ArrayList<org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket>(requests_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacketOrBuilder> requestsBuilder_;
+
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket> getRequestsList() {
+        if (requestsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(requests_);
+        } else {
+          return requestsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public int getRequestsCount() {
+        if (requestsBuilder_ == null) {
+          return requests_.size();
+        } else {
+          return requestsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket getRequests(int index) {
+        if (requestsBuilder_ == null) {
+          return requests_.get(index);
+        } else {
+          return requestsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public Builder setRequests(
+          int index, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket value) {
+        if (requestsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRequestsIsMutable();
+          requests_.set(index, value);
+          onChanged();
+        } else {
+          requestsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public Builder setRequests(
+          int index, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder builderForValue) {
+        if (requestsBuilder_ == null) {
+          ensureRequestsIsMutable();
+          requests_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          requestsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public Builder addRequests(org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket value) {
+        if (requestsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRequestsIsMutable();
+          requests_.add(value);
+          onChanged();
+        } else {
+          requestsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public Builder addRequests(
+          int index, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket value) {
+        if (requestsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRequestsIsMutable();
+          requests_.add(index, value);
+          onChanged();
+        } else {
+          requestsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public Builder addRequests(
+          org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder builderForValue) {
+        if (requestsBuilder_ == null) {
+          ensureRequestsIsMutable();
+          requests_.add(builderForValue.build());
+          onChanged();
+        } else {
+          requestsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public Builder addRequests(
+          int index, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder builderForValue) {
+        if (requestsBuilder_ == null) {
+          ensureRequestsIsMutable();
+          requests_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          requestsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public Builder addAllRequests(
+          java.lang.Iterable<? extends org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket> values) {
+        if (requestsBuilder_ == null) {
+          ensureRequestsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, requests_);
+          onChanged();
+        } else {
+          requestsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public Builder clearRequests() {
+        if (requestsBuilder_ == null) {
+          requests_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          requestsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public Builder removeRequests(int index) {
+        if (requestsBuilder_ == null) {
+          ensureRequestsIsMutable();
+          requests_.remove(index);
+          onChanged();
+        } else {
+          requestsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder getRequestsBuilder(
+          int index) {
+        return getRequestsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoRequestPacketOrBuilder getRequestsOrBuilder(
+          int index) {
+        if (requestsBuilder_ == null) {
+          return requests_.get(index);  } else {
+          return requestsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public java.util.List<? extends org.pytenix.proto.generated.NetworkPackets.GeoRequestPacketOrBuilder> 
+           getRequestsOrBuilderList() {
+        if (requestsBuilder_ != null) {
+          return requestsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(requests_);
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder addRequestsBuilder() {
+        return getRequestsFieldBuilder().addBuilder(
+            org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder addRequestsBuilder(
+          int index) {
+        return getRequestsFieldBuilder().addBuilder(
+            index, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoRequestPacket requests = 1;</code>
+       */
+      public java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder> 
+           getRequestsBuilderList() {
+        return getRequestsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacketOrBuilder> 
+          getRequestsFieldBuilder() {
+        if (requestsBuilder_ == null) {
+          requestsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacketOrBuilder>(
+                  requests_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          requests_ = null;
+        }
+        return requestsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.GeoBatchRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:org.pytenix.proto.GeoBatchRequest)
+    private static final org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest();
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GeoBatchRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GeoBatchRequest>() {
+      @java.lang.Override
+      public GeoBatchRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<GeoBatchRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GeoBatchRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GeoBatchResultOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.GeoBatchResult)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+     */
+    java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoResultPacket> 
+        getResultsList();
+    /**
+     * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+     */
+    org.pytenix.proto.generated.NetworkPackets.GeoResultPacket getResults(int index);
+    /**
+     * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+     */
+    int getResultsCount();
+    /**
+     * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+     */
+    java.util.List<? extends org.pytenix.proto.generated.NetworkPackets.GeoResultPacketOrBuilder> 
+        getResultsOrBuilderList();
+    /**
+     * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+     */
+    org.pytenix.proto.generated.NetworkPackets.GeoResultPacketOrBuilder getResultsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code org.pytenix.proto.GeoBatchResult}
+   */
+  public static final class GeoBatchResult extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:org.pytenix.proto.GeoBatchResult)
+      GeoBatchResultOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GeoBatchResult.newBuilder() to construct.
+    private GeoBatchResult(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GeoBatchResult() {
+      results_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GeoBatchResult();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoBatchResult_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoBatchResult_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.class, org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.Builder.class);
+    }
+
+    public static final int RESULTS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoResultPacket> results_;
+    /**
+     * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoResultPacket> getResultsList() {
+      return results_;
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends org.pytenix.proto.generated.NetworkPackets.GeoResultPacketOrBuilder> 
+        getResultsOrBuilderList() {
+      return results_;
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+     */
+    @java.lang.Override
+    public int getResultsCount() {
+      return results_.size();
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoResultPacket getResults(int index) {
+      return results_.get(index);
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoResultPacketOrBuilder getResultsOrBuilder(
+        int index) {
+      return results_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < results_.size(); i++) {
+        output.writeMessage(1, results_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < results_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, results_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.GeoBatchResult)) {
+        return super.equals(obj);
+      }
+      org.pytenix.proto.generated.NetworkPackets.GeoBatchResult other = (org.pytenix.proto.generated.NetworkPackets.GeoBatchResult) obj;
+
+      if (!getResultsList()
+          .equals(other.getResultsList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getResultsCount() > 0) {
+        hash = (37 * hash) + RESULTS_FIELD_NUMBER;
+        hash = (53 * hash) + getResultsList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.GeoBatchResult prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.pytenix.proto.GeoBatchResult}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.GeoBatchResult)
+        org.pytenix.proto.generated.NetworkPackets.GeoBatchResultOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoBatchResult_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoBatchResult_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.class, org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.Builder.class);
+      }
+
+      // Construct using org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (resultsBuilder_ == null) {
+          results_ = java.util.Collections.emptyList();
+        } else {
+          results_ = null;
+          resultsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoBatchResult_descriptor;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchResult getDefaultInstanceForType() {
+        return org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchResult build() {
+        org.pytenix.proto.generated.NetworkPackets.GeoBatchResult result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchResult buildPartial() {
+        org.pytenix.proto.generated.NetworkPackets.GeoBatchResult result = new org.pytenix.proto.generated.NetworkPackets.GeoBatchResult(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(org.pytenix.proto.generated.NetworkPackets.GeoBatchResult result) {
+        if (resultsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            results_ = java.util.Collections.unmodifiableList(results_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.results_ = results_;
+        } else {
+          result.results_ = resultsBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.GeoBatchResult result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.pytenix.proto.generated.NetworkPackets.GeoBatchResult) {
+          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.GeoBatchResult)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.GeoBatchResult other) {
+        if (other == org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.getDefaultInstance()) return this;
+        if (resultsBuilder_ == null) {
+          if (!other.results_.isEmpty()) {
+            if (results_.isEmpty()) {
+              results_ = other.results_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureResultsIsMutable();
+              results_.addAll(other.results_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.results_.isEmpty()) {
+            if (resultsBuilder_.isEmpty()) {
+              resultsBuilder_.dispose();
+              resultsBuilder_ = null;
+              results_ = other.results_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              resultsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getResultsFieldBuilder() : null;
+            } else {
+              resultsBuilder_.addAllMessages(other.results_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                org.pytenix.proto.generated.NetworkPackets.GeoResultPacket m =
+                    input.readMessage(
+                        org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.parser(),
+                        extensionRegistry);
+                if (resultsBuilder_ == null) {
+                  ensureResultsIsMutable();
+                  results_.add(m);
+                } else {
+                  resultsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoResultPacket> results_ =
+        java.util.Collections.emptyList();
+      private void ensureResultsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          results_ = new java.util.ArrayList<org.pytenix.proto.generated.NetworkPackets.GeoResultPacket>(results_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.GeoResultPacket, org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder, org.pytenix.proto.generated.NetworkPackets.GeoResultPacketOrBuilder> resultsBuilder_;
+
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoResultPacket> getResultsList() {
+        if (resultsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(results_);
+        } else {
+          return resultsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public int getResultsCount() {
+        if (resultsBuilder_ == null) {
+          return results_.size();
+        } else {
+          return resultsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoResultPacket getResults(int index) {
+        if (resultsBuilder_ == null) {
+          return results_.get(index);
+        } else {
+          return resultsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public Builder setResults(
+          int index, org.pytenix.proto.generated.NetworkPackets.GeoResultPacket value) {
+        if (resultsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureResultsIsMutable();
+          results_.set(index, value);
+          onChanged();
+        } else {
+          resultsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public Builder setResults(
+          int index, org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder builderForValue) {
+        if (resultsBuilder_ == null) {
+          ensureResultsIsMutable();
+          results_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          resultsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public Builder addResults(org.pytenix.proto.generated.NetworkPackets.GeoResultPacket value) {
+        if (resultsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureResultsIsMutable();
+          results_.add(value);
+          onChanged();
+        } else {
+          resultsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public Builder addResults(
+          int index, org.pytenix.proto.generated.NetworkPackets.GeoResultPacket value) {
+        if (resultsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureResultsIsMutable();
+          results_.add(index, value);
+          onChanged();
+        } else {
+          resultsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public Builder addResults(
+          org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder builderForValue) {
+        if (resultsBuilder_ == null) {
+          ensureResultsIsMutable();
+          results_.add(builderForValue.build());
+          onChanged();
+        } else {
+          resultsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public Builder addResults(
+          int index, org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder builderForValue) {
+        if (resultsBuilder_ == null) {
+          ensureResultsIsMutable();
+          results_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          resultsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public Builder addAllResults(
+          java.lang.Iterable<? extends org.pytenix.proto.generated.NetworkPackets.GeoResultPacket> values) {
+        if (resultsBuilder_ == null) {
+          ensureResultsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, results_);
+          onChanged();
+        } else {
+          resultsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public Builder clearResults() {
+        if (resultsBuilder_ == null) {
+          results_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          resultsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public Builder removeResults(int index) {
+        if (resultsBuilder_ == null) {
+          ensureResultsIsMutable();
+          results_.remove(index);
+          onChanged();
+        } else {
+          resultsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder getResultsBuilder(
+          int index) {
+        return getResultsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoResultPacketOrBuilder getResultsOrBuilder(
+          int index) {
+        if (resultsBuilder_ == null) {
+          return results_.get(index);  } else {
+          return resultsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public java.util.List<? extends org.pytenix.proto.generated.NetworkPackets.GeoResultPacketOrBuilder> 
+           getResultsOrBuilderList() {
+        if (resultsBuilder_ != null) {
+          return resultsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(results_);
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder addResultsBuilder() {
+        return getResultsFieldBuilder().addBuilder(
+            org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder addResultsBuilder(
+          int index) {
+        return getResultsFieldBuilder().addBuilder(
+            index, org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.GeoResultPacket results = 1;</code>
+       */
+      public java.util.List<org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder> 
+           getResultsBuilderList() {
+        return getResultsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.GeoResultPacket, org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder, org.pytenix.proto.generated.NetworkPackets.GeoResultPacketOrBuilder> 
+          getResultsFieldBuilder() {
+        if (resultsBuilder_ == null) {
+          resultsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              org.pytenix.proto.generated.NetworkPackets.GeoResultPacket, org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder, org.pytenix.proto.generated.NetworkPackets.GeoResultPacketOrBuilder>(
+                  results_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          results_ = null;
+        }
+        return resultsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.GeoBatchResult)
+    }
+
+    // @@protoc_insertion_point(class_scope:org.pytenix.proto.GeoBatchResult)
+    private static final org.pytenix.proto.generated.NetworkPackets.GeoBatchResult DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.GeoBatchResult();
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoBatchResult getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GeoBatchResult>
+        PARSER = new com.google.protobuf.AbstractParser<GeoBatchResult>() {
+      @java.lang.Override
+      public GeoBatchResult parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<GeoBatchResult> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GeoBatchResult> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoBatchResult getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GeoRequestPacketOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.GeoRequestPacket)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bytes request_id = 1;</code>
+     * @return The requestId.
+     */
+    com.google.protobuf.ByteString getRequestId();
+
+    /**
+     * <code>string ip_address = 2;</code>
+     * @return The ipAddress.
+     */
+    java.lang.String getIpAddress();
+    /**
+     * <code>string ip_address = 2;</code>
+     * @return The bytes for ipAddress.
+     */
+    com.google.protobuf.ByteString
+        getIpAddressBytes();
+  }
+  /**
+   * Protobuf type {@code org.pytenix.proto.GeoRequestPacket}
+   */
+  public static final class GeoRequestPacket extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:org.pytenix.proto.GeoRequestPacket)
+      GeoRequestPacketOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GeoRequestPacket.newBuilder() to construct.
+    private GeoRequestPacket(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GeoRequestPacket() {
+      requestId_ = com.google.protobuf.ByteString.EMPTY;
+      ipAddress_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GeoRequestPacket();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoRequestPacket_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoRequestPacket_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.class, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder.class);
+    }
+
+    public static final int REQUEST_ID_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString requestId_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <code>bytes request_id = 1;</code>
+     * @return The requestId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getRequestId() {
+      return requestId_;
+    }
+
+    public static final int IP_ADDRESS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object ipAddress_ = "";
+    /**
+     * <code>string ip_address = 2;</code>
+     * @return The ipAddress.
+     */
+    @java.lang.Override
+    public java.lang.String getIpAddress() {
+      java.lang.Object ref = ipAddress_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        ipAddress_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string ip_address = 2;</code>
+     * @return The bytes for ipAddress.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getIpAddressBytes() {
+      java.lang.Object ref = ipAddress_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ipAddress_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!requestId_.isEmpty()) {
+        output.writeBytes(1, requestId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(ipAddress_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, ipAddress_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!requestId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, requestId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(ipAddress_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, ipAddress_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket)) {
+        return super.equals(obj);
+      }
+      org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket other = (org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket) obj;
+
+      if (!getRequestId()
+          .equals(other.getRequestId())) return false;
+      if (!getIpAddress()
+          .equals(other.getIpAddress())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + REQUEST_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getRequestId().hashCode();
+      hash = (37 * hash) + IP_ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getIpAddress().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.pytenix.proto.GeoRequestPacket}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.GeoRequestPacket)
+        org.pytenix.proto.generated.NetworkPackets.GeoRequestPacketOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoRequestPacket_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoRequestPacket_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.class, org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.Builder.class);
+      }
+
+      // Construct using org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        requestId_ = com.google.protobuf.ByteString.EMPTY;
+        ipAddress_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoRequestPacket_descriptor;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket getDefaultInstanceForType() {
+        return org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket build() {
+        org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket buildPartial() {
+        org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket result = new org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.requestId_ = requestId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.ipAddress_ = ipAddress_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket) {
+          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket other) {
+        if (other == org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket.getDefaultInstance()) return this;
+        if (other.getRequestId() != com.google.protobuf.ByteString.EMPTY) {
+          setRequestId(other.getRequestId());
+        }
+        if (!other.getIpAddress().isEmpty()) {
+          ipAddress_ = other.ipAddress_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                requestId_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                ipAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.ByteString requestId_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes request_id = 1;</code>
+       * @return The requestId.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getRequestId() {
+        return requestId_;
+      }
+      /**
+       * <code>bytes request_id = 1;</code>
+       * @param value The requestId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRequestId(com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        requestId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes request_id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRequestId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        requestId_ = getDefaultInstance().getRequestId();
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object ipAddress_ = "";
+      /**
+       * <code>string ip_address = 2;</code>
+       * @return The ipAddress.
+       */
+      public java.lang.String getIpAddress() {
+        java.lang.Object ref = ipAddress_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          ipAddress_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @return The bytes for ipAddress.
+       */
+      public com.google.protobuf.ByteString
+          getIpAddressBytes() {
+        java.lang.Object ref = ipAddress_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ipAddress_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @param value The ipAddress to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIpAddress(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ipAddress_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIpAddress() {
+        ipAddress_ = getDefaultInstance().getIpAddress();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ip_address = 2;</code>
+       * @param value The bytes for ipAddress to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIpAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ipAddress_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.GeoRequestPacket)
+    }
+
+    // @@protoc_insertion_point(class_scope:org.pytenix.proto.GeoRequestPacket)
+    private static final org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket();
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GeoRequestPacket>
+        PARSER = new com.google.protobuf.AbstractParser<GeoRequestPacket>() {
+      @java.lang.Override
+      public GeoRequestPacket parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<GeoRequestPacket> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GeoRequestPacket> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoRequestPacket getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GeoResultPacketOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.GeoResultPacket)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bytes request_id = 1;</code>
+     * @return The requestId.
+     */
+    com.google.protobuf.ByteString getRequestId();
+
+    /**
+     * <code>string language = 2;</code>
+     * @return The language.
+     */
+    java.lang.String getLanguage();
+    /**
+     * <code>string language = 2;</code>
+     * @return The bytes for language.
+     */
+    com.google.protobuf.ByteString
+        getLanguageBytes();
+  }
+  /**
+   * Protobuf type {@code org.pytenix.proto.GeoResultPacket}
+   */
+  public static final class GeoResultPacket extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:org.pytenix.proto.GeoResultPacket)
+      GeoResultPacketOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GeoResultPacket.newBuilder() to construct.
+    private GeoResultPacket(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GeoResultPacket() {
+      requestId_ = com.google.protobuf.ByteString.EMPTY;
+      language_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GeoResultPacket();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoResultPacket_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoResultPacket_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.class, org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder.class);
+    }
+
+    public static final int REQUEST_ID_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString requestId_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <code>bytes request_id = 1;</code>
+     * @return The requestId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getRequestId() {
+      return requestId_;
+    }
+
+    public static final int LANGUAGE_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object language_ = "";
+    /**
+     * <code>string language = 2;</code>
+     * @return The language.
+     */
+    @java.lang.Override
+    public java.lang.String getLanguage() {
+      java.lang.Object ref = language_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        language_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string language = 2;</code>
+     * @return The bytes for language.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getLanguageBytes() {
+      java.lang.Object ref = language_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        language_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!requestId_.isEmpty()) {
+        output.writeBytes(1, requestId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(language_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, language_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!requestId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, requestId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(language_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, language_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.GeoResultPacket)) {
+        return super.equals(obj);
+      }
+      org.pytenix.proto.generated.NetworkPackets.GeoResultPacket other = (org.pytenix.proto.generated.NetworkPackets.GeoResultPacket) obj;
+
+      if (!getRequestId()
+          .equals(other.getRequestId())) return false;
+      if (!getLanguage()
+          .equals(other.getLanguage())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + REQUEST_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getRequestId().hashCode();
+      hash = (37 * hash) + LANGUAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getLanguage().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.GeoResultPacket prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.pytenix.proto.GeoResultPacket}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.GeoResultPacket)
+        org.pytenix.proto.generated.NetworkPackets.GeoResultPacketOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoResultPacket_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoResultPacket_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.class, org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.Builder.class);
+      }
+
+      // Construct using org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        requestId_ = com.google.protobuf.ByteString.EMPTY;
+        language_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_GeoResultPacket_descriptor;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoResultPacket getDefaultInstanceForType() {
+        return org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoResultPacket build() {
+        org.pytenix.proto.generated.NetworkPackets.GeoResultPacket result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoResultPacket buildPartial() {
+        org.pytenix.proto.generated.NetworkPackets.GeoResultPacket result = new org.pytenix.proto.generated.NetworkPackets.GeoResultPacket(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.GeoResultPacket result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.requestId_ = requestId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.language_ = language_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.pytenix.proto.generated.NetworkPackets.GeoResultPacket) {
+          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.GeoResultPacket)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.GeoResultPacket other) {
+        if (other == org.pytenix.proto.generated.NetworkPackets.GeoResultPacket.getDefaultInstance()) return this;
+        if (other.getRequestId() != com.google.protobuf.ByteString.EMPTY) {
+          setRequestId(other.getRequestId());
+        }
+        if (!other.getLanguage().isEmpty()) {
+          language_ = other.language_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                requestId_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                language_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.ByteString requestId_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes request_id = 1;</code>
+       * @return The requestId.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getRequestId() {
+        return requestId_;
+      }
+      /**
+       * <code>bytes request_id = 1;</code>
+       * @param value The requestId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRequestId(com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        requestId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes request_id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRequestId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        requestId_ = getDefaultInstance().getRequestId();
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object language_ = "";
+      /**
+       * <code>string language = 2;</code>
+       * @return The language.
+       */
+      public java.lang.String getLanguage() {
+        java.lang.Object ref = language_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          language_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string language = 2;</code>
+       * @return The bytes for language.
+       */
+      public com.google.protobuf.ByteString
+          getLanguageBytes() {
+        java.lang.Object ref = language_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          language_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string language = 2;</code>
+       * @param value The language to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLanguage(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        language_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string language = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLanguage() {
+        language_ = getDefaultInstance().getLanguage();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string language = 2;</code>
+       * @param value The bytes for language to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLanguageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        language_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.GeoResultPacket)
+    }
+
+    // @@protoc_insertion_point(class_scope:org.pytenix.proto.GeoResultPacket)
+    private static final org.pytenix.proto.generated.NetworkPackets.GeoResultPacket DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.GeoResultPacket();
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.GeoResultPacket getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GeoResultPacket>
+        PARSER = new com.google.protobuf.AbstractParser<GeoResultPacket>() {
+      @java.lang.Override
+      public GeoResultPacket parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<GeoResultPacket> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GeoResultPacket> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoResultPacket getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ConfigRequestPacketOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.ConfigRequestPacket)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 timestamp = 1;</code>
+     * @return The timestamp.
+     */
+    long getTimestamp();
+  }
+  /**
+   * Protobuf type {@code org.pytenix.proto.ConfigRequestPacket}
+   */
+  public static final class ConfigRequestPacket extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:org.pytenix.proto.ConfigRequestPacket)
+      ConfigRequestPacketOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ConfigRequestPacket.newBuilder() to construct.
+    private ConfigRequestPacket(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ConfigRequestPacket() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ConfigRequestPacket();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigRequestPacket_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigRequestPacket_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.class, org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.Builder.class);
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 1;
+    private long timestamp_ = 0L;
+    /**
+     * <code>int64 timestamp = 1;</code>
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+      return timestamp_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (timestamp_ != 0L) {
+        output.writeInt64(1, timestamp_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, timestamp_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket)) {
+        return super.equals(obj);
+      }
+      org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket other = (org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) obj;
+
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimestamp());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.pytenix.proto.ConfigRequestPacket}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.ConfigRequestPacket)
+        org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacketOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigRequestPacket_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigRequestPacket_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.class, org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.Builder.class);
+      }
+
+      // Construct using org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        timestamp_ = 0L;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigRequestPacket_descriptor;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket getDefaultInstanceForType() {
+        return org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket build() {
+        org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket buildPartial() {
+        org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket result = new org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.timestamp_ = timestamp_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) {
+          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket other) {
+        if (other == org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.getDefaultInstance()) return this;
+        if (other.getTimestamp() != 0L) {
+          setTimestamp(other.getTimestamp());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                timestamp_ = input.readInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private long timestamp_ ;
+      /**
+       * <code>int64 timestamp = 1;</code>
+       * @return The timestamp.
+       */
+      @java.lang.Override
+      public long getTimestamp() {
+        return timestamp_;
+      }
+      /**
+       * <code>int64 timestamp = 1;</code>
+       * @param value The timestamp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimestamp(long value) {
+
+        timestamp_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 timestamp = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimestamp() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        timestamp_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.ConfigRequestPacket)
+    }
+
+    // @@protoc_insertion_point(class_scope:org.pytenix.proto.ConfigRequestPacket)
+    private static final org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket();
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ConfigRequestPacket>
+        PARSER = new com.google.protobuf.AbstractParser<ConfigRequestPacket>() {
+      @java.lang.Override
+      public ConfigRequestPacket parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ConfigRequestPacket> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ConfigRequestPacket> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface TranslationRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:org.pytenix.proto.TranslationRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -2009,485 +5300,8 @@ public final class NetworkPackets {
 
   }
 
-  public interface ConfigRequestPacketOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.ConfigRequestPacket)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int64 timestamp = 1;</code>
-     * @return The timestamp.
-     */
-    long getTimestamp();
-  }
-  /**
-   * Protobuf type {@code org.pytenix.proto.ConfigRequestPacket}
-   */
-  public static final class ConfigRequestPacket extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:org.pytenix.proto.ConfigRequestPacket)
-      ConfigRequestPacketOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use ConfigRequestPacket.newBuilder() to construct.
-    private ConfigRequestPacket(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private ConfigRequestPacket() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new ConfigRequestPacket();
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigRequestPacket_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigRequestPacket_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.class, org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.Builder.class);
-    }
-
-    public static final int TIMESTAMP_FIELD_NUMBER = 1;
-    private long timestamp_ = 0L;
-    /**
-     * <code>int64 timestamp = 1;</code>
-     * @return The timestamp.
-     */
-    @java.lang.Override
-    public long getTimestamp() {
-      return timestamp_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (timestamp_ != 0L) {
-        output.writeInt64(1, timestamp_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (timestamp_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, timestamp_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket)) {
-        return super.equals(obj);
-      }
-      org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket other = (org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) obj;
-
-      if (getTimestamp()
-          != other.getTimestamp()) return false;
-      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getTimestamp());
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code org.pytenix.proto.ConfigRequestPacket}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.ConfigRequestPacket)
-        org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacketOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigRequestPacket_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigRequestPacket_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.class, org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.Builder.class);
-      }
-
-      // Construct using org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.newBuilder()
-      private Builder() {
-
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        bitField0_ = 0;
-        timestamp_ = 0L;
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_ConfigRequestPacket_descriptor;
-      }
-
-      @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket getDefaultInstanceForType() {
-        return org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket build() {
-        org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket buildPartial() {
-        org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket result = new org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket(this);
-        if (bitField0_ != 0) { buildPartial0(result); }
-        onBuilt();
-        return result;
-      }
-
-      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket result) {
-        int from_bitField0_ = bitField0_;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.timestamp_ = timestamp_;
-        }
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) {
-          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket other) {
-        if (other == org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.getDefaultInstance()) return this;
-        if (other.getTimestamp() != 0L) {
-          setTimestamp(other.getTimestamp());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 8: {
-                timestamp_ = input.readInt64();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 8
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
-            } // switch (tag)
-          } // while (!done)
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.unwrapIOException();
-        } finally {
-          onChanged();
-        } // finally
-        return this;
-      }
-      private int bitField0_;
-
-      private long timestamp_ ;
-      /**
-       * <code>int64 timestamp = 1;</code>
-       * @return The timestamp.
-       */
-      @java.lang.Override
-      public long getTimestamp() {
-        return timestamp_;
-      }
-      /**
-       * <code>int64 timestamp = 1;</code>
-       * @param value The timestamp to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTimestamp(long value) {
-
-        timestamp_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 timestamp = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTimestamp() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        timestamp_ = 0L;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.ConfigRequestPacket)
-    }
-
-    // @@protoc_insertion_point(class_scope:org.pytenix.proto.ConfigRequestPacket)
-    private static final org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket();
-    }
-
-    public static org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<ConfigRequestPacket>
-        PARSER = new com.google.protobuf.AbstractParser<ConfigRequestPacket>() {
-      @java.lang.Override
-      public ConfigRequestPacket parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
-
-    public static com.google.protobuf.Parser<ConfigRequestPacket> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ConfigRequestPacket> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface TranslationBatchOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.TranslationBatch)
+  public interface TranslationBatchRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.TranslationBatchRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -2525,69 +5339,42 @@ public final class NetworkPackets {
      */
     org.pytenix.proto.generated.NetworkPackets.TranslationRequestOrBuilder getRequestsOrBuilder(
         int index);
-
-    /**
-     * <code>repeated string results = 3;</code>
-     * @return A list containing the results.
-     */
-    java.util.List<java.lang.String>
-        getResultsList();
-    /**
-     * <code>repeated string results = 3;</code>
-     * @return The count of results.
-     */
-    int getResultsCount();
-    /**
-     * <code>repeated string results = 3;</code>
-     * @param index The index of the element to return.
-     * @return The results at the given index.
-     */
-    java.lang.String getResults(int index);
-    /**
-     * <code>repeated string results = 3;</code>
-     * @param index The index of the value to return.
-     * @return The bytes of the results at the given index.
-     */
-    com.google.protobuf.ByteString
-        getResultsBytes(int index);
   }
   /**
-   * Protobuf type {@code org.pytenix.proto.TranslationBatch}
+   * Protobuf type {@code org.pytenix.proto.TranslationBatchRequest}
    */
-  public static final class TranslationBatch extends
+  public static final class TranslationBatchRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:org.pytenix.proto.TranslationBatch)
-      TranslationBatchOrBuilder {
+      // @@protoc_insertion_point(message_implements:org.pytenix.proto.TranslationBatchRequest)
+      TranslationBatchRequestOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use TranslationBatch.newBuilder() to construct.
-    private TranslationBatch(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use TranslationBatchRequest.newBuilder() to construct.
+    private TranslationBatchRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private TranslationBatch() {
+    private TranslationBatchRequest() {
       originServer_ = "";
       requests_ = java.util.Collections.emptyList();
-      results_ =
-          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new TranslationBatch();
+      return new TranslationBatchRequest();
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatch_descriptor;
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatchRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatch_fieldAccessorTable
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatchRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.pytenix.proto.generated.NetworkPackets.TranslationBatch.class, org.pytenix.proto.generated.NetworkPackets.TranslationBatch.Builder.class);
+              org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.class, org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.Builder.class);
     }
 
     public static final int ORIGIN_SERVER_FIELD_NUMBER = 1;
@@ -2670,43 +5457,6 @@ public final class NetworkPackets {
       return requests_.get(index);
     }
 
-    public static final int RESULTS_FIELD_NUMBER = 3;
-    @SuppressWarnings("serial")
-    private com.google.protobuf.LazyStringArrayList results_ =
-        com.google.protobuf.LazyStringArrayList.emptyList();
-    /**
-     * <code>repeated string results = 3;</code>
-     * @return A list containing the results.
-     */
-    public com.google.protobuf.ProtocolStringList
-        getResultsList() {
-      return results_;
-    }
-    /**
-     * <code>repeated string results = 3;</code>
-     * @return The count of results.
-     */
-    public int getResultsCount() {
-      return results_.size();
-    }
-    /**
-     * <code>repeated string results = 3;</code>
-     * @param index The index of the element to return.
-     * @return The results at the given index.
-     */
-    public java.lang.String getResults(int index) {
-      return results_.get(index);
-    }
-    /**
-     * <code>repeated string results = 3;</code>
-     * @param index The index of the value to return.
-     * @return The bytes of the results at the given index.
-     */
-    public com.google.protobuf.ByteString
-        getResultsBytes(int index) {
-      return results_.getByteString(index);
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -2727,9 +5477,6 @@ public final class NetworkPackets {
       for (int i = 0; i < requests_.size(); i++) {
         output.writeMessage(2, requests_.get(i));
       }
-      for (int i = 0; i < results_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, results_.getRaw(i));
-      }
       getUnknownFields().writeTo(output);
     }
 
@@ -2746,14 +5493,6 @@ public final class NetworkPackets {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, requests_.get(i));
       }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < results_.size(); i++) {
-          dataSize += computeStringSizeNoTag(results_.getRaw(i));
-        }
-        size += dataSize;
-        size += 1 * getResultsList().size();
-      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -2764,17 +5503,15 @@ public final class NetworkPackets {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.TranslationBatch)) {
+      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest)) {
         return super.equals(obj);
       }
-      org.pytenix.proto.generated.NetworkPackets.TranslationBatch other = (org.pytenix.proto.generated.NetworkPackets.TranslationBatch) obj;
+      org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest other = (org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest) obj;
 
       if (!getOriginServer()
           .equals(other.getOriginServer())) return false;
       if (!getRequestsList()
           .equals(other.getRequestsList())) return false;
-      if (!getResultsList()
-          .equals(other.getResultsList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -2792,53 +5529,49 @@ public final class NetworkPackets {
         hash = (37 * hash) + REQUESTS_FIELD_NUMBER;
         hash = (53 * hash) + getRequestsList().hashCode();
       }
-      if (getResultsCount() > 0) {
-        hash = (37 * hash) + RESULTS_FIELD_NUMBER;
-        hash = (53 * hash) + getResultsList().hashCode();
-      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseFrom(byte[] data)
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseFrom(java.io.InputStream input)
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2846,26 +5579,26 @@ public final class NetworkPackets {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseDelimitedFrom(java.io.InputStream input)
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseDelimitedFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch parseFrom(
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2878,7 +5611,7 @@ public final class NetworkPackets {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.TranslationBatch prototype) {
+    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2894,26 +5627,26 @@ public final class NetworkPackets {
       return builder;
     }
     /**
-     * Protobuf type {@code org.pytenix.proto.TranslationBatch}
+     * Protobuf type {@code org.pytenix.proto.TranslationBatchRequest}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.TranslationBatch)
-        org.pytenix.proto.generated.NetworkPackets.TranslationBatchOrBuilder {
+        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.TranslationBatchRequest)
+        org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatch_descriptor;
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatchRequest_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatch_fieldAccessorTable
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatchRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                org.pytenix.proto.generated.NetworkPackets.TranslationBatch.class, org.pytenix.proto.generated.NetworkPackets.TranslationBatch.Builder.class);
+                org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.class, org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.Builder.class);
       }
 
-      // Construct using org.pytenix.proto.generated.NetworkPackets.TranslationBatch.newBuilder()
+      // Construct using org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.newBuilder()
       private Builder() {
 
       }
@@ -2935,25 +5668,23 @@ public final class NetworkPackets {
           requestsBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
-        results_ =
-            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatch_descriptor;
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatchRequest_descriptor;
       }
 
       @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.TranslationBatch getDefaultInstanceForType() {
-        return org.pytenix.proto.generated.NetworkPackets.TranslationBatch.getDefaultInstance();
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest getDefaultInstanceForType() {
+        return org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.getDefaultInstance();
       }
 
       @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.TranslationBatch build() {
-        org.pytenix.proto.generated.NetworkPackets.TranslationBatch result = buildPartial();
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest build() {
+        org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2961,15 +5692,15 @@ public final class NetworkPackets {
       }
 
       @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.TranslationBatch buildPartial() {
-        org.pytenix.proto.generated.NetworkPackets.TranslationBatch result = new org.pytenix.proto.generated.NetworkPackets.TranslationBatch(this);
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest buildPartial() {
+        org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest result = new org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest(this);
         buildPartialRepeatedFields(result);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartialRepeatedFields(org.pytenix.proto.generated.NetworkPackets.TranslationBatch result) {
+      private void buildPartialRepeatedFields(org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest result) {
         if (requestsBuilder_ == null) {
           if (((bitField0_ & 0x00000002) != 0)) {
             requests_ = java.util.Collections.unmodifiableList(requests_);
@@ -2981,14 +5712,10 @@ public final class NetworkPackets {
         }
       }
 
-      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.TranslationBatch result) {
+      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.originServer_ = originServer_;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          results_.makeImmutable();
-          result.results_ = results_;
         }
       }
 
@@ -3026,16 +5753,16 @@ public final class NetworkPackets {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.pytenix.proto.generated.NetworkPackets.TranslationBatch) {
-          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.TranslationBatch)other);
+        if (other instanceof org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest) {
+          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.TranslationBatch other) {
-        if (other == org.pytenix.proto.generated.NetworkPackets.TranslationBatch.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest other) {
+        if (other == org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.getDefaultInstance()) return this;
         if (!other.getOriginServer().isEmpty()) {
           originServer_ = other.originServer_;
           bitField0_ |= 0x00000001;
@@ -3066,16 +5793,6 @@ public final class NetworkPackets {
               requestsBuilder_.addAllMessages(other.requests_);
             }
           }
-        }
-        if (!other.results_.isEmpty()) {
-          if (results_.isEmpty()) {
-            results_ = other.results_;
-            bitField0_ |= 0x00000004;
-          } else {
-            ensureResultsIsMutable();
-            results_.addAll(other.results_);
-          }
-          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -3121,12 +5838,6 @@ public final class NetworkPackets {
                 }
                 break;
               } // case 18
-              case 26: {
-                java.lang.String s = input.readStringRequireUtf8();
-                ensureResultsIsMutable();
-                results_.add(s);
-                break;
-              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -3455,117 +6166,6 @@ public final class NetworkPackets {
         }
         return requestsBuilder_;
       }
-
-      private com.google.protobuf.LazyStringArrayList results_ =
-          com.google.protobuf.LazyStringArrayList.emptyList();
-      private void ensureResultsIsMutable() {
-        if (!results_.isModifiable()) {
-          results_ = new com.google.protobuf.LazyStringArrayList(results_);
-        }
-        bitField0_ |= 0x00000004;
-      }
-      /**
-       * <code>repeated string results = 3;</code>
-       * @return A list containing the results.
-       */
-      public com.google.protobuf.ProtocolStringList
-          getResultsList() {
-        results_.makeImmutable();
-        return results_;
-      }
-      /**
-       * <code>repeated string results = 3;</code>
-       * @return The count of results.
-       */
-      public int getResultsCount() {
-        return results_.size();
-      }
-      /**
-       * <code>repeated string results = 3;</code>
-       * @param index The index of the element to return.
-       * @return The results at the given index.
-       */
-      public java.lang.String getResults(int index) {
-        return results_.get(index);
-      }
-      /**
-       * <code>repeated string results = 3;</code>
-       * @param index The index of the value to return.
-       * @return The bytes of the results at the given index.
-       */
-      public com.google.protobuf.ByteString
-          getResultsBytes(int index) {
-        return results_.getByteString(index);
-      }
-      /**
-       * <code>repeated string results = 3;</code>
-       * @param index The index to set the value at.
-       * @param value The results to set.
-       * @return This builder for chaining.
-       */
-      public Builder setResults(
-          int index, java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        ensureResultsIsMutable();
-        results_.set(index, value);
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string results = 3;</code>
-       * @param value The results to add.
-       * @return This builder for chaining.
-       */
-      public Builder addResults(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        ensureResultsIsMutable();
-        results_.add(value);
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string results = 3;</code>
-       * @param values The results to add.
-       * @return This builder for chaining.
-       */
-      public Builder addAllResults(
-          java.lang.Iterable<java.lang.String> values) {
-        ensureResultsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, results_);
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string results = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearResults() {
-        results_ =
-          com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string results = 3;</code>
-       * @param value The bytes of the results to add.
-       * @return This builder for chaining.
-       */
-      public Builder addResultsBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        ensureResultsIsMutable();
-        results_.add(value);
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return this;
-      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -3579,23 +6179,23 @@ public final class NetworkPackets {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.TranslationBatch)
+      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.TranslationBatchRequest)
     }
 
-    // @@protoc_insertion_point(class_scope:org.pytenix.proto.TranslationBatch)
-    private static final org.pytenix.proto.generated.NetworkPackets.TranslationBatch DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:org.pytenix.proto.TranslationBatchRequest)
+    private static final org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.TranslationBatch();
+      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest();
     }
 
-    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatch getDefaultInstance() {
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<TranslationBatch>
-        PARSER = new com.google.protobuf.AbstractParser<TranslationBatch>() {
+    private static final com.google.protobuf.Parser<TranslationBatchRequest>
+        PARSER = new com.google.protobuf.AbstractParser<TranslationBatchRequest>() {
       @java.lang.Override
-      public TranslationBatch parsePartialFrom(
+      public TranslationBatchRequest parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3614,17 +6214,1572 @@ public final class NetworkPackets {
       }
     };
 
-    public static com.google.protobuf.Parser<TranslationBatch> parser() {
+    public static com.google.protobuf.Parser<TranslationBatchRequest> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<TranslationBatch> getParserForType() {
+    public com.google.protobuf.Parser<TranslationBatchRequest> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public org.pytenix.proto.generated.NetworkPackets.TranslationBatch getDefaultInstanceForType() {
+    public org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TranslationBatchResultOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.TranslationBatchResult)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string origin_server = 1;</code>
+     * @return The originServer.
+     */
+    java.lang.String getOriginServer();
+    /**
+     * <code>string origin_server = 1;</code>
+     * @return The bytes for originServer.
+     */
+    com.google.protobuf.ByteString
+        getOriginServerBytes();
+
+    /**
+     * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+     */
+    java.util.List<org.pytenix.proto.generated.NetworkPackets.TranslationResult> 
+        getResultsList();
+    /**
+     * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+     */
+    org.pytenix.proto.generated.NetworkPackets.TranslationResult getResults(int index);
+    /**
+     * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+     */
+    int getResultsCount();
+    /**
+     * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+     */
+    java.util.List<? extends org.pytenix.proto.generated.NetworkPackets.TranslationResultOrBuilder> 
+        getResultsOrBuilderList();
+    /**
+     * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+     */
+    org.pytenix.proto.generated.NetworkPackets.TranslationResultOrBuilder getResultsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code org.pytenix.proto.TranslationBatchResult}
+   */
+  public static final class TranslationBatchResult extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:org.pytenix.proto.TranslationBatchResult)
+      TranslationBatchResultOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TranslationBatchResult.newBuilder() to construct.
+    private TranslationBatchResult(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TranslationBatchResult() {
+      originServer_ = "";
+      results_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TranslationBatchResult();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatchResult_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatchResult_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.class, org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.Builder.class);
+    }
+
+    public static final int ORIGIN_SERVER_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object originServer_ = "";
+    /**
+     * <code>string origin_server = 1;</code>
+     * @return The originServer.
+     */
+    @java.lang.Override
+    public java.lang.String getOriginServer() {
+      java.lang.Object ref = originServer_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        originServer_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string origin_server = 1;</code>
+     * @return The bytes for originServer.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getOriginServerBytes() {
+      java.lang.Object ref = originServer_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        originServer_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int RESULTS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private java.util.List<org.pytenix.proto.generated.NetworkPackets.TranslationResult> results_;
+    /**
+     * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+     */
+    @java.lang.Override
+    public java.util.List<org.pytenix.proto.generated.NetworkPackets.TranslationResult> getResultsList() {
+      return results_;
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends org.pytenix.proto.generated.NetworkPackets.TranslationResultOrBuilder> 
+        getResultsOrBuilderList() {
+      return results_;
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+     */
+    @java.lang.Override
+    public int getResultsCount() {
+      return results_.size();
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.TranslationResult getResults(int index) {
+      return results_.get(index);
+    }
+    /**
+     * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.TranslationResultOrBuilder getResultsOrBuilder(
+        int index) {
+      return results_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(originServer_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, originServer_);
+      }
+      for (int i = 0; i < results_.size(); i++) {
+        output.writeMessage(2, results_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(originServer_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, originServer_);
+      }
+      for (int i = 0; i < results_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, results_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult)) {
+        return super.equals(obj);
+      }
+      org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult other = (org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult) obj;
+
+      if (!getOriginServer()
+          .equals(other.getOriginServer())) return false;
+      if (!getResultsList()
+          .equals(other.getResultsList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ORIGIN_SERVER_FIELD_NUMBER;
+      hash = (53 * hash) + getOriginServer().hashCode();
+      if (getResultsCount() > 0) {
+        hash = (37 * hash) + RESULTS_FIELD_NUMBER;
+        hash = (53 * hash) + getResultsList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.pytenix.proto.TranslationBatchResult}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.TranslationBatchResult)
+        org.pytenix.proto.generated.NetworkPackets.TranslationBatchResultOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatchResult_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatchResult_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.class, org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.Builder.class);
+      }
+
+      // Construct using org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        originServer_ = "";
+        if (resultsBuilder_ == null) {
+          results_ = java.util.Collections.emptyList();
+        } else {
+          results_ = null;
+          resultsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationBatchResult_descriptor;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult getDefaultInstanceForType() {
+        return org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult build() {
+        org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult buildPartial() {
+        org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult result = new org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult result) {
+        if (resultsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0)) {
+            results_ = java.util.Collections.unmodifiableList(results_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.results_ = results_;
+        } else {
+          result.results_ = resultsBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.originServer_ = originServer_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult) {
+          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult other) {
+        if (other == org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.getDefaultInstance()) return this;
+        if (!other.getOriginServer().isEmpty()) {
+          originServer_ = other.originServer_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (resultsBuilder_ == null) {
+          if (!other.results_.isEmpty()) {
+            if (results_.isEmpty()) {
+              results_ = other.results_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureResultsIsMutable();
+              results_.addAll(other.results_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.results_.isEmpty()) {
+            if (resultsBuilder_.isEmpty()) {
+              resultsBuilder_.dispose();
+              resultsBuilder_ = null;
+              results_ = other.results_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              resultsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getResultsFieldBuilder() : null;
+            } else {
+              resultsBuilder_.addAllMessages(other.results_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                originServer_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                org.pytenix.proto.generated.NetworkPackets.TranslationResult m =
+                    input.readMessage(
+                        org.pytenix.proto.generated.NetworkPackets.TranslationResult.parser(),
+                        extensionRegistry);
+                if (resultsBuilder_ == null) {
+                  ensureResultsIsMutable();
+                  results_.add(m);
+                } else {
+                  resultsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object originServer_ = "";
+      /**
+       * <code>string origin_server = 1;</code>
+       * @return The originServer.
+       */
+      public java.lang.String getOriginServer() {
+        java.lang.Object ref = originServer_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          originServer_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string origin_server = 1;</code>
+       * @return The bytes for originServer.
+       */
+      public com.google.protobuf.ByteString
+          getOriginServerBytes() {
+        java.lang.Object ref = originServer_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          originServer_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string origin_server = 1;</code>
+       * @param value The originServer to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOriginServer(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        originServer_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string origin_server = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOriginServer() {
+        originServer_ = getDefaultInstance().getOriginServer();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string origin_server = 1;</code>
+       * @param value The bytes for originServer to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOriginServerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        originServer_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<org.pytenix.proto.generated.NetworkPackets.TranslationResult> results_ =
+        java.util.Collections.emptyList();
+      private void ensureResultsIsMutable() {
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          results_ = new java.util.ArrayList<org.pytenix.proto.generated.NetworkPackets.TranslationResult>(results_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.TranslationResult, org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationResultOrBuilder> resultsBuilder_;
+
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public java.util.List<org.pytenix.proto.generated.NetworkPackets.TranslationResult> getResultsList() {
+        if (resultsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(results_);
+        } else {
+          return resultsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public int getResultsCount() {
+        if (resultsBuilder_ == null) {
+          return results_.size();
+        } else {
+          return resultsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.TranslationResult getResults(int index) {
+        if (resultsBuilder_ == null) {
+          return results_.get(index);
+        } else {
+          return resultsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public Builder setResults(
+          int index, org.pytenix.proto.generated.NetworkPackets.TranslationResult value) {
+        if (resultsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureResultsIsMutable();
+          results_.set(index, value);
+          onChanged();
+        } else {
+          resultsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public Builder setResults(
+          int index, org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder builderForValue) {
+        if (resultsBuilder_ == null) {
+          ensureResultsIsMutable();
+          results_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          resultsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public Builder addResults(org.pytenix.proto.generated.NetworkPackets.TranslationResult value) {
+        if (resultsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureResultsIsMutable();
+          results_.add(value);
+          onChanged();
+        } else {
+          resultsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public Builder addResults(
+          int index, org.pytenix.proto.generated.NetworkPackets.TranslationResult value) {
+        if (resultsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureResultsIsMutable();
+          results_.add(index, value);
+          onChanged();
+        } else {
+          resultsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public Builder addResults(
+          org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder builderForValue) {
+        if (resultsBuilder_ == null) {
+          ensureResultsIsMutable();
+          results_.add(builderForValue.build());
+          onChanged();
+        } else {
+          resultsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public Builder addResults(
+          int index, org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder builderForValue) {
+        if (resultsBuilder_ == null) {
+          ensureResultsIsMutable();
+          results_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          resultsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public Builder addAllResults(
+          java.lang.Iterable<? extends org.pytenix.proto.generated.NetworkPackets.TranslationResult> values) {
+        if (resultsBuilder_ == null) {
+          ensureResultsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, results_);
+          onChanged();
+        } else {
+          resultsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public Builder clearResults() {
+        if (resultsBuilder_ == null) {
+          results_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          resultsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public Builder removeResults(int index) {
+        if (resultsBuilder_ == null) {
+          ensureResultsIsMutable();
+          results_.remove(index);
+          onChanged();
+        } else {
+          resultsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder getResultsBuilder(
+          int index) {
+        return getResultsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.TranslationResultOrBuilder getResultsOrBuilder(
+          int index) {
+        if (resultsBuilder_ == null) {
+          return results_.get(index);  } else {
+          return resultsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public java.util.List<? extends org.pytenix.proto.generated.NetworkPackets.TranslationResultOrBuilder> 
+           getResultsOrBuilderList() {
+        if (resultsBuilder_ != null) {
+          return resultsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(results_);
+        }
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder addResultsBuilder() {
+        return getResultsFieldBuilder().addBuilder(
+            org.pytenix.proto.generated.NetworkPackets.TranslationResult.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder addResultsBuilder(
+          int index) {
+        return getResultsFieldBuilder().addBuilder(
+            index, org.pytenix.proto.generated.NetworkPackets.TranslationResult.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.pytenix.proto.TranslationResult results = 2;</code>
+       */
+      public java.util.List<org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder> 
+           getResultsBuilderList() {
+        return getResultsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.TranslationResult, org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationResultOrBuilder> 
+          getResultsFieldBuilder() {
+        if (resultsBuilder_ == null) {
+          resultsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              org.pytenix.proto.generated.NetworkPackets.TranslationResult, org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationResultOrBuilder>(
+                  results_,
+                  ((bitField0_ & 0x00000002) != 0),
+                  getParentForChildren(),
+                  isClean());
+          results_ = null;
+        }
+        return resultsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.TranslationBatchResult)
+    }
+
+    // @@protoc_insertion_point(class_scope:org.pytenix.proto.TranslationBatchResult)
+    private static final org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult();
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TranslationBatchResult>
+        PARSER = new com.google.protobuf.AbstractParser<TranslationBatchResult>() {
+      @java.lang.Override
+      public TranslationBatchResult parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<TranslationBatchResult> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TranslationBatchResult> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TranslationResultOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.pytenix.proto.TranslationResult)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bytes request_id = 1;</code>
+     * @return The requestId.
+     */
+    com.google.protobuf.ByteString getRequestId();
+
+    /**
+     * <code>string result = 2;</code>
+     * @return The result.
+     */
+    java.lang.String getResult();
+    /**
+     * <code>string result = 2;</code>
+     * @return The bytes for result.
+     */
+    com.google.protobuf.ByteString
+        getResultBytes();
+  }
+  /**
+   * Protobuf type {@code org.pytenix.proto.TranslationResult}
+   */
+  public static final class TranslationResult extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:org.pytenix.proto.TranslationResult)
+      TranslationResultOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TranslationResult.newBuilder() to construct.
+    private TranslationResult(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TranslationResult() {
+      requestId_ = com.google.protobuf.ByteString.EMPTY;
+      result_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TranslationResult();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationResult_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationResult_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.pytenix.proto.generated.NetworkPackets.TranslationResult.class, org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder.class);
+    }
+
+    public static final int REQUEST_ID_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString requestId_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <code>bytes request_id = 1;</code>
+     * @return The requestId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getRequestId() {
+      return requestId_;
+    }
+
+    public static final int RESULT_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object result_ = "";
+    /**
+     * <code>string result = 2;</code>
+     * @return The result.
+     */
+    @java.lang.Override
+    public java.lang.String getResult() {
+      java.lang.Object ref = result_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        result_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string result = 2;</code>
+     * @return The bytes for result.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getResultBytes() {
+      java.lang.Object ref = result_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        result_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!requestId_.isEmpty()) {
+        output.writeBytes(1, requestId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(result_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, result_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!requestId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, requestId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(result_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, result_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.pytenix.proto.generated.NetworkPackets.TranslationResult)) {
+        return super.equals(obj);
+      }
+      org.pytenix.proto.generated.NetworkPackets.TranslationResult other = (org.pytenix.proto.generated.NetworkPackets.TranslationResult) obj;
+
+      if (!getRequestId()
+          .equals(other.getRequestId())) return false;
+      if (!getResult()
+          .equals(other.getResult())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + REQUEST_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getRequestId().hashCode();
+      hash = (37 * hash) + RESULT_FIELD_NUMBER;
+      hash = (53 * hash) + getResult().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.pytenix.proto.generated.NetworkPackets.TranslationResult prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.pytenix.proto.TranslationResult}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:org.pytenix.proto.TranslationResult)
+        org.pytenix.proto.generated.NetworkPackets.TranslationResultOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationResult_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationResult_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.pytenix.proto.generated.NetworkPackets.TranslationResult.class, org.pytenix.proto.generated.NetworkPackets.TranslationResult.Builder.class);
+      }
+
+      // Construct using org.pytenix.proto.generated.NetworkPackets.TranslationResult.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        requestId_ = com.google.protobuf.ByteString.EMPTY;
+        result_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.pytenix.proto.generated.NetworkPackets.internal_static_org_pytenix_proto_TranslationResult_descriptor;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.TranslationResult getDefaultInstanceForType() {
+        return org.pytenix.proto.generated.NetworkPackets.TranslationResult.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.TranslationResult build() {
+        org.pytenix.proto.generated.NetworkPackets.TranslationResult result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.TranslationResult buildPartial() {
+        org.pytenix.proto.generated.NetworkPackets.TranslationResult result = new org.pytenix.proto.generated.NetworkPackets.TranslationResult(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(org.pytenix.proto.generated.NetworkPackets.TranslationResult result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.requestId_ = requestId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.result_ = result_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.pytenix.proto.generated.NetworkPackets.TranslationResult) {
+          return mergeFrom((org.pytenix.proto.generated.NetworkPackets.TranslationResult)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.TranslationResult other) {
+        if (other == org.pytenix.proto.generated.NetworkPackets.TranslationResult.getDefaultInstance()) return this;
+        if (other.getRequestId() != com.google.protobuf.ByteString.EMPTY) {
+          setRequestId(other.getRequestId());
+        }
+        if (!other.getResult().isEmpty()) {
+          result_ = other.result_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                requestId_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                result_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.ByteString requestId_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes request_id = 1;</code>
+       * @return The requestId.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getRequestId() {
+        return requestId_;
+      }
+      /**
+       * <code>bytes request_id = 1;</code>
+       * @param value The requestId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRequestId(com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        requestId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes request_id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRequestId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        requestId_ = getDefaultInstance().getRequestId();
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object result_ = "";
+      /**
+       * <code>string result = 2;</code>
+       * @return The result.
+       */
+      public java.lang.String getResult() {
+        java.lang.Object ref = result_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          result_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string result = 2;</code>
+       * @return The bytes for result.
+       */
+      public com.google.protobuf.ByteString
+          getResultBytes() {
+        java.lang.Object ref = result_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          result_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string result = 2;</code>
+       * @param value The result to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResult(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        result_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string result = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearResult() {
+        result_ = getDefaultInstance().getResult();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string result = 2;</code>
+       * @param value The bytes for result to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResultBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        result_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:org.pytenix.proto.TranslationResult)
+    }
+
+    // @@protoc_insertion_point(class_scope:org.pytenix.proto.TranslationResult)
+    private static final org.pytenix.proto.generated.NetworkPackets.TranslationResult DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.pytenix.proto.generated.NetworkPackets.TranslationResult();
+    }
+
+    public static org.pytenix.proto.generated.NetworkPackets.TranslationResult getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TranslationResult>
+        PARSER = new com.google.protobuf.AbstractParser<TranslationResult>() {
+      @java.lang.Override
+      public TranslationResult parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<TranslationResult> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TranslationResult> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.TranslationResult getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4404,64 +8559,109 @@ public final class NetworkPackets {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
-     * @return Whether the batch field is set.
+     * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
+     * @return Whether the batchRequest field is set.
      */
-    boolean hasBatch();
+    boolean hasBatchRequest();
     /**
-     * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
-     * @return The batch.
+     * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
+     * @return The batchRequest.
      */
-    org.pytenix.proto.generated.NetworkPackets.TranslationBatch getBatch();
+    org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest getBatchRequest();
     /**
-     * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
+     * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
      */
-    org.pytenix.proto.generated.NetworkPackets.TranslationBatchOrBuilder getBatchOrBuilder();
+    org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequestOrBuilder getBatchRequestOrBuilder();
 
     /**
-     * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+     * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+     * @return Whether the batchResult field is set.
+     */
+    boolean hasBatchResult();
+    /**
+     * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+     * @return The batchResult.
+     */
+    org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult getBatchResult();
+    /**
+     * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+     */
+    org.pytenix.proto.generated.NetworkPackets.TranslationBatchResultOrBuilder getBatchResultOrBuilder();
+
+    /**
+     * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
      * @return Whether the chunk field is set.
      */
     boolean hasChunk();
     /**
-     * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+     * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
      * @return The chunk.
      */
     org.pytenix.proto.generated.NetworkPackets.Chunk getChunk();
     /**
-     * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+     * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
      */
     org.pytenix.proto.generated.NetworkPackets.ChunkOrBuilder getChunkOrBuilder();
 
     /**
-     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
      * @return Whether the config field is set.
      */
     boolean hasConfig();
     /**
-     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
      * @return The config.
      */
     org.pytenix.proto.generated.NetworkPackets.ServerConfiguration getConfig();
     /**
-     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
      */
     org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder getConfigOrBuilder();
 
     /**
-     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
      * @return Whether the configRequest field is set.
      */
     boolean hasConfigRequest();
     /**
-     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
      * @return The configRequest.
      */
     org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket getConfigRequest();
     /**
-     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
      */
     org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacketOrBuilder getConfigRequestOrBuilder();
+
+    /**
+     * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+     * @return Whether the geoBatchRequest field is set.
+     */
+    boolean hasGeoBatchRequest();
+    /**
+     * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+     * @return The geoBatchRequest.
+     */
+    org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest getGeoBatchRequest();
+    /**
+     * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+     */
+    org.pytenix.proto.generated.NetworkPackets.GeoBatchRequestOrBuilder getGeoBatchRequestOrBuilder();
+
+    /**
+     * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+     * @return Whether the geoBatchResult field is set.
+     */
+    boolean hasGeoBatchResult();
+    /**
+     * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+     * @return The geoBatchResult.
+     */
+    org.pytenix.proto.generated.NetworkPackets.GeoBatchResult getGeoBatchResult();
+    /**
+     * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+     */
+    org.pytenix.proto.generated.NetworkPackets.GeoBatchResultOrBuilder getGeoBatchResultOrBuilder();
 
     org.pytenix.proto.generated.NetworkPackets.PacketWrapper.PayloadCase getPayloadCase();
   }
@@ -4506,10 +8706,13 @@ public final class NetworkPackets {
     public enum PayloadCase
         implements com.google.protobuf.Internal.EnumLite,
             com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-      BATCH(1),
-      CHUNK(2),
-      CONFIG(3),
-      CONFIG_REQUEST(4),
+      BATCH_REQUEST(1),
+      BATCH_RESULT(2),
+      CHUNK(3),
+      CONFIG(4),
+      CONFIG_REQUEST(5),
+      GEO_BATCH_REQUEST(7),
+      GEO_BATCH_RESULT(8),
       PAYLOAD_NOT_SET(0);
       private final int value;
       private PayloadCase(int value) {
@@ -4527,10 +8730,13 @@ public final class NetworkPackets {
 
       public static PayloadCase forNumber(int value) {
         switch (value) {
-          case 1: return BATCH;
-          case 2: return CHUNK;
-          case 3: return CONFIG;
-          case 4: return CONFIG_REQUEST;
+          case 1: return BATCH_REQUEST;
+          case 2: return BATCH_RESULT;
+          case 3: return CHUNK;
+          case 4: return CONFIG;
+          case 5: return CONFIG_REQUEST;
+          case 7: return GEO_BATCH_REQUEST;
+          case 8: return GEO_BATCH_RESULT;
           case 0: return PAYLOAD_NOT_SET;
           default: return null;
         }
@@ -4546,128 +8752,221 @@ public final class NetworkPackets {
           payloadCase_);
     }
 
-    public static final int BATCH_FIELD_NUMBER = 1;
+    public static final int BATCH_REQUEST_FIELD_NUMBER = 1;
     /**
-     * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
-     * @return Whether the batch field is set.
+     * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
+     * @return Whether the batchRequest field is set.
      */
     @java.lang.Override
-    public boolean hasBatch() {
+    public boolean hasBatchRequest() {
       return payloadCase_ == 1;
     }
     /**
-     * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
-     * @return The batch.
+     * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
+     * @return The batchRequest.
      */
     @java.lang.Override
-    public org.pytenix.proto.generated.NetworkPackets.TranslationBatch getBatch() {
+    public org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest getBatchRequest() {
       if (payloadCase_ == 1) {
-         return (org.pytenix.proto.generated.NetworkPackets.TranslationBatch) payload_;
+         return (org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest) payload_;
       }
-      return org.pytenix.proto.generated.NetworkPackets.TranslationBatch.getDefaultInstance();
+      return org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.getDefaultInstance();
     }
     /**
-     * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
+     * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
      */
     @java.lang.Override
-    public org.pytenix.proto.generated.NetworkPackets.TranslationBatchOrBuilder getBatchOrBuilder() {
+    public org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequestOrBuilder getBatchRequestOrBuilder() {
       if (payloadCase_ == 1) {
-         return (org.pytenix.proto.generated.NetworkPackets.TranslationBatch) payload_;
+         return (org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest) payload_;
       }
-      return org.pytenix.proto.generated.NetworkPackets.TranslationBatch.getDefaultInstance();
+      return org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.getDefaultInstance();
     }
 
-    public static final int CHUNK_FIELD_NUMBER = 2;
+    public static final int BATCH_RESULT_FIELD_NUMBER = 2;
     /**
-     * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+     * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+     * @return Whether the batchResult field is set.
+     */
+    @java.lang.Override
+    public boolean hasBatchResult() {
+      return payloadCase_ == 2;
+    }
+    /**
+     * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+     * @return The batchResult.
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult getBatchResult() {
+      if (payloadCase_ == 2) {
+         return (org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult) payload_;
+      }
+      return org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.getDefaultInstance();
+    }
+    /**
+     * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.TranslationBatchResultOrBuilder getBatchResultOrBuilder() {
+      if (payloadCase_ == 2) {
+         return (org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult) payload_;
+      }
+      return org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.getDefaultInstance();
+    }
+
+    public static final int CHUNK_FIELD_NUMBER = 3;
+    /**
+     * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
      * @return Whether the chunk field is set.
      */
     @java.lang.Override
     public boolean hasChunk() {
-      return payloadCase_ == 2;
+      return payloadCase_ == 3;
     }
     /**
-     * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+     * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
      * @return The chunk.
      */
     @java.lang.Override
     public org.pytenix.proto.generated.NetworkPackets.Chunk getChunk() {
-      if (payloadCase_ == 2) {
+      if (payloadCase_ == 3) {
          return (org.pytenix.proto.generated.NetworkPackets.Chunk) payload_;
       }
       return org.pytenix.proto.generated.NetworkPackets.Chunk.getDefaultInstance();
     }
     /**
-     * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+     * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
      */
     @java.lang.Override
     public org.pytenix.proto.generated.NetworkPackets.ChunkOrBuilder getChunkOrBuilder() {
-      if (payloadCase_ == 2) {
+      if (payloadCase_ == 3) {
          return (org.pytenix.proto.generated.NetworkPackets.Chunk) payload_;
       }
       return org.pytenix.proto.generated.NetworkPackets.Chunk.getDefaultInstance();
     }
 
-    public static final int CONFIG_FIELD_NUMBER = 3;
+    public static final int CONFIG_FIELD_NUMBER = 4;
     /**
-     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
      * @return Whether the config field is set.
      */
     @java.lang.Override
     public boolean hasConfig() {
-      return payloadCase_ == 3;
+      return payloadCase_ == 4;
     }
     /**
-     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
      * @return The config.
      */
     @java.lang.Override
     public org.pytenix.proto.generated.NetworkPackets.ServerConfiguration getConfig() {
-      if (payloadCase_ == 3) {
+      if (payloadCase_ == 4) {
          return (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_;
       }
       return org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
     }
     /**
-     * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+     * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
      */
     @java.lang.Override
     public org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder getConfigOrBuilder() {
-      if (payloadCase_ == 3) {
+      if (payloadCase_ == 4) {
          return (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_;
       }
       return org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
     }
 
-    public static final int CONFIG_REQUEST_FIELD_NUMBER = 4;
+    public static final int CONFIG_REQUEST_FIELD_NUMBER = 5;
     /**
-     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
      * @return Whether the configRequest field is set.
      */
     @java.lang.Override
     public boolean hasConfigRequest() {
-      return payloadCase_ == 4;
+      return payloadCase_ == 5;
     }
     /**
-     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
      * @return The configRequest.
      */
     @java.lang.Override
     public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket getConfigRequest() {
-      if (payloadCase_ == 4) {
+      if (payloadCase_ == 5) {
          return (org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) payload_;
       }
       return org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.getDefaultInstance();
     }
     /**
-     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+     * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
      */
     @java.lang.Override
     public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacketOrBuilder getConfigRequestOrBuilder() {
-      if (payloadCase_ == 4) {
+      if (payloadCase_ == 5) {
          return (org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) payload_;
       }
       return org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.getDefaultInstance();
+    }
+
+    public static final int GEO_BATCH_REQUEST_FIELD_NUMBER = 7;
+    /**
+     * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+     * @return Whether the geoBatchRequest field is set.
+     */
+    @java.lang.Override
+    public boolean hasGeoBatchRequest() {
+      return payloadCase_ == 7;
+    }
+    /**
+     * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+     * @return The geoBatchRequest.
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest getGeoBatchRequest() {
+      if (payloadCase_ == 7) {
+         return (org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest) payload_;
+      }
+      return org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.getDefaultInstance();
+    }
+    /**
+     * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoBatchRequestOrBuilder getGeoBatchRequestOrBuilder() {
+      if (payloadCase_ == 7) {
+         return (org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest) payload_;
+      }
+      return org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.getDefaultInstance();
+    }
+
+    public static final int GEO_BATCH_RESULT_FIELD_NUMBER = 8;
+    /**
+     * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+     * @return Whether the geoBatchResult field is set.
+     */
+    @java.lang.Override
+    public boolean hasGeoBatchResult() {
+      return payloadCase_ == 8;
+    }
+    /**
+     * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+     * @return The geoBatchResult.
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoBatchResult getGeoBatchResult() {
+      if (payloadCase_ == 8) {
+         return (org.pytenix.proto.generated.NetworkPackets.GeoBatchResult) payload_;
+      }
+      return org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.getDefaultInstance();
+    }
+    /**
+     * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+     */
+    @java.lang.Override
+    public org.pytenix.proto.generated.NetworkPackets.GeoBatchResultOrBuilder getGeoBatchResultOrBuilder() {
+      if (payloadCase_ == 8) {
+         return (org.pytenix.proto.generated.NetworkPackets.GeoBatchResult) payload_;
+      }
+      return org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.getDefaultInstance();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -4685,16 +8984,25 @@ public final class NetworkPackets {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (payloadCase_ == 1) {
-        output.writeMessage(1, (org.pytenix.proto.generated.NetworkPackets.TranslationBatch) payload_);
+        output.writeMessage(1, (org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest) payload_);
       }
       if (payloadCase_ == 2) {
-        output.writeMessage(2, (org.pytenix.proto.generated.NetworkPackets.Chunk) payload_);
+        output.writeMessage(2, (org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult) payload_);
       }
       if (payloadCase_ == 3) {
-        output.writeMessage(3, (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_);
+        output.writeMessage(3, (org.pytenix.proto.generated.NetworkPackets.Chunk) payload_);
       }
       if (payloadCase_ == 4) {
-        output.writeMessage(4, (org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) payload_);
+        output.writeMessage(4, (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_);
+      }
+      if (payloadCase_ == 5) {
+        output.writeMessage(5, (org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) payload_);
+      }
+      if (payloadCase_ == 7) {
+        output.writeMessage(7, (org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest) payload_);
+      }
+      if (payloadCase_ == 8) {
+        output.writeMessage(8, (org.pytenix.proto.generated.NetworkPackets.GeoBatchResult) payload_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -4707,19 +9015,31 @@ public final class NetworkPackets {
       size = 0;
       if (payloadCase_ == 1) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, (org.pytenix.proto.generated.NetworkPackets.TranslationBatch) payload_);
+          .computeMessageSize(1, (org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest) payload_);
       }
       if (payloadCase_ == 2) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, (org.pytenix.proto.generated.NetworkPackets.Chunk) payload_);
+          .computeMessageSize(2, (org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult) payload_);
       }
       if (payloadCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_);
+          .computeMessageSize(3, (org.pytenix.proto.generated.NetworkPackets.Chunk) payload_);
       }
       if (payloadCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, (org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) payload_);
+          .computeMessageSize(4, (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_);
+      }
+      if (payloadCase_ == 5) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, (org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) payload_);
+      }
+      if (payloadCase_ == 7) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, (org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest) payload_);
+      }
+      if (payloadCase_ == 8) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, (org.pytenix.proto.generated.NetworkPackets.GeoBatchResult) payload_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -4739,20 +9059,32 @@ public final class NetworkPackets {
       if (!getPayloadCase().equals(other.getPayloadCase())) return false;
       switch (payloadCase_) {
         case 1:
-          if (!getBatch()
-              .equals(other.getBatch())) return false;
+          if (!getBatchRequest()
+              .equals(other.getBatchRequest())) return false;
           break;
         case 2:
+          if (!getBatchResult()
+              .equals(other.getBatchResult())) return false;
+          break;
+        case 3:
           if (!getChunk()
               .equals(other.getChunk())) return false;
           break;
-        case 3:
+        case 4:
           if (!getConfig()
               .equals(other.getConfig())) return false;
           break;
-        case 4:
+        case 5:
           if (!getConfigRequest()
               .equals(other.getConfigRequest())) return false;
+          break;
+        case 7:
+          if (!getGeoBatchRequest()
+              .equals(other.getGeoBatchRequest())) return false;
+          break;
+        case 8:
+          if (!getGeoBatchResult()
+              .equals(other.getGeoBatchResult())) return false;
           break;
         case 0:
         default:
@@ -4770,20 +9102,32 @@ public final class NetworkPackets {
       hash = (19 * hash) + getDescriptor().hashCode();
       switch (payloadCase_) {
         case 1:
-          hash = (37 * hash) + BATCH_FIELD_NUMBER;
-          hash = (53 * hash) + getBatch().hashCode();
+          hash = (37 * hash) + BATCH_REQUEST_FIELD_NUMBER;
+          hash = (53 * hash) + getBatchRequest().hashCode();
           break;
         case 2:
+          hash = (37 * hash) + BATCH_RESULT_FIELD_NUMBER;
+          hash = (53 * hash) + getBatchResult().hashCode();
+          break;
+        case 3:
           hash = (37 * hash) + CHUNK_FIELD_NUMBER;
           hash = (53 * hash) + getChunk().hashCode();
           break;
-        case 3:
+        case 4:
           hash = (37 * hash) + CONFIG_FIELD_NUMBER;
           hash = (53 * hash) + getConfig().hashCode();
           break;
-        case 4:
+        case 5:
           hash = (37 * hash) + CONFIG_REQUEST_FIELD_NUMBER;
           hash = (53 * hash) + getConfigRequest().hashCode();
+          break;
+        case 7:
+          hash = (37 * hash) + GEO_BATCH_REQUEST_FIELD_NUMBER;
+          hash = (53 * hash) + getGeoBatchRequest().hashCode();
+          break;
+        case 8:
+          hash = (37 * hash) + GEO_BATCH_RESULT_FIELD_NUMBER;
+          hash = (53 * hash) + getGeoBatchResult().hashCode();
           break;
         case 0:
         default:
@@ -4919,8 +9263,11 @@ public final class NetworkPackets {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        if (batchBuilder_ != null) {
-          batchBuilder_.clear();
+        if (batchRequestBuilder_ != null) {
+          batchRequestBuilder_.clear();
+        }
+        if (batchResultBuilder_ != null) {
+          batchResultBuilder_.clear();
         }
         if (chunkBuilder_ != null) {
           chunkBuilder_.clear();
@@ -4930,6 +9277,12 @@ public final class NetworkPackets {
         }
         if (configRequestBuilder_ != null) {
           configRequestBuilder_.clear();
+        }
+        if (geoBatchRequestBuilder_ != null) {
+          geoBatchRequestBuilder_.clear();
+        }
+        if (geoBatchResultBuilder_ != null) {
+          geoBatchResultBuilder_.clear();
         }
         payloadCase_ = 0;
         payload_ = null;
@@ -4973,20 +9326,32 @@ public final class NetworkPackets {
         result.payloadCase_ = payloadCase_;
         result.payload_ = this.payload_;
         if (payloadCase_ == 1 &&
-            batchBuilder_ != null) {
-          result.payload_ = batchBuilder_.build();
+            batchRequestBuilder_ != null) {
+          result.payload_ = batchRequestBuilder_.build();
         }
         if (payloadCase_ == 2 &&
+            batchResultBuilder_ != null) {
+          result.payload_ = batchResultBuilder_.build();
+        }
+        if (payloadCase_ == 3 &&
             chunkBuilder_ != null) {
           result.payload_ = chunkBuilder_.build();
         }
-        if (payloadCase_ == 3 &&
+        if (payloadCase_ == 4 &&
             configBuilder_ != null) {
           result.payload_ = configBuilder_.build();
         }
-        if (payloadCase_ == 4 &&
+        if (payloadCase_ == 5 &&
             configRequestBuilder_ != null) {
           result.payload_ = configRequestBuilder_.build();
+        }
+        if (payloadCase_ == 7 &&
+            geoBatchRequestBuilder_ != null) {
+          result.payload_ = geoBatchRequestBuilder_.build();
+        }
+        if (payloadCase_ == 8 &&
+            geoBatchResultBuilder_ != null) {
+          result.payload_ = geoBatchResultBuilder_.build();
         }
       }
 
@@ -5035,8 +9400,12 @@ public final class NetworkPackets {
       public Builder mergeFrom(org.pytenix.proto.generated.NetworkPackets.PacketWrapper other) {
         if (other == org.pytenix.proto.generated.NetworkPackets.PacketWrapper.getDefaultInstance()) return this;
         switch (other.getPayloadCase()) {
-          case BATCH: {
-            mergeBatch(other.getBatch());
+          case BATCH_REQUEST: {
+            mergeBatchRequest(other.getBatchRequest());
+            break;
+          }
+          case BATCH_RESULT: {
+            mergeBatchResult(other.getBatchResult());
             break;
           }
           case CHUNK: {
@@ -5049,6 +9418,14 @@ public final class NetworkPackets {
           }
           case CONFIG_REQUEST: {
             mergeConfigRequest(other.getConfigRequest());
+            break;
+          }
+          case GEO_BATCH_REQUEST: {
+            mergeGeoBatchRequest(other.getGeoBatchRequest());
+            break;
+          }
+          case GEO_BATCH_RESULT: {
+            mergeGeoBatchResult(other.getGeoBatchResult());
             break;
           }
           case PAYLOAD_NOT_SET: {
@@ -5083,32 +9460,53 @@ public final class NetworkPackets {
                 break;
               case 10: {
                 input.readMessage(
-                    getBatchFieldBuilder().getBuilder(),
+                    getBatchRequestFieldBuilder().getBuilder(),
                     extensionRegistry);
                 payloadCase_ = 1;
                 break;
               } // case 10
               case 18: {
                 input.readMessage(
-                    getChunkFieldBuilder().getBuilder(),
+                    getBatchResultFieldBuilder().getBuilder(),
                     extensionRegistry);
                 payloadCase_ = 2;
                 break;
               } // case 18
               case 26: {
                 input.readMessage(
-                    getConfigFieldBuilder().getBuilder(),
+                    getChunkFieldBuilder().getBuilder(),
                     extensionRegistry);
                 payloadCase_ = 3;
                 break;
               } // case 26
               case 34: {
                 input.readMessage(
-                    getConfigRequestFieldBuilder().getBuilder(),
+                    getConfigFieldBuilder().getBuilder(),
                     extensionRegistry);
                 payloadCase_ = 4;
                 break;
               } // case 34
+              case 42: {
+                input.readMessage(
+                    getConfigRequestFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                payloadCase_ = 5;
+                break;
+              } // case 42
+              case 58: {
+                input.readMessage(
+                    getGeoBatchRequestFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                payloadCase_ = 7;
+                break;
+              } // case 58
+              case 66: {
+                input.readMessage(
+                    getGeoBatchResultFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                payloadCase_ = 8;
+                break;
+              } // case 66
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -5142,71 +9540,71 @@ public final class NetworkPackets {
       private int bitField0_;
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          org.pytenix.proto.generated.NetworkPackets.TranslationBatch, org.pytenix.proto.generated.NetworkPackets.TranslationBatch.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationBatchOrBuilder> batchBuilder_;
+          org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest, org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequestOrBuilder> batchRequestBuilder_;
       /**
-       * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
-       * @return Whether the batch field is set.
+       * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
+       * @return Whether the batchRequest field is set.
        */
       @java.lang.Override
-      public boolean hasBatch() {
+      public boolean hasBatchRequest() {
         return payloadCase_ == 1;
       }
       /**
-       * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
-       * @return The batch.
+       * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
+       * @return The batchRequest.
        */
       @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.TranslationBatch getBatch() {
-        if (batchBuilder_ == null) {
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest getBatchRequest() {
+        if (batchRequestBuilder_ == null) {
           if (payloadCase_ == 1) {
-            return (org.pytenix.proto.generated.NetworkPackets.TranslationBatch) payload_;
+            return (org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest) payload_;
           }
-          return org.pytenix.proto.generated.NetworkPackets.TranslationBatch.getDefaultInstance();
+          return org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.getDefaultInstance();
         } else {
           if (payloadCase_ == 1) {
-            return batchBuilder_.getMessage();
+            return batchRequestBuilder_.getMessage();
           }
-          return org.pytenix.proto.generated.NetworkPackets.TranslationBatch.getDefaultInstance();
+          return org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.getDefaultInstance();
         }
       }
       /**
-       * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
+       * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
        */
-      public Builder setBatch(org.pytenix.proto.generated.NetworkPackets.TranslationBatch value) {
-        if (batchBuilder_ == null) {
+      public Builder setBatchRequest(org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest value) {
+        if (batchRequestBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
           payload_ = value;
           onChanged();
         } else {
-          batchBuilder_.setMessage(value);
+          batchRequestBuilder_.setMessage(value);
         }
         payloadCase_ = 1;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
+       * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
        */
-      public Builder setBatch(
-          org.pytenix.proto.generated.NetworkPackets.TranslationBatch.Builder builderForValue) {
-        if (batchBuilder_ == null) {
+      public Builder setBatchRequest(
+          org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.Builder builderForValue) {
+        if (batchRequestBuilder_ == null) {
           payload_ = builderForValue.build();
           onChanged();
         } else {
-          batchBuilder_.setMessage(builderForValue.build());
+          batchRequestBuilder_.setMessage(builderForValue.build());
         }
         payloadCase_ = 1;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
+       * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
        */
-      public Builder mergeBatch(org.pytenix.proto.generated.NetworkPackets.TranslationBatch value) {
-        if (batchBuilder_ == null) {
+      public Builder mergeBatchRequest(org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest value) {
+        if (batchRequestBuilder_ == null) {
           if (payloadCase_ == 1 &&
-              payload_ != org.pytenix.proto.generated.NetworkPackets.TranslationBatch.getDefaultInstance()) {
-            payload_ = org.pytenix.proto.generated.NetworkPackets.TranslationBatch.newBuilder((org.pytenix.proto.generated.NetworkPackets.TranslationBatch) payload_)
+              payload_ != org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.getDefaultInstance()) {
+            payload_ = org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.newBuilder((org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest) payload_)
                 .mergeFrom(value).buildPartial();
           } else {
             payload_ = value;
@@ -5214,19 +9612,19 @@ public final class NetworkPackets {
           onChanged();
         } else {
           if (payloadCase_ == 1) {
-            batchBuilder_.mergeFrom(value);
+            batchRequestBuilder_.mergeFrom(value);
           } else {
-            batchBuilder_.setMessage(value);
+            batchRequestBuilder_.setMessage(value);
           }
         }
         payloadCase_ = 1;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
+       * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
        */
-      public Builder clearBatch() {
-        if (batchBuilder_ == null) {
+      public Builder clearBatchRequest() {
+        if (batchRequestBuilder_ == null) {
           if (payloadCase_ == 1) {
             payloadCase_ = 0;
             payload_ = null;
@@ -5237,82 +9635,224 @@ public final class NetworkPackets {
             payloadCase_ = 0;
             payload_ = null;
           }
-          batchBuilder_.clear();
+          batchRequestBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
+       * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
        */
-      public org.pytenix.proto.generated.NetworkPackets.TranslationBatch.Builder getBatchBuilder() {
-        return getBatchFieldBuilder().getBuilder();
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.Builder getBatchRequestBuilder() {
+        return getBatchRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
+       * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
        */
       @java.lang.Override
-      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchOrBuilder getBatchOrBuilder() {
-        if ((payloadCase_ == 1) && (batchBuilder_ != null)) {
-          return batchBuilder_.getMessageOrBuilder();
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequestOrBuilder getBatchRequestOrBuilder() {
+        if ((payloadCase_ == 1) && (batchRequestBuilder_ != null)) {
+          return batchRequestBuilder_.getMessageOrBuilder();
         } else {
           if (payloadCase_ == 1) {
-            return (org.pytenix.proto.generated.NetworkPackets.TranslationBatch) payload_;
+            return (org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest) payload_;
           }
-          return org.pytenix.proto.generated.NetworkPackets.TranslationBatch.getDefaultInstance();
+          return org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.getDefaultInstance();
         }
       }
       /**
-       * <code>.org.pytenix.proto.TranslationBatch batch = 1;</code>
+       * <code>.org.pytenix.proto.TranslationBatchRequest batch_request = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          org.pytenix.proto.generated.NetworkPackets.TranslationBatch, org.pytenix.proto.generated.NetworkPackets.TranslationBatch.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationBatchOrBuilder> 
-          getBatchFieldBuilder() {
-        if (batchBuilder_ == null) {
+          org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest, org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequestOrBuilder> 
+          getBatchRequestFieldBuilder() {
+        if (batchRequestBuilder_ == null) {
           if (!(payloadCase_ == 1)) {
-            payload_ = org.pytenix.proto.generated.NetworkPackets.TranslationBatch.getDefaultInstance();
+            payload_ = org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.getDefaultInstance();
           }
-          batchBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              org.pytenix.proto.generated.NetworkPackets.TranslationBatch, org.pytenix.proto.generated.NetworkPackets.TranslationBatch.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationBatchOrBuilder>(
-                  (org.pytenix.proto.generated.NetworkPackets.TranslationBatch) payload_,
+          batchRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest, org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequestOrBuilder>(
+                  (org.pytenix.proto.generated.NetworkPackets.TranslationBatchRequest) payload_,
                   getParentForChildren(),
                   isClean());
           payload_ = null;
         }
         payloadCase_ = 1;
         onChanged();
-        return batchBuilder_;
+        return batchRequestBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult, org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationBatchResultOrBuilder> batchResultBuilder_;
+      /**
+       * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+       * @return Whether the batchResult field is set.
+       */
+      @java.lang.Override
+      public boolean hasBatchResult() {
+        return payloadCase_ == 2;
+      }
+      /**
+       * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+       * @return The batchResult.
+       */
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult getBatchResult() {
+        if (batchResultBuilder_ == null) {
+          if (payloadCase_ == 2) {
+            return (org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult) payload_;
+          }
+          return org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.getDefaultInstance();
+        } else {
+          if (payloadCase_ == 2) {
+            return batchResultBuilder_.getMessage();
+          }
+          return org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+       */
+      public Builder setBatchResult(org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult value) {
+        if (batchResultBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          payload_ = value;
+          onChanged();
+        } else {
+          batchResultBuilder_.setMessage(value);
+        }
+        payloadCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+       */
+      public Builder setBatchResult(
+          org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.Builder builderForValue) {
+        if (batchResultBuilder_ == null) {
+          payload_ = builderForValue.build();
+          onChanged();
+        } else {
+          batchResultBuilder_.setMessage(builderForValue.build());
+        }
+        payloadCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+       */
+      public Builder mergeBatchResult(org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult value) {
+        if (batchResultBuilder_ == null) {
+          if (payloadCase_ == 2 &&
+              payload_ != org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.getDefaultInstance()) {
+            payload_ = org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.newBuilder((org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult) payload_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            payload_ = value;
+          }
+          onChanged();
+        } else {
+          if (payloadCase_ == 2) {
+            batchResultBuilder_.mergeFrom(value);
+          } else {
+            batchResultBuilder_.setMessage(value);
+          }
+        }
+        payloadCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+       */
+      public Builder clearBatchResult() {
+        if (batchResultBuilder_ == null) {
+          if (payloadCase_ == 2) {
+            payloadCase_ = 0;
+            payload_ = null;
+            onChanged();
+          }
+        } else {
+          if (payloadCase_ == 2) {
+            payloadCase_ = 0;
+            payload_ = null;
+          }
+          batchResultBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.Builder getBatchResultBuilder() {
+        return getBatchResultFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+       */
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.TranslationBatchResultOrBuilder getBatchResultOrBuilder() {
+        if ((payloadCase_ == 2) && (batchResultBuilder_ != null)) {
+          return batchResultBuilder_.getMessageOrBuilder();
+        } else {
+          if (payloadCase_ == 2) {
+            return (org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult) payload_;
+          }
+          return org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.org.pytenix.proto.TranslationBatchResult batch_result = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult, org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationBatchResultOrBuilder> 
+          getBatchResultFieldBuilder() {
+        if (batchResultBuilder_ == null) {
+          if (!(payloadCase_ == 2)) {
+            payload_ = org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.getDefaultInstance();
+          }
+          batchResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult, org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult.Builder, org.pytenix.proto.generated.NetworkPackets.TranslationBatchResultOrBuilder>(
+                  (org.pytenix.proto.generated.NetworkPackets.TranslationBatchResult) payload_,
+                  getParentForChildren(),
+                  isClean());
+          payload_ = null;
+        }
+        payloadCase_ = 2;
+        onChanged();
+        return batchResultBuilder_;
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
           org.pytenix.proto.generated.NetworkPackets.Chunk, org.pytenix.proto.generated.NetworkPackets.Chunk.Builder, org.pytenix.proto.generated.NetworkPackets.ChunkOrBuilder> chunkBuilder_;
       /**
-       * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+       * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
        * @return Whether the chunk field is set.
        */
       @java.lang.Override
       public boolean hasChunk() {
-        return payloadCase_ == 2;
+        return payloadCase_ == 3;
       }
       /**
-       * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+       * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
        * @return The chunk.
        */
       @java.lang.Override
       public org.pytenix.proto.generated.NetworkPackets.Chunk getChunk() {
         if (chunkBuilder_ == null) {
-          if (payloadCase_ == 2) {
+          if (payloadCase_ == 3) {
             return (org.pytenix.proto.generated.NetworkPackets.Chunk) payload_;
           }
           return org.pytenix.proto.generated.NetworkPackets.Chunk.getDefaultInstance();
         } else {
-          if (payloadCase_ == 2) {
+          if (payloadCase_ == 3) {
             return chunkBuilder_.getMessage();
           }
           return org.pytenix.proto.generated.NetworkPackets.Chunk.getDefaultInstance();
         }
       }
       /**
-       * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+       * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
        */
       public Builder setChunk(org.pytenix.proto.generated.NetworkPackets.Chunk value) {
         if (chunkBuilder_ == null) {
@@ -5324,11 +9864,11 @@ public final class NetworkPackets {
         } else {
           chunkBuilder_.setMessage(value);
         }
-        payloadCase_ = 2;
+        payloadCase_ = 3;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+       * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
        */
       public Builder setChunk(
           org.pytenix.proto.generated.NetworkPackets.Chunk.Builder builderForValue) {
@@ -5338,15 +9878,15 @@ public final class NetworkPackets {
         } else {
           chunkBuilder_.setMessage(builderForValue.build());
         }
-        payloadCase_ = 2;
+        payloadCase_ = 3;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+       * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
        */
       public Builder mergeChunk(org.pytenix.proto.generated.NetworkPackets.Chunk value) {
         if (chunkBuilder_ == null) {
-          if (payloadCase_ == 2 &&
+          if (payloadCase_ == 3 &&
               payload_ != org.pytenix.proto.generated.NetworkPackets.Chunk.getDefaultInstance()) {
             payload_ = org.pytenix.proto.generated.NetworkPackets.Chunk.newBuilder((org.pytenix.proto.generated.NetworkPackets.Chunk) payload_)
                 .mergeFrom(value).buildPartial();
@@ -5355,27 +9895,27 @@ public final class NetworkPackets {
           }
           onChanged();
         } else {
-          if (payloadCase_ == 2) {
+          if (payloadCase_ == 3) {
             chunkBuilder_.mergeFrom(value);
           } else {
             chunkBuilder_.setMessage(value);
           }
         }
-        payloadCase_ = 2;
+        payloadCase_ = 3;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+       * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
        */
       public Builder clearChunk() {
         if (chunkBuilder_ == null) {
-          if (payloadCase_ == 2) {
+          if (payloadCase_ == 3) {
             payloadCase_ = 0;
             payload_ = null;
             onChanged();
           }
         } else {
-          if (payloadCase_ == 2) {
+          if (payloadCase_ == 3) {
             payloadCase_ = 0;
             payload_ = null;
           }
@@ -5384,33 +9924,33 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+       * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
        */
       public org.pytenix.proto.generated.NetworkPackets.Chunk.Builder getChunkBuilder() {
         return getChunkFieldBuilder().getBuilder();
       }
       /**
-       * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+       * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
        */
       @java.lang.Override
       public org.pytenix.proto.generated.NetworkPackets.ChunkOrBuilder getChunkOrBuilder() {
-        if ((payloadCase_ == 2) && (chunkBuilder_ != null)) {
+        if ((payloadCase_ == 3) && (chunkBuilder_ != null)) {
           return chunkBuilder_.getMessageOrBuilder();
         } else {
-          if (payloadCase_ == 2) {
+          if (payloadCase_ == 3) {
             return (org.pytenix.proto.generated.NetworkPackets.Chunk) payload_;
           }
           return org.pytenix.proto.generated.NetworkPackets.Chunk.getDefaultInstance();
         }
       }
       /**
-       * <code>.org.pytenix.proto.Chunk chunk = 2;</code>
+       * <code>.org.pytenix.proto.Chunk chunk = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           org.pytenix.proto.generated.NetworkPackets.Chunk, org.pytenix.proto.generated.NetworkPackets.Chunk.Builder, org.pytenix.proto.generated.NetworkPackets.ChunkOrBuilder> 
           getChunkFieldBuilder() {
         if (chunkBuilder_ == null) {
-          if (!(payloadCase_ == 2)) {
+          if (!(payloadCase_ == 3)) {
             payload_ = org.pytenix.proto.generated.NetworkPackets.Chunk.getDefaultInstance();
           }
           chunkBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -5420,7 +9960,7 @@ public final class NetworkPackets {
                   isClean());
           payload_ = null;
         }
-        payloadCase_ = 2;
+        payloadCase_ = 3;
         onChanged();
         return chunkBuilder_;
       }
@@ -5428,33 +9968,33 @@ public final class NetworkPackets {
       private com.google.protobuf.SingleFieldBuilderV3<
           org.pytenix.proto.generated.NetworkPackets.ServerConfiguration, org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.Builder, org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder> configBuilder_;
       /**
-       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
        * @return Whether the config field is set.
        */
       @java.lang.Override
       public boolean hasConfig() {
-        return payloadCase_ == 3;
+        return payloadCase_ == 4;
       }
       /**
-       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
        * @return The config.
        */
       @java.lang.Override
       public org.pytenix.proto.generated.NetworkPackets.ServerConfiguration getConfig() {
         if (configBuilder_ == null) {
-          if (payloadCase_ == 3) {
+          if (payloadCase_ == 4) {
             return (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_;
           }
           return org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
         } else {
-          if (payloadCase_ == 3) {
+          if (payloadCase_ == 4) {
             return configBuilder_.getMessage();
           }
           return org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
         }
       }
       /**
-       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
        */
       public Builder setConfig(org.pytenix.proto.generated.NetworkPackets.ServerConfiguration value) {
         if (configBuilder_ == null) {
@@ -5466,11 +10006,11 @@ public final class NetworkPackets {
         } else {
           configBuilder_.setMessage(value);
         }
-        payloadCase_ = 3;
+        payloadCase_ = 4;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
        */
       public Builder setConfig(
           org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.Builder builderForValue) {
@@ -5480,15 +10020,15 @@ public final class NetworkPackets {
         } else {
           configBuilder_.setMessage(builderForValue.build());
         }
-        payloadCase_ = 3;
+        payloadCase_ = 4;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
        */
       public Builder mergeConfig(org.pytenix.proto.generated.NetworkPackets.ServerConfiguration value) {
         if (configBuilder_ == null) {
-          if (payloadCase_ == 3 &&
+          if (payloadCase_ == 4 &&
               payload_ != org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance()) {
             payload_ = org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.newBuilder((org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_)
                 .mergeFrom(value).buildPartial();
@@ -5497,27 +10037,27 @@ public final class NetworkPackets {
           }
           onChanged();
         } else {
-          if (payloadCase_ == 3) {
+          if (payloadCase_ == 4) {
             configBuilder_.mergeFrom(value);
           } else {
             configBuilder_.setMessage(value);
           }
         }
-        payloadCase_ = 3;
+        payloadCase_ = 4;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
        */
       public Builder clearConfig() {
         if (configBuilder_ == null) {
-          if (payloadCase_ == 3) {
+          if (payloadCase_ == 4) {
             payloadCase_ = 0;
             payload_ = null;
             onChanged();
           }
         } else {
-          if (payloadCase_ == 3) {
+          if (payloadCase_ == 4) {
             payloadCase_ = 0;
             payload_ = null;
           }
@@ -5526,33 +10066,33 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
        */
       public org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.Builder getConfigBuilder() {
         return getConfigFieldBuilder().getBuilder();
       }
       /**
-       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
        */
       @java.lang.Override
       public org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder getConfigOrBuilder() {
-        if ((payloadCase_ == 3) && (configBuilder_ != null)) {
+        if ((payloadCase_ == 4) && (configBuilder_ != null)) {
           return configBuilder_.getMessageOrBuilder();
         } else {
-          if (payloadCase_ == 3) {
+          if (payloadCase_ == 4) {
             return (org.pytenix.proto.generated.NetworkPackets.ServerConfiguration) payload_;
           }
           return org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
         }
       }
       /**
-       * <code>.org.pytenix.proto.ServerConfiguration config = 3;</code>
+       * <code>.org.pytenix.proto.ServerConfiguration config = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           org.pytenix.proto.generated.NetworkPackets.ServerConfiguration, org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.Builder, org.pytenix.proto.generated.NetworkPackets.ServerConfigurationOrBuilder> 
           getConfigFieldBuilder() {
         if (configBuilder_ == null) {
-          if (!(payloadCase_ == 3)) {
+          if (!(payloadCase_ == 4)) {
             payload_ = org.pytenix.proto.generated.NetworkPackets.ServerConfiguration.getDefaultInstance();
           }
           configBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -5562,7 +10102,7 @@ public final class NetworkPackets {
                   isClean());
           payload_ = null;
         }
-        payloadCase_ = 3;
+        payloadCase_ = 4;
         onChanged();
         return configBuilder_;
       }
@@ -5570,33 +10110,33 @@ public final class NetworkPackets {
       private com.google.protobuf.SingleFieldBuilderV3<
           org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket, org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.Builder, org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacketOrBuilder> configRequestBuilder_;
       /**
-       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
        * @return Whether the configRequest field is set.
        */
       @java.lang.Override
       public boolean hasConfigRequest() {
-        return payloadCase_ == 4;
+        return payloadCase_ == 5;
       }
       /**
-       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
        * @return The configRequest.
        */
       @java.lang.Override
       public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket getConfigRequest() {
         if (configRequestBuilder_ == null) {
-          if (payloadCase_ == 4) {
+          if (payloadCase_ == 5) {
             return (org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) payload_;
           }
           return org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.getDefaultInstance();
         } else {
-          if (payloadCase_ == 4) {
+          if (payloadCase_ == 5) {
             return configRequestBuilder_.getMessage();
           }
           return org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.getDefaultInstance();
         }
       }
       /**
-       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
        */
       public Builder setConfigRequest(org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket value) {
         if (configRequestBuilder_ == null) {
@@ -5608,11 +10148,11 @@ public final class NetworkPackets {
         } else {
           configRequestBuilder_.setMessage(value);
         }
-        payloadCase_ = 4;
+        payloadCase_ = 5;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
        */
       public Builder setConfigRequest(
           org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.Builder builderForValue) {
@@ -5622,15 +10162,15 @@ public final class NetworkPackets {
         } else {
           configRequestBuilder_.setMessage(builderForValue.build());
         }
-        payloadCase_ = 4;
+        payloadCase_ = 5;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
        */
       public Builder mergeConfigRequest(org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket value) {
         if (configRequestBuilder_ == null) {
-          if (payloadCase_ == 4 &&
+          if (payloadCase_ == 5 &&
               payload_ != org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.getDefaultInstance()) {
             payload_ = org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.newBuilder((org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) payload_)
                 .mergeFrom(value).buildPartial();
@@ -5639,27 +10179,27 @@ public final class NetworkPackets {
           }
           onChanged();
         } else {
-          if (payloadCase_ == 4) {
+          if (payloadCase_ == 5) {
             configRequestBuilder_.mergeFrom(value);
           } else {
             configRequestBuilder_.setMessage(value);
           }
         }
-        payloadCase_ = 4;
+        payloadCase_ = 5;
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
        */
       public Builder clearConfigRequest() {
         if (configRequestBuilder_ == null) {
-          if (payloadCase_ == 4) {
+          if (payloadCase_ == 5) {
             payloadCase_ = 0;
             payload_ = null;
             onChanged();
           }
         } else {
-          if (payloadCase_ == 4) {
+          if (payloadCase_ == 5) {
             payloadCase_ = 0;
             payload_ = null;
           }
@@ -5668,33 +10208,33 @@ public final class NetworkPackets {
         return this;
       }
       /**
-       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
        */
       public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.Builder getConfigRequestBuilder() {
         return getConfigRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
        */
       @java.lang.Override
       public org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacketOrBuilder getConfigRequestOrBuilder() {
-        if ((payloadCase_ == 4) && (configRequestBuilder_ != null)) {
+        if ((payloadCase_ == 5) && (configRequestBuilder_ != null)) {
           return configRequestBuilder_.getMessageOrBuilder();
         } else {
-          if (payloadCase_ == 4) {
+          if (payloadCase_ == 5) {
             return (org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket) payload_;
           }
           return org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.getDefaultInstance();
         }
       }
       /**
-       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 4;</code>
+       * <code>.org.pytenix.proto.ConfigRequestPacket config_request = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket, org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.Builder, org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacketOrBuilder> 
           getConfigRequestFieldBuilder() {
         if (configRequestBuilder_ == null) {
-          if (!(payloadCase_ == 4)) {
+          if (!(payloadCase_ == 5)) {
             payload_ = org.pytenix.proto.generated.NetworkPackets.ConfigRequestPacket.getDefaultInstance();
           }
           configRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -5704,9 +10244,293 @@ public final class NetworkPackets {
                   isClean());
           payload_ = null;
         }
-        payloadCase_ = 4;
+        payloadCase_ = 5;
         onChanged();
         return configRequestBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest, org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.Builder, org.pytenix.proto.generated.NetworkPackets.GeoBatchRequestOrBuilder> geoBatchRequestBuilder_;
+      /**
+       * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+       * @return Whether the geoBatchRequest field is set.
+       */
+      @java.lang.Override
+      public boolean hasGeoBatchRequest() {
+        return payloadCase_ == 7;
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+       * @return The geoBatchRequest.
+       */
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest getGeoBatchRequest() {
+        if (geoBatchRequestBuilder_ == null) {
+          if (payloadCase_ == 7) {
+            return (org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest) payload_;
+          }
+          return org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.getDefaultInstance();
+        } else {
+          if (payloadCase_ == 7) {
+            return geoBatchRequestBuilder_.getMessage();
+          }
+          return org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+       */
+      public Builder setGeoBatchRequest(org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest value) {
+        if (geoBatchRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          payload_ = value;
+          onChanged();
+        } else {
+          geoBatchRequestBuilder_.setMessage(value);
+        }
+        payloadCase_ = 7;
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+       */
+      public Builder setGeoBatchRequest(
+          org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.Builder builderForValue) {
+        if (geoBatchRequestBuilder_ == null) {
+          payload_ = builderForValue.build();
+          onChanged();
+        } else {
+          geoBatchRequestBuilder_.setMessage(builderForValue.build());
+        }
+        payloadCase_ = 7;
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+       */
+      public Builder mergeGeoBatchRequest(org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest value) {
+        if (geoBatchRequestBuilder_ == null) {
+          if (payloadCase_ == 7 &&
+              payload_ != org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.getDefaultInstance()) {
+            payload_ = org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.newBuilder((org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest) payload_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            payload_ = value;
+          }
+          onChanged();
+        } else {
+          if (payloadCase_ == 7) {
+            geoBatchRequestBuilder_.mergeFrom(value);
+          } else {
+            geoBatchRequestBuilder_.setMessage(value);
+          }
+        }
+        payloadCase_ = 7;
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+       */
+      public Builder clearGeoBatchRequest() {
+        if (geoBatchRequestBuilder_ == null) {
+          if (payloadCase_ == 7) {
+            payloadCase_ = 0;
+            payload_ = null;
+            onChanged();
+          }
+        } else {
+          if (payloadCase_ == 7) {
+            payloadCase_ = 0;
+            payload_ = null;
+          }
+          geoBatchRequestBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.Builder getGeoBatchRequestBuilder() {
+        return getGeoBatchRequestFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+       */
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchRequestOrBuilder getGeoBatchRequestOrBuilder() {
+        if ((payloadCase_ == 7) && (geoBatchRequestBuilder_ != null)) {
+          return geoBatchRequestBuilder_.getMessageOrBuilder();
+        } else {
+          if (payloadCase_ == 7) {
+            return (org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest) payload_;
+          }
+          return org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchRequest geo_batch_request = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest, org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.Builder, org.pytenix.proto.generated.NetworkPackets.GeoBatchRequestOrBuilder> 
+          getGeoBatchRequestFieldBuilder() {
+        if (geoBatchRequestBuilder_ == null) {
+          if (!(payloadCase_ == 7)) {
+            payload_ = org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.getDefaultInstance();
+          }
+          geoBatchRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest, org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest.Builder, org.pytenix.proto.generated.NetworkPackets.GeoBatchRequestOrBuilder>(
+                  (org.pytenix.proto.generated.NetworkPackets.GeoBatchRequest) payload_,
+                  getParentForChildren(),
+                  isClean());
+          payload_ = null;
+        }
+        payloadCase_ = 7;
+        onChanged();
+        return geoBatchRequestBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.GeoBatchResult, org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.Builder, org.pytenix.proto.generated.NetworkPackets.GeoBatchResultOrBuilder> geoBatchResultBuilder_;
+      /**
+       * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+       * @return Whether the geoBatchResult field is set.
+       */
+      @java.lang.Override
+      public boolean hasGeoBatchResult() {
+        return payloadCase_ == 8;
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+       * @return The geoBatchResult.
+       */
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchResult getGeoBatchResult() {
+        if (geoBatchResultBuilder_ == null) {
+          if (payloadCase_ == 8) {
+            return (org.pytenix.proto.generated.NetworkPackets.GeoBatchResult) payload_;
+          }
+          return org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.getDefaultInstance();
+        } else {
+          if (payloadCase_ == 8) {
+            return geoBatchResultBuilder_.getMessage();
+          }
+          return org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+       */
+      public Builder setGeoBatchResult(org.pytenix.proto.generated.NetworkPackets.GeoBatchResult value) {
+        if (geoBatchResultBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          payload_ = value;
+          onChanged();
+        } else {
+          geoBatchResultBuilder_.setMessage(value);
+        }
+        payloadCase_ = 8;
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+       */
+      public Builder setGeoBatchResult(
+          org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.Builder builderForValue) {
+        if (geoBatchResultBuilder_ == null) {
+          payload_ = builderForValue.build();
+          onChanged();
+        } else {
+          geoBatchResultBuilder_.setMessage(builderForValue.build());
+        }
+        payloadCase_ = 8;
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+       */
+      public Builder mergeGeoBatchResult(org.pytenix.proto.generated.NetworkPackets.GeoBatchResult value) {
+        if (geoBatchResultBuilder_ == null) {
+          if (payloadCase_ == 8 &&
+              payload_ != org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.getDefaultInstance()) {
+            payload_ = org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.newBuilder((org.pytenix.proto.generated.NetworkPackets.GeoBatchResult) payload_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            payload_ = value;
+          }
+          onChanged();
+        } else {
+          if (payloadCase_ == 8) {
+            geoBatchResultBuilder_.mergeFrom(value);
+          } else {
+            geoBatchResultBuilder_.setMessage(value);
+          }
+        }
+        payloadCase_ = 8;
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+       */
+      public Builder clearGeoBatchResult() {
+        if (geoBatchResultBuilder_ == null) {
+          if (payloadCase_ == 8) {
+            payloadCase_ = 0;
+            payload_ = null;
+            onChanged();
+          }
+        } else {
+          if (payloadCase_ == 8) {
+            payloadCase_ = 0;
+            payload_ = null;
+          }
+          geoBatchResultBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+       */
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.Builder getGeoBatchResultBuilder() {
+        return getGeoBatchResultFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+       */
+      @java.lang.Override
+      public org.pytenix.proto.generated.NetworkPackets.GeoBatchResultOrBuilder getGeoBatchResultOrBuilder() {
+        if ((payloadCase_ == 8) && (geoBatchResultBuilder_ != null)) {
+          return geoBatchResultBuilder_.getMessageOrBuilder();
+        } else {
+          if (payloadCase_ == 8) {
+            return (org.pytenix.proto.generated.NetworkPackets.GeoBatchResult) payload_;
+          }
+          return org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.org.pytenix.proto.GeoBatchResult geo_batch_result = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.pytenix.proto.generated.NetworkPackets.GeoBatchResult, org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.Builder, org.pytenix.proto.generated.NetworkPackets.GeoBatchResultOrBuilder> 
+          getGeoBatchResultFieldBuilder() {
+        if (geoBatchResultBuilder_ == null) {
+          if (!(payloadCase_ == 8)) {
+            payload_ = org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.getDefaultInstance();
+          }
+          geoBatchResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.pytenix.proto.generated.NetworkPackets.GeoBatchResult, org.pytenix.proto.generated.NetworkPackets.GeoBatchResult.Builder, org.pytenix.proto.generated.NetworkPackets.GeoBatchResultOrBuilder>(
+                  (org.pytenix.proto.generated.NetworkPackets.GeoBatchResult) payload_,
+                  getParentForChildren(),
+                  isClean());
+          payload_ = null;
+        }
+        payloadCase_ = 8;
+        onChanged();
+        return geoBatchResultBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -5783,20 +10607,50 @@ public final class NetworkPackets {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_org_pytenix_proto_ServerConfiguration_ModulesEntry_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_pytenix_proto_TranslationRequest_descriptor;
+    internal_static_org_pytenix_proto_GeoBatchRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_org_pytenix_proto_TranslationRequest_fieldAccessorTable;
+      internal_static_org_pytenix_proto_GeoBatchRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_pytenix_proto_GeoBatchResult_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_org_pytenix_proto_GeoBatchResult_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_pytenix_proto_GeoRequestPacket_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_org_pytenix_proto_GeoRequestPacket_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_pytenix_proto_GeoResultPacket_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_org_pytenix_proto_GeoResultPacket_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_pytenix_proto_ConfigRequestPacket_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_org_pytenix_proto_ConfigRequestPacket_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_pytenix_proto_TranslationBatch_descriptor;
+    internal_static_org_pytenix_proto_TranslationRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_org_pytenix_proto_TranslationBatch_fieldAccessorTable;
+      internal_static_org_pytenix_proto_TranslationRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_pytenix_proto_TranslationBatchRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_org_pytenix_proto_TranslationBatchRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_pytenix_proto_TranslationBatchResult_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_org_pytenix_proto_TranslationBatchResult_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_pytenix_proto_TranslationResult_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_org_pytenix_proto_TranslationResult_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_pytenix_proto_Chunk_descriptor;
   private static final 
@@ -5821,23 +10675,39 @@ public final class NetworkPackets {
       "D\n\007modules\030\002 \003(\01323.org.pytenix.proto.Ser" +
       "verConfiguration.ModulesEntry\022\r\n\005words\030\003" +
       " \003(\t\032.\n\014ModulesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005val" +
-      "ue\030\002 \001(\010:\0028\001\"[\n\022TranslationRequest\022\022\n\nre" +
-      "quest_id\030\001 \001(\014\022\014\n\004text\030\002 \001(\t\022\023\n\013target_l" +
-      "ang\030\003 \001(\t\022\016\n\006module\030\004 \001(\t\"(\n\023ConfigReque" +
-      "stPacket\022\021\n\ttimestamp\030\001 \001(\003\"s\n\020Translati" +
-      "onBatch\022\025\n\rorigin_server\030\001 \001(\t\0227\n\010reques" +
-      "ts\030\002 \003(\0132%.org.pytenix.proto.Translation" +
-      "Request\022\017\n\007results\030\003 \003(\t\"W\n\005Chunk\022\027\n\017tra" +
-      "nsmission_id\030\001 \001(\t\022\022\n\npart_index\030\002 \001(\005\022\023" +
-      "\n\013total_parts\030\003 \001(\005\022\014\n\004data\030\004 \001(\014\"\367\001\n\rPa" +
-      "cketWrapper\0224\n\005batch\030\001 \001(\0132#.org.pytenix" +
-      ".proto.TranslationBatchH\000\022)\n\005chunk\030\002 \001(\013" +
-      "2\030.org.pytenix.proto.ChunkH\000\0228\n\006config\030\003" +
-      " \001(\0132&.org.pytenix.proto.ServerConfigura" +
-      "tionH\000\022@\n\016config_request\030\004 \001(\0132&.org.pyt" +
-      "enix.proto.ConfigRequestPacketH\000B\t\n\007payl" +
-      "oadB-\n\033org.pytenix.proto.generatedB\016Netw" +
-      "orkPacketsb\006proto3"
+      "ue\030\002 \001(\010:\0028\001\"H\n\017GeoBatchRequest\0225\n\010reque" +
+      "sts\030\001 \003(\0132#.org.pytenix.proto.GeoRequest" +
+      "Packet\"E\n\016GeoBatchResult\0223\n\007results\030\001 \003(" +
+      "\0132\".org.pytenix.proto.GeoResultPacket\":\n" +
+      "\020GeoRequestPacket\022\022\n\nrequest_id\030\001 \001(\014\022\022\n" +
+      "\nip_address\030\002 \001(\t\"7\n\017GeoResultPacket\022\022\n\n" +
+      "request_id\030\001 \001(\014\022\020\n\010language\030\002 \001(\t\"(\n\023Co" +
+      "nfigRequestPacket\022\021\n\ttimestamp\030\001 \001(\003\"[\n\022" +
+      "TranslationRequest\022\022\n\nrequest_id\030\001 \001(\014\022\014" +
+      "\n\004text\030\002 \001(\t\022\023\n\013target_lang\030\003 \001(\t\022\016\n\006mod" +
+      "ule\030\004 \001(\t\"i\n\027TranslationBatchRequest\022\025\n\r" +
+      "origin_server\030\001 \001(\t\0227\n\010requests\030\002 \003(\0132%." +
+      "org.pytenix.proto.TranslationRequest\"f\n\026" +
+      "TranslationBatchResult\022\025\n\rorigin_server\030" +
+      "\001 \001(\t\0225\n\007results\030\002 \003(\0132$.org.pytenix.pro" +
+      "to.TranslationResult\"7\n\021TranslationResul" +
+      "t\022\022\n\nrequest_id\030\001 \001(\014\022\016\n\006result\030\002 \001(\t\"W\n" +
+      "\005Chunk\022\027\n\017transmission_id\030\001 \001(\t\022\022\n\npart_" +
+      "index\030\002 \001(\005\022\023\n\013total_parts\030\003 \001(\005\022\014\n\004data" +
+      "\030\004 \001(\014\"\311\003\n\rPacketWrapper\022C\n\rbatch_reques" +
+      "t\030\001 \001(\0132*.org.pytenix.proto.TranslationB" +
+      "atchRequestH\000\022A\n\014batch_result\030\002 \001(\0132).or" +
+      "g.pytenix.proto.TranslationBatchResultH\000" +
+      "\022)\n\005chunk\030\003 \001(\0132\030.org.pytenix.proto.Chun" +
+      "kH\000\0228\n\006config\030\004 \001(\0132&.org.pytenix.proto." +
+      "ServerConfigurationH\000\022@\n\016config_request\030" +
+      "\005 \001(\0132&.org.pytenix.proto.ConfigRequestP" +
+      "acketH\000\022?\n\021geo_batch_request\030\007 \001(\0132\".org" +
+      ".pytenix.proto.GeoBatchRequestH\000\022=\n\020geo_" +
+      "batch_result\030\010 \001(\0132!.org.pytenix.proto.G" +
+      "eoBatchResultH\000B\t\n\007payloadB-\n\033org.pyteni" +
+      "x.proto.generatedB\016NetworkPacketsb\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -5855,36 +10725,72 @@ public final class NetworkPackets {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_pytenix_proto_ServerConfiguration_ModulesEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
-    internal_static_org_pytenix_proto_TranslationRequest_descriptor =
+    internal_static_org_pytenix_proto_GeoBatchRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_org_pytenix_proto_TranslationRequest_fieldAccessorTable = new
+    internal_static_org_pytenix_proto_GeoBatchRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_org_pytenix_proto_TranslationRequest_descriptor,
-        new java.lang.String[] { "RequestId", "Text", "TargetLang", "Module", });
-    internal_static_org_pytenix_proto_ConfigRequestPacket_descriptor =
+        internal_static_org_pytenix_proto_GeoBatchRequest_descriptor,
+        new java.lang.String[] { "Requests", });
+    internal_static_org_pytenix_proto_GeoBatchResult_descriptor =
       getDescriptor().getMessageTypes().get(2);
+    internal_static_org_pytenix_proto_GeoBatchResult_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_org_pytenix_proto_GeoBatchResult_descriptor,
+        new java.lang.String[] { "Results", });
+    internal_static_org_pytenix_proto_GeoRequestPacket_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_org_pytenix_proto_GeoRequestPacket_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_org_pytenix_proto_GeoRequestPacket_descriptor,
+        new java.lang.String[] { "RequestId", "IpAddress", });
+    internal_static_org_pytenix_proto_GeoResultPacket_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_org_pytenix_proto_GeoResultPacket_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_org_pytenix_proto_GeoResultPacket_descriptor,
+        new java.lang.String[] { "RequestId", "Language", });
+    internal_static_org_pytenix_proto_ConfigRequestPacket_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_org_pytenix_proto_ConfigRequestPacket_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_pytenix_proto_ConfigRequestPacket_descriptor,
         new java.lang.String[] { "Timestamp", });
-    internal_static_org_pytenix_proto_TranslationBatch_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_org_pytenix_proto_TranslationBatch_fieldAccessorTable = new
+    internal_static_org_pytenix_proto_TranslationRequest_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_org_pytenix_proto_TranslationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_org_pytenix_proto_TranslationBatch_descriptor,
-        new java.lang.String[] { "OriginServer", "Requests", "Results", });
+        internal_static_org_pytenix_proto_TranslationRequest_descriptor,
+        new java.lang.String[] { "RequestId", "Text", "TargetLang", "Module", });
+    internal_static_org_pytenix_proto_TranslationBatchRequest_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_org_pytenix_proto_TranslationBatchRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_org_pytenix_proto_TranslationBatchRequest_descriptor,
+        new java.lang.String[] { "OriginServer", "Requests", });
+    internal_static_org_pytenix_proto_TranslationBatchResult_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_org_pytenix_proto_TranslationBatchResult_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_org_pytenix_proto_TranslationBatchResult_descriptor,
+        new java.lang.String[] { "OriginServer", "Results", });
+    internal_static_org_pytenix_proto_TranslationResult_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_org_pytenix_proto_TranslationResult_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_org_pytenix_proto_TranslationResult_descriptor,
+        new java.lang.String[] { "RequestId", "Result", });
     internal_static_org_pytenix_proto_Chunk_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_org_pytenix_proto_Chunk_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_pytenix_proto_Chunk_descriptor,
         new java.lang.String[] { "TransmissionId", "PartIndex", "TotalParts", "Data", });
     internal_static_org_pytenix_proto_PacketWrapper_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_org_pytenix_proto_PacketWrapper_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_pytenix_proto_PacketWrapper_descriptor,
-        new java.lang.String[] { "Batch", "Chunk", "Config", "ConfigRequest", "Payload", });
+        new java.lang.String[] { "BatchRequest", "BatchResult", "Chunk", "Config", "ConfigRequest", "GeoBatchRequest", "GeoBatchResult", "Payload", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

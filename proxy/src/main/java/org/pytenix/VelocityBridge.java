@@ -1,6 +1,5 @@
 package org.pytenix;
 
-import com.google.protobuf.ByteString;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import com.velocitypowered.api.proxy.ServerConnection;
@@ -8,23 +7,26 @@ import com.velocitypowered.api.proxy.messages.ChannelIdentifier;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import org.pytenix.proto.generated.NetworkPackets;
-import org.pytenix.proto.generated.NetworkPackets.Chunk;
-import org.pytenix.proto.generated.NetworkPackets.PacketWrapper;
-import org.pytenix.proto.generated.NetworkPackets.TranslationBatch;
 import org.pytenix.proto.generated.NetworkPackets.TranslationRequest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
+import java.util.concurrent.*;
 
 public class VelocityBridge extends AdvancedTranslationBridge {
     private final VelocityTranslator proxy;
     private final ChannelIdentifier identifier = MinecraftChannelIdentifier.from("translator:main");
 
+    private final Map<String, ConcurrentLinkedQueue<NetworkPackets.TranslationResult>> outgoingResults = new ConcurrentHashMap<>();
+
+    private final ScheduledExecutorService flushScheduler = Executors.newSingleThreadScheduledExecutor(runnable -> {
+        Thread thread = new Thread(runnable);
+        thread.setName("Velocity-Flush-Worker");
+        thread.setDaemon(true);
+        return thread;
+    });
 
     private final ExecutorService apiExecutor = Executors.newFixedThreadPool(4, runnable -> {
         Thread thread = new Thread(runnable);
@@ -33,53 +35,16 @@ public class VelocityBridge extends AdvancedTranslationBridge {
         return thread;
     });
 
-    @Override
-    protected void handleConfigUpdate(NetworkPackets.ServerConfiguration configPacket) {
-    }
-
-    @Override
-    protected void handleConfigRequest(String originServer) {
-        if (proxy.getCachedConfig() == null) {
-            System.out.println("Spigot Server " + originServer + " will Config, aber Proxy hat noch keine.");
-            return;
-        }
-
-        NetworkPackets.ServerConfiguration packet = convertToProto(proxy.getCachedConfig());
-        sendConfigProto(packet, originServer);
-        System.out.println("Cached Config an startenden Server gesendet: " + originServer);
-    }
-
     public VelocityBridge(VelocityTranslator proxy) {
         this.proxy = proxy;
         proxy.getProxyServer().getChannelRegistrar().register(identifier);
+
+        flushScheduler.scheduleAtFixedRate(this::flushOutgoingResults, 10, 10, TimeUnit.MILLISECONDS);
     }
 
-    @Override
-    protected String handlePlaceholders(UUID uuid, String result) {
-        return result;
-    }
-
-    private NetworkPackets.ServerConfiguration convertToProto(ServerConfiguration javaConfig) {
-        NetworkPackets.ServerConfiguration.Builder builder = NetworkPackets.ServerConfiguration.newBuilder();
-
-        if (javaConfig.getModules() != null) {
-            builder.putAllModules(javaConfig.getModules());
-        }
-        if(javaConfig.getBlacklistedWords() != null)
-        {
-            builder.addAllWords(javaConfig.getBlacklistedWords());
-        }
-        return builder.build();
-    }
-
-    public void broadcastConfigUpdate(ServerConfiguration javaConfig) {
-        proxy.setCachedConfig(javaConfig);
-
-        NetworkPackets.ServerConfiguration packet = convertToProto(javaConfig);
-
-        for (RegisteredServer server : proxy.getProxyServer().getAllServers()) {
-            sendConfigProto(packet, server.getServerInfo().getName());
-        }
+    public void shutdown() {
+        flushScheduler.shutdown();
+        apiExecutor.shutdown();
     }
 
     @Subscribe
@@ -104,16 +69,19 @@ public class VelocityBridge extends AdvancedTranslationBridge {
     }
 
     @Override
-    protected void handleFullPackage(TranslationBatch batch) {
-        if (batch.getResultsCount() == 0) {
-            processRequestBatch(batch);
-        } else {
-            super.handleResponses(batch);
-        }
+    protected void handleFullRequestPackage(NetworkPackets.TranslationBatchRequest batch) {
+        processRequestBatch(batch);
     }
 
-    private void processRequestBatch(TranslationBatch batch) {
-        List<CompletableFuture<String>> futures = new ArrayList<>();
+    @Override
+    protected void handleFullResultPackage(NetworkPackets.TranslationBatchResult batch) {
+        // Wird ignoriert. Velocity empfängt keine Results.
+    }
+
+    private void processRequestBatch(NetworkPackets.TranslationBatchRequest batch) {
+        String originServer = batch.getOriginServer();
+
+        ConcurrentLinkedQueue<NetworkPackets.TranslationResult> serverQueue = outgoingResults.computeIfAbsent(originServer, k -> new ConcurrentLinkedQueue<>());
 
         for (TranslationRequest req : batch.getRequestsList()) {
             UUID id = UuidUtil.fromByteString(req.getRequestId());
@@ -123,85 +91,83 @@ public class VelocityBridge extends AdvancedTranslationBridge {
             String cached = proxy.getCaffeineCache().get(text, lang);
 
             if (cached != null) {
-                futures.add(CompletableFuture.completedFuture(cached));
+                serverQueue.add(NetworkPackets.TranslationResult.newBuilder()
+                        .setRequestId(req.getRequestId())
+                        .setResult(cached)
+                        .build());
             } else {
+                proxy.getRestfulService()
+                        .sendTranslationRequest(id, text, lang, req.getModule())
+                        .thenAcceptAsync(translatedText -> {
+                            String finalString = (isSuccessfull(translatedText) && !translatedText.equals(text)) ? translatedText : text;
 
-                CompletableFuture<String> apiCall = proxy.getRestfulService()
-                        .sendTranslationRequest(id, text, lang,req.getModule())
-                        .thenApply(response -> {
-                            String translatedText = response.getTranslatedText();
-
-                            if (isSuccessfull(translatedText) && !translatedText.equals(text)) {
-
-                                proxy.getCaffeineCache().set(text, lang, translatedText);
-                                return translatedText;
-                            } else {
-
-                                return text;
-                            }
-                        });
-                futures.add(apiCall);
+                            serverQueue.add(NetworkPackets.TranslationResult.newBuilder()
+                                    .setRequestId(req.getRequestId())
+                                    .setResult(finalString)
+                                    .build());
+                        }, apiExecutor);
             }
         }
-
-
-        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).thenAcceptAsync(unused -> {
-
-            List<String> results = futures.stream()
-                    .map(CompletableFuture::join)
-                    .collect(Collectors.toList());
-
-            TranslationBatch responseBatch = batch.toBuilder()
-                    .addAllResults(results)
-                    .build();
-
-
-            sendResponse(responseBatch);
-
-        }, apiExecutor);
     }
 
+    private void flushOutgoingResults() {
+        for (Map.Entry<String, ConcurrentLinkedQueue<NetworkPackets.TranslationResult>> entry : outgoingResults.entrySet()) {
+            String serverName = entry.getKey();
+            ConcurrentLinkedQueue<NetworkPackets.TranslationResult> queue = entry.getValue();
 
-    private void sendResponse(TranslationBatch batch) {
-        byte[] data = batch.toByteArray();
-        String targetServer = batch.getOriginServer();
+            if (queue.isEmpty()) continue;
 
-        if (data.length < 30000) {
+            List<NetworkPackets.TranslationResult> toSend = new ArrayList<>();
+            NetworkPackets.TranslationResult result;
 
-            PacketWrapper wrapper = PacketWrapper.newBuilder().setBatch(batch).build();
-            dispatchRaw(secureWrap(wrapper.toByteArray()), targetServer);
-        } else {
+            int count = 0;
+            while ((result = queue.poll()) != null && count < 500) {
+                toSend.add(result);
+                count++;
+            }
 
-            sendChunkedResponse(data, targetServer);
-        }
-    }
+            if (!toSend.isEmpty()) {
+                NetworkPackets.TranslationBatchResult responseBatch = NetworkPackets.TranslationBatchResult.newBuilder()
+                        .setOriginServer(serverName)
+                        .addAllResults(toSend)
+                        .build();
 
-
-    private void sendChunkedResponse(byte[] data, String targetServer) {
-        String transmissionId = UUID.randomUUID().toString();
-        int maxChunkSize = 29000;
-        int totalParts = (int) Math.ceil((double) data.length / maxChunkSize);
-
-        for (int i = 0; i < totalParts; i++) {
-            int start = i * maxChunkSize;
-            int end = Math.min(data.length, start + maxChunkSize);
-
-            ByteString chunkData = ByteString.copyFrom(data, start, end - start);
-
-            Chunk chunk = Chunk.newBuilder()
-                    .setTransmissionId(transmissionId)
-                    .setPartIndex(i)
-                    .setTotalParts(totalParts)
-                    .setData(chunkData)
-                    .build();
-
-            PacketWrapper wrapper = PacketWrapper.newBuilder().setChunk(chunk).build();
-            byte[] secured = secureWrap(wrapper.toByteArray());
-            dispatchRaw(secured, targetServer);
+                sendResultBatch(responseBatch, serverName);
+            }
         }
     }
 
     public boolean isSuccessfull(String string) {
         return string != null && !string.equalsIgnoreCase("TIMEOUT") && !string.startsWith("ERROR");
+    }
+
+    @Override
+    protected void handleConfigUpdate(NetworkPackets.ServerConfiguration configPacket) {}
+
+    @Override
+    protected void handleConfigRequest(String originServer) {
+        if (proxy.getCachedConfig() == null) return;
+        NetworkPackets.ServerConfiguration packet = convertToProto(proxy.getCachedConfig());
+        sendConfigProto(packet, originServer);
+    }
+
+    @Override
+    protected String handlePlaceholders(UUID uuid, String result) {
+        return result;
+    }
+
+    private NetworkPackets.ServerConfiguration convertToProto(ServerConfiguration javaConfig) {
+        NetworkPackets.ServerConfiguration.Builder builder = NetworkPackets.ServerConfiguration.newBuilder();
+        if (javaConfig.getModules() != null) builder.putAllModules(javaConfig.getModules());
+        if (javaConfig.getBlacklistedWords() != null) builder.addAllWords(javaConfig.getBlacklistedWords());
+        return builder.build();
+    }
+
+    public void broadcastConfigUpdate(ServerConfiguration javaConfig) {
+        proxy.setCachedConfig(javaConfig);
+        NetworkPackets.ServerConfiguration packet = convertToProto(javaConfig);
+        for (RegisteredServer server : proxy.getProxyServer().getAllServers()) {
+            sendConfigProto(packet, server.getServerInfo().getName());
+        }
     }
 }

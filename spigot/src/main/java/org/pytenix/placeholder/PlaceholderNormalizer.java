@@ -37,7 +37,7 @@ public class PlaceholderNormalizer {
     public String denormalizeText(UUID uuid, String text)
     {
         if(cachedNormalized.getIfPresent(uuid) == null)
-            return null;
+            return "";
 
         return denormalize(text,cachedNormalized.getIfPresent(uuid).mappings);
 

@@ -1,20 +1,18 @@
 package org.pytenix;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.scheduler.ScheduledTask;
-import org.pytenix.model.TranslationRequest;
-import org.pytenix.model.TranslationResponse;
+import org.pytenix.proto.generated.NetworkPackets;
 
+import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.nio.ByteBuffer;
+import java.util.*;
 import java.util.concurrent.*;
+import java.util.stream.Collectors;
 
 public class RestfulService {
 
@@ -26,30 +24,22 @@ public class RestfulService {
     private final VelocityTranslator velocityTranslator;
     private final VelocityBridge velocityBridge;
 
-    private static final ObjectMapper mapper = new ObjectMapper()
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-    private final ConcurrentHashMap<UUID, CompletableFuture<TranslationResponse>> queue;
-
-
-    private record QueuedRequest(TranslationRequest request, CompletableFuture<TranslationResponse> future) {}
-
+    private final ConcurrentHashMap<UUID, CompletableFuture<String>> queue = new ConcurrentHashMap<>();
+    private record QueuedRequest(NetworkPackets.TranslationRequest request, CompletableFuture<String> future, UUID originalId) {}
     private final List<QueuedRequest> pendingRequests = new ArrayList<>();
-
     private ScheduledTask flushTask = null;
 
 
 
     private static final int MAX_BATCH_SIZE = 25;
-    private static final long MAX_WAIT_TIME_MS = 100;
+    private static final long MAX_WAIT_TIME_MS = 20;
 
     public RestfulService(VelocityTranslator velocityTranslator, VelocityBridge velocityBridge, String apiKey, ProxyServer proxyServer) {
         this.velocityTranslator = velocityTranslator;
         this.velocityBridge = velocityBridge;
         this.proxyServer = proxyServer;
         this.apiKey = apiKey;
-        this.queue = new ConcurrentHashMap<>();
-        this.url = "ws://localhost:8083/v1/translate";
+        this.url = "ws://"+velocityTranslator.getRemoteAddress()+":8083/v1/translate";
 
         connect();
     }
@@ -100,16 +90,23 @@ public class RestfulService {
     }
 
 
-    public CompletableFuture<TranslationResponse> sendTranslationRequest(UUID id, String text, String lang,String module) {
-        CompletableFuture<TranslationResponse> future = new CompletableFuture<>();
-        TranslationRequest request = new TranslationRequest(id, text, lang, apiKey,module);
+    public CompletableFuture<String> sendTranslationRequest(UUID id, String text, String lang,String module) {
 
-        if(text == null || text.isBlank() || text.isEmpty())
-            return CompletableFuture.completedFuture(new TranslationResponse(id,text,lang));
+        final long start = System.currentTimeMillis();
+        CompletableFuture<String> future = new CompletableFuture<>();
 
+        if (text == null || text.isBlank()) return CompletableFuture.completedFuture(text);
+
+        // Baue das Protobuf Request-Objekt
+        NetworkPackets.TranslationRequest request = NetworkPackets.TranslationRequest.newBuilder()
+                .setRequestId(UuidUtil.toByteString(id))
+                .setText(text)
+                .setTargetLang(lang)
+                .setModule(module)
+                .build();
        synchronized (pendingRequests) {
 
-            pendingRequests.add(new QueuedRequest(request, future));
+            pendingRequests.add(new QueuedRequest(request, future, id));
 
            if (pendingRequests.size() >= MAX_BATCH_SIZE) {
                 flushBatch();
@@ -126,7 +123,11 @@ public class RestfulService {
         return future.orTimeout(60, TimeUnit.SECONDS)
                 .exceptionally(ex -> {
                     queue.remove(id);
-                    return new TranslationResponse(id, "TIMEOUT", "ERROR");
+                    return "TIMEOUT";
+                }).thenApply(translationResponse ->
+                {
+                    System.out.println("TOOK " + (System.currentTimeMillis() - start) + " ms for " + text);
+                    return translationResponse;
                 });
     }
 
@@ -150,29 +151,36 @@ public class RestfulService {
         }
 
 
-        sendAsJsonArray(batchToProcess);
+        sendAsProtobufBatch(batchToProcess);
     }
 
-    private void sendAsJsonArray(List<QueuedRequest> batch) {
+    private void sendAsProtobufBatch(List<QueuedRequest> batch) {
         try {
 
-            List<TranslationRequest> requestDTOs = batch.stream().map(QueuedRequest::request).toList();
-            String json = mapper.writeValueAsString(requestDTOs);
+            NetworkPackets.TranslationBatchRequest.Builder batchBuilder = NetworkPackets.TranslationBatchRequest.newBuilder();
+
+
 
             if (webSocket != null && !webSocket.isOutputClosed()) {
 
                 for (QueuedRequest qr : batch) {
-                    queue.put(qr.request().getId(), qr.future());
+                    batchBuilder.addRequests(qr.request());
+                    queue.put(qr.originalId(),qr.future());
                 }
 
 
-                webSocket.sendText(json, true).thenRun(() -> {
+                NetworkPackets.PacketWrapper packetWrapper = NetworkPackets.PacketWrapper.newBuilder().setBatchRequest(batchBuilder.build())
+                                .build();
 
+                webSocket.sendBinary(ByteBuffer.wrap(packetWrapper.toByteArray()) , true).thenRun(() ->
+                {
                     System.out.println("BATCH SENT (" + batch.size() + " Items)");
                 }).exceptionally(ex -> {
                     System.err.println("BATCH SEND FAILED: " + ex.getMessage());
                     return null;
                 });
+
+
             } else {
                 throw new IllegalStateException("WebSocket not connected");
             }
@@ -180,7 +188,7 @@ public class RestfulService {
 
             for (QueuedRequest qr : batch) {
                 qr.future().completeExceptionally(e);
-                queue.remove(qr.request().getId());
+                queue.remove(qr.originalId());
             }
 
             e.printStackTrace();
@@ -191,10 +199,73 @@ public class RestfulService {
     private class WebSocketListener implements WebSocket.Listener {
 
 
-        private final StringBuilder messageBuilder = new StringBuilder();
+        private final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
         @Override
+        public CompletionStage<?> onBinary(WebSocket webSocket, ByteBuffer data, boolean last) {
+            byte[] bytes = new byte[data.remaining()];
+            data.get(bytes);
+
+            try {
+                buffer.write(bytes);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if(last)
+            {
+                byte[] payload = buffer.toByteArray();
+                buffer.reset();
+
+                CompletableFuture.runAsync(() ->
+                {
+                    try {
+                        NetworkPackets.PacketWrapper wrapper = NetworkPackets.PacketWrapper.parseFrom(payload);
+
+                        switch (wrapper.getPayloadCase()) {
+                            case BATCH_RESULT:
+                                NetworkPackets.TranslationBatchResult batch = wrapper.getBatchResult();
+
+                                for (NetworkPackets.TranslationResult translationResult : batch.getResultsList()) {
+
+                                    String resultText = translationResult.getResult();
+
+                                    UUID id = UuidUtil.fromByteString(translationResult.getRequestId());
+                                    CompletableFuture<String> future = queue.remove(id);
+                                    if (future != null) future.complete(resultText);
+                                }
+
+                                break;
+                            case CONFIG, CONFIG_REQUEST:
+
+                                NetworkPackets.ServerConfiguration serverConfiguration = wrapper.getConfig();
+
+                                ServerConfiguration configuration = new ServerConfiguration();
+                                configuration.setModules(new HashMap<>(serverConfiguration.getModulesMap()));
+                                configuration.setLicenseKey(serverConfiguration.getLicenseKey());
+                                configuration.setBlacklistedWords(new HashSet<>(serverConfiguration.getWordsList()));
+
+                                 handleConfigUpdate(configuration);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+
+            webSocket.request(1);
+            return null;
+
+        }
+
+        /*
+        @Override
         public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
+
             messageBuilder.append(data);
 
             if (last) {
@@ -242,12 +313,9 @@ public class RestfulService {
             return null;
         }
 
-        private void processResponse(TranslationResponse res) {
-            CompletableFuture<TranslationResponse> future = queue.remove(res.getId());
-            if (future != null) {
-                future.complete(res);
-            }
-        }
+
+         */
+
 
         @Override
         public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {

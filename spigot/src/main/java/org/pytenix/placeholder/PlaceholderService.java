@@ -161,7 +161,6 @@ public class PlaceholderService {
         Collections.reverse(reverseList);
 
         text = placeholderNormalizer.denormalizeText(id,text);
-
         for (ExtendedPlaceholder ph : reverseList) {
            if(ph.placeholder().equals("SKIP")) continue;
 
@@ -186,7 +185,6 @@ public class PlaceholderService {
             text = wordProtector.restore(text, cachedWords.getIfPresent(id).replacements());
             cachedWords.invalidate(id);
         }
-
         return text;
     }
 }

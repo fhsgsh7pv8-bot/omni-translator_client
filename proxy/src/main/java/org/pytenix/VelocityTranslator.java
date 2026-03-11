@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.pytenix.config.ConfigService;
 import org.pytenix.config.ConfigurationFile;
+import org.pytenix.motd.GeoService;
+import org.pytenix.motd.MotDEvent;
 import org.slf4j.Logger;
 
 import java.io.File;
@@ -27,11 +29,17 @@ public class VelocityTranslator {
 
 
     @Getter
+    GeoService geoService;
+
+    @Getter
     private RestfulService restfulService;
 
     @Getter
     private final CaffeineCache caffeineCache;
 
+
+    @Getter
+    String remoteAddress = "178.104.57.199";
 
     @Getter @Setter
     public ServerConfiguration cachedConfig;
@@ -73,10 +81,16 @@ public class VelocityTranslator {
         this.velocityBridge = new VelocityBridge(this);
         velocityBridge.setSecretKey(configurationFile.getLicenseKey());
 
+        this.geoService = new GeoService(this, configurationFile.getLicenseKey(), server);
+
+
+
         server.getEventManager().register(this,velocityBridge );
 
         this.restfulService = new RestfulService(this,velocityBridge, configurationFile.getLicenseKey(),server); //CONFIG ANBINDUNG
 
+
+        server.getEventManager().register(this, new MotDEvent(this));
 
         logger.info("Translator Proxy erfolgreich gestartet!");
     }

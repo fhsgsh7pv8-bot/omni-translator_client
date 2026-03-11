@@ -10,10 +10,14 @@ import org.pytenix.proto.generated.NetworkPackets;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class SpigotBridge extends AdvancedTranslationBridge {
     private final SpigotTranslator plugin;
     private static final String CHANNEL = "translator:main";
+
 
     public SpigotBridge(SpigotTranslator plugin) {
         this.plugin = plugin;
@@ -22,15 +26,20 @@ public class SpigotBridge extends AdvancedTranslationBridge {
                 (ch, player, msg) -> this.onReceiveRaw(msg, null));
 
 
-        plugin.getTaskScheduler().runTimerAsync(() -> {
+        ScheduledExecutorService flushScheduler = Executors.newSingleThreadScheduledExecutor();
 
+        flushScheduler.scheduleAtFixedRate(() -> {
             if (!Bukkit.getOnlinePlayers().isEmpty()) {
                 this.flush();
             }
+        }, 10, 10, TimeUnit.MILLISECONDS);
 
-        }, 1, 1);
+
+
 
     }
+
+
 
     @Override
     protected void handleConfigRequest(String originServer) {}
@@ -43,7 +52,9 @@ public class SpigotBridge extends AdvancedTranslationBridge {
 
             ServerConfiguration update = new ServerConfiguration();
 
+
             update.setModules(new HashMap<>(packet.getModulesMap()));
+
             update.setBlacklistedWords(new HashSet<>(packet.getWordsList()));
 
             plugin.applyConfigUpdate(update);
@@ -55,30 +66,20 @@ public class SpigotBridge extends AdvancedTranslationBridge {
 
     @Override
     protected void dispatchRaw(byte[] data, String originServer) {
+        //EXTRA SO; DAMIT DER TRAFFIC GLEICHMÄ?IG AUFGETEILT WIRD!
         Bukkit.getOnlinePlayers().stream().findAny().ifPresent(p -> p.sendPluginMessage(plugin, CHANNEL, data));
     }
 
+
+
     @Override
-    protected void handleFullPackage(NetworkPackets.TranslationBatch batch) {
+    protected void handleFullResultPackage(NetworkPackets.TranslationBatchResult batch) {
+        super.handleResponses(batch);
+    }
 
-        if (batch.getResultsCount() != batch.getRequestsCount()) {
-            return;
-        }
-
-
-        for (int i = 0; i < batch.getRequestsCount(); i++) {
-
-            UUID requestId = UuidUtil.fromByteString(batch.getRequests(i).getRequestId());
-
-            String rawTranslation = batch.getResults(i);
-
-
-            List<CompletableFuture<String>> subs = this.pendingRequests.get(requestId);
-
-            if (subs != null) {
-                subs.forEach(stringCompletableFuture -> stringCompletableFuture.complete(rawTranslation));
-            }
-        }
+    @Override
+    protected void handleFullRequestPackage(NetworkPackets.TranslationBatchRequest batch) {
+        // Spigot empfängt keine Requests, es schickt sie nur.
     }
 
     @Override

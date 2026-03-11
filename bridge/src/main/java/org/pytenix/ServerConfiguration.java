@@ -47,17 +47,23 @@ public class ServerConfiguration {
 
 
     @Getter @AllArgsConstructor @NoArgsConstructor
-    enum Module
+    public enum Module
     {
         LIVE_CHAT("live_chat"),
         GUI("gui"),
         HOLOGRAM("hologram"),
         PLUGIN_CHAT("plugin_chat"),
-        SIGNS("signs");
+        SIGNS("signs"),
+        MOTD("motd");
 
 
         String moduleName;
 
+
+        public static Module getModule(String name)
+        {
+            return valueOf(name.toUpperCase());
+        }
 
     }
 

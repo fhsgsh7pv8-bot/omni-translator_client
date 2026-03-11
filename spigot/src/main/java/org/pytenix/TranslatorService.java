@@ -39,16 +39,15 @@ public class TranslatorService {
 
 
 
-    public CompletableFuture<String> fakeTranslateAsync(String message, String lang,String module) {
-        return translate(message, lang,module);
-    }
-
     public CompletableFuture<String> translate(String text, String lang,String module) {
 
 
 
+
+        final  long started = System.currentTimeMillis();
         if (text == null || text.isBlank())
             return CompletableFuture.completedFuture(text);
+
 
         UUID id = UUID.randomUUID();
         List<String> processedLines = new ArrayList<>();
@@ -57,20 +56,30 @@ public class TranslatorService {
 
         for (String line : lines) {
             UUID lineId = UUID.randomUUID();
+           /* if (line.isEmpty()) {
+                processedLines.add(""); // Leere Zeile direkt hinzufügen, nicht übersetzen
+                lineUuids.add(lineId);
+                continue;
+            }
+
+            */
 
             String cleanText = handleGradient(lineId, line);
 
             String maskedText = placeholderService.toPlaceholders(lineId, cleanText);
 
             processedLines.add(maskedText);
-            lineUuids.add(lineId);
+           lineUuids.add(lineId);
         }
 
         cachedReferences.put(id, lineUuids);
         String finalPayload = String.join("\n", processedLines);
 
         return spigotBridge.translate(id, finalPayload, lang, module)
-                .thenApplyAsync(s -> spigotBridge.handlePlaceholders(id, s));
+                .thenApplyAsync(s -> {
+                    System.out.println("TRANSLATE " + s + " TOOK " + (System.currentTimeMillis()-started) + "ms");
+                    return spigotBridge.handlePlaceholders(id, s);
+                });
 
     }
 
