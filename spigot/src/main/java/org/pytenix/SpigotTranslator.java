@@ -14,7 +14,9 @@ import org.pytenix.brigde.ConnectionListener;
 import org.pytenix.brigde.SpigotBridge;
 import org.pytenix.config.ConfigService;
 import org.pytenix.config.ConfigurationFile;
-import org.pytenix.gradient.GradientService;
+import org.pytenix.entity.ServerConfiguration;
+import org.pytenix.listener.JoinQuitListener;
+import org.pytenix.placeholder.GradientService;
 import org.pytenix.module.ModuleService;
 import org.pytenix.placeholder.PlaceholderService;
 import org.pytenix.util.TaskScheduler;
@@ -22,6 +24,7 @@ import org.pytenix.util.TaskScheduler;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 
@@ -32,18 +35,12 @@ public class SpigotTranslator extends JavaPlugin {
     private String serverName;
 
     private TranslatorService translatorService;
+
     private SpigotBridge spigotBridge;
     private ModuleService moduleService;
-    private GradientService gradientService;
-    private PlaceholderService placeholderService;
 
 
     private TaskScheduler taskScheduler;
-
-
-
-    @Getter @Setter
-    ServerConfiguration serverConfiguration;
 
     private File configFile;
 
@@ -55,10 +52,6 @@ public class SpigotTranslator extends JavaPlugin {
             .hexColors()
             .flattener(ComponentFlattener.basic())
             .build();
-
-
-    Cache<UUID, GradientService.GradientInfo> cachedGradients = CacheBuilder.newBuilder()
-            .expireAfterWrite(30, TimeUnit.SECONDS).build();
 
 
     ConfigService configService;
@@ -83,20 +76,26 @@ public class SpigotTranslator extends JavaPlugin {
         this.taskScheduler = new TaskScheduler(this);
         this.configFile = new File(getDataFolder(), "proxy_sync_config.json");
 
-        loadConfigFromDisk();
 
-        this.gradientService = new GradientService();
 
-        this.placeholderService = new PlaceholderService(this);
+
 
         this.spigotBridge = new SpigotBridge(this);
         spigotBridge.setSecretKey(configurationFile.getLicenseKey());
 
-        this.translatorService = new TranslatorService(this);
+        loadConfigFromDisk();
 
-        initializePattern();
+        this.translatorService = new TranslatorService(spigotBridge) {
+            @Override
+            protected CompletableFuture<String> process(UUID id, String text, String targetLang, String module) {
+                return spigotBridge.translate(id,text,targetLang,module);
+            }
+        };
+
+        spigotBridge.initPlayernames();
 
         Bukkit.getPluginManager().registerEvents(new ConnectionListener(this),this);
+        Bukkit.getPluginManager().registerEvents(new JoinQuitListener(this),this);
 
         moduleService = new ModuleService(this);
 
@@ -108,44 +107,21 @@ public class SpigotTranslator extends JavaPlugin {
         if (!configFile.exists()) {
 
             getLogger().info("Keine lokale Config gefunden. Nutze Default bis Proxy sendet.");
-            this.serverConfiguration = ServerConfiguration.createDefault("DEIN-LIZENZ-SCHLÜSSEL");
+            spigotBridge.setServerConfiguration(ServerConfiguration.createDefault("DEIN-LIZENZ-SCHLÜSSEL"));
             return;
         }
 
         try {
-            this.serverConfiguration = mapper.readValue(configFile, ServerConfiguration.class);
+            spigotBridge.setServerConfiguration(mapper.readValue(configFile, ServerConfiguration.class));
         } catch (IOException e) {
             getLogger().severe("Konnte lokale Config nicht laden: " + e.getMessage());
-            this.serverConfiguration = ServerConfiguration.createDefault("DEIN-LIZENZ-SCHLÜSSEL");
+            spigotBridge.setServerConfiguration(ServerConfiguration.createDefault("DEIN-LIZENZ-SCHLÜSSEL"));
         }
     }
 
 
-    public void applyConfigUpdate(ServerConfiguration newConfig) {
-        this.serverConfiguration = newConfig;
 
 
-        placeholderService.updateProtectedWords(serverConfiguration.getBlacklistedWords());
-
-
-
-        getTaskScheduler().runAsync(() -> {
-            try {
-                if (!getDataFolder().exists()) getDataFolder().mkdirs();
-                mapper.writeValue(configFile, newConfig);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-    }
-
-    public void initializePattern()
-    {
-        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            placeholderService.getPlayernameProtector().addPlayer(onlinePlayer.getName().toLowerCase());
-        }
-    }
 
 
     @Override

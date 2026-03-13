@@ -1,15 +1,15 @@
 package org.pytenix.brigde;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.pytenix.AdvancedTranslationBridge;
-import org.pytenix.ServerConfiguration;
+import org.pytenix.entity.ServerConfiguration;
 import org.pytenix.SpigotTranslator;
-import org.pytenix.UuidUtil;
-import org.pytenix.gradient.GradientService;
+import org.pytenix.placeholder.GradientService;
 import org.pytenix.proto.generated.NetworkPackets;
 
+import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -40,27 +40,34 @@ public class SpigotBridge extends AdvancedTranslationBridge {
     }
 
 
+    @Override
+    public void initPlayernames() {
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            getPlaceholderService().getPlayernameProtector().addPlayer(onlinePlayer.getName().toLowerCase());
+        }
+    }
 
     @Override
-    protected void handleConfigRequest(String originServer) {}
+    protected void handleConfigRequest(String originServer) {
+
+    }
 
     @Override
-    protected void handleConfigUpdate(NetworkPackets.ServerConfiguration packet) {
+    protected void onConfigUpdate(ServerConfiguration serverConfiguration) {
 
 
         plugin.getTaskScheduler().runAsync(() -> {
 
-            ServerConfiguration update = new ServerConfiguration();
 
-
-            update.setModules(new HashMap<>(packet.getModulesMap()));
-
-            update.setBlacklistedWords(new HashSet<>(packet.getWordsList()));
-
-            plugin.applyConfigUpdate(update);
+                try {
+                    if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdirs();
+                    plugin.getMapper().writeValue(plugin.getConfigFile(), serverConfiguration);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
 
             plugin.getLogger().info("Config-Update vom Proxy empfangen und angewendet.");
-        });
 
     }
 
@@ -82,44 +89,5 @@ public class SpigotBridge extends AdvancedTranslationBridge {
         // Spigot empfängt keine Requests, es schickt sie nur.
     }
 
-    @Override
-    public String handlePlaceholders(UUID uuid, String result) {
 
-        List<UUID> lineIds = plugin.getTranslatorService().cachedReferences.getIfPresent(uuid);
-
-
-        if (lineIds == null || lineIds.isEmpty()) {
-
-            return result;
-        }
-
-        String[] translatedLines = result.split("\n", -1);
-        List<String> finalLines = new ArrayList<>();
-
-        for (int i = 0; i < lineIds.size(); i++) {
-            UUID lineUuid = lineIds.get(i);
-
-            String currentLine = (i < translatedLines.length) ? translatedLines[i] : "";
-
-            if (plugin.getPlaceholderService() != null) {
-                currentLine = plugin.getPlaceholderService().fromPlaceholders(lineUuid, currentLine);
-            }
-
-            if (plugin.getGradientService() != null) {
-                GradientService.GradientInfo gradientInfo = plugin.getCachedGradients().getIfPresent(lineUuid);
-                if (gradientInfo != null && gradientInfo.isGradient()) {
-                    currentLine = plugin.getGradientService().applyGradient(currentLine, gradientInfo);
-                    plugin.getCachedGradients().invalidate(lineUuid);
-                }
-            }
-
-            finalLines.add(currentLine);
-        }
-
-
-        plugin.getTranslatorService().cachedReferences.invalidate(uuid);
-
-
-        return String.join("\n", finalLines);
-    }
 }

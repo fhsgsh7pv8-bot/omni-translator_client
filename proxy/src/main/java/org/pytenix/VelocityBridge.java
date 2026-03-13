@@ -2,12 +2,15 @@ package org.pytenix;
 
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
+import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.messages.ChannelIdentifier;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
+import org.pytenix.entity.ServerConfiguration;
 import org.pytenix.proto.generated.NetworkPackets;
 import org.pytenix.proto.generated.NetworkPackets.TranslationRequest;
+import org.pytenix.util.UuidUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,19 +145,26 @@ public class VelocityBridge extends AdvancedTranslationBridge {
     }
 
     @Override
-    protected void handleConfigUpdate(NetworkPackets.ServerConfiguration configPacket) {}
+    protected void initPlayernames() {
+        for(Player player : proxy.getProxyServer().getAllPlayers())
+        {
+            getPlaceholderService().getPlayernameProtector().addPlayer(player.getUsername().toLowerCase());
+        }
+    }
 
     @Override
     protected void handleConfigRequest(String originServer) {
-        if (proxy.getCachedConfig() == null) return;
-        NetworkPackets.ServerConfiguration packet = convertToProto(proxy.getCachedConfig());
+        if (getServerConfiguration() == null) return;
+        NetworkPackets.ServerConfiguration packet = convertToProto(getServerConfiguration());
         sendConfigProto(packet, originServer);
     }
 
     @Override
-    protected String handlePlaceholders(UUID uuid, String result) {
-        return result;
+    protected void onConfigUpdate(ServerConfiguration configuration) {
+
     }
+
+
 
     private NetworkPackets.ServerConfiguration convertToProto(ServerConfiguration javaConfig) {
         NetworkPackets.ServerConfiguration.Builder builder = NetworkPackets.ServerConfiguration.newBuilder();
@@ -164,7 +174,8 @@ public class VelocityBridge extends AdvancedTranslationBridge {
     }
 
     public void broadcastConfigUpdate(ServerConfiguration javaConfig) {
-        proxy.setCachedConfig(javaConfig);
+        setServerConfiguration(javaConfig);
+
         NetworkPackets.ServerConfiguration packet = convertToProto(javaConfig);
         for (RegisteredServer server : proxy.getProxyServer().getAllServers()) {
             sendConfigProto(packet, server.getServerInfo().getName());

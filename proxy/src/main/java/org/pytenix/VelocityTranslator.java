@@ -10,11 +10,16 @@ import lombok.Getter;
 import lombok.Setter;
 import org.pytenix.config.ConfigService;
 import org.pytenix.config.ConfigurationFile;
+import org.pytenix.entity.ServerConfiguration;
+import org.pytenix.listener.PlayerConnectionChangeListener;
 import org.pytenix.motd.GeoService;
 import org.pytenix.motd.MotDEvent;
+import org.pytenix.placeholder.PlaceholderNormalizer;
+import org.pytenix.placeholder.PlaceholderService;
 import org.slf4j.Logger;
 
-import java.io.File;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 @Plugin(
         id = "translator",
@@ -37,12 +42,9 @@ public class VelocityTranslator {
     @Getter
     private final CaffeineCache caffeineCache;
 
-
     @Getter
     String remoteAddress = "178.104.57.199";
 
-    @Getter @Setter
-    public ServerConfiguration cachedConfig;
 
     @Getter
     private final ProxyServer proxyServer;
@@ -54,12 +56,16 @@ public class VelocityTranslator {
     final ConfigurationFile configurationFile;
 
 
+    @Getter
+    TranslatorService translatorService;
+
     @Inject
     public VelocityTranslator(ProxyServer server, Logger logger) {
         this.server = server;
         this.proxyServer = server;
         this.logger = logger;
         this.caffeineCache = new CaffeineCache();
+
 
         this.configService = new ConfigService();
 
@@ -81,16 +87,24 @@ public class VelocityTranslator {
         this.velocityBridge = new VelocityBridge(this);
         velocityBridge.setSecretKey(configurationFile.getLicenseKey());
 
+
         this.geoService = new GeoService(this, configurationFile.getLicenseKey(), server);
-
-
 
         server.getEventManager().register(this,velocityBridge );
 
         this.restfulService = new RestfulService(this,velocityBridge, configurationFile.getLicenseKey(),server); //CONFIG ANBINDUNG
 
 
+
+        this.translatorService = new TranslatorService(velocityBridge) {
+            @Override
+            protected CompletableFuture<String> process(UUID id, String text, String targetLang, String module) {
+                return restfulService.sendTranslationRequest(id,text,targetLang,module);
+            }
+        };
+
         server.getEventManager().register(this, new MotDEvent(this));
+        server.getEventManager().register(this, new PlayerConnectionChangeListener(this));
 
         logger.info("Translator Proxy erfolgreich gestartet!");
     }

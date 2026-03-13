@@ -4,11 +4,9 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.scheduler.ScheduledTask;
 import org.pytenix.*;
 import org.pytenix.proto.generated.NetworkPackets;
+import org.pytenix.util.UuidUtil;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.net.InetAddress;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;

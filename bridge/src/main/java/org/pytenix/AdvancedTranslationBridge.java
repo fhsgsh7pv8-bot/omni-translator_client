@@ -4,18 +4,41 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
+import lombok.Getter;
 import lombok.Setter;
+import org.pytenix.encryption.HmacService;
+import org.pytenix.placeholder.GradientService;
+import org.pytenix.placeholder.PlaceholderService;
 import org.pytenix.proto.generated.NetworkPackets;
 import org.pytenix.proto.generated.NetworkPackets.*;
+import org.pytenix.util.UuidUtil;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+@Getter
 public abstract class AdvancedTranslationBridge {
+
+
+
+
+    private final PlaceholderService placeholderService = new PlaceholderService(this);
+
+    private final GradientService gradientService = new GradientService();
+
+    @Setter
+    protected String secretKey;
+
+
+
+
+    @Setter
+    private org.pytenix.entity.ServerConfiguration serverConfiguration;
+
     public final Map<UUID, List<CompletableFuture<String>>> pendingRequests = new ConcurrentHashMap<>();
 
     protected record DeduplicationKey(String text, String lang, String module) {}
@@ -26,10 +49,19 @@ public abstract class AdvancedTranslationBridge {
             .expireAfterWrite(1, TimeUnit.MINUTES)
             .build();
 
-    @Setter
-    protected String secretKey;
+
+
+
+    private final Cache<UUID, List<UUID>> cachedReferences = CacheBuilder.newBuilder()
+            .expireAfterWrite(1, TimeUnit.MINUTES)
+            .build();
+
 
     private static final int MAGIC_HEADER = 0x50595458;
+
+
+
+    protected abstract void initPlayernames();
 
     byte[] secureWrap(byte[] payload) {
         if (secretKey == null || secretKey.isEmpty()) return payload;
@@ -262,13 +294,71 @@ public abstract class AdvancedTranslationBridge {
     }
 
     protected abstract void handleConfigRequest(String originServer);
-    protected abstract void handleConfigUpdate(NetworkPackets.ServerConfiguration configPacket);
+
+
+
+    protected abstract void onConfigUpdate(org.pytenix.entity.ServerConfiguration configuration);
+
+
+    public void handleConfigUpdate(NetworkPackets.ServerConfiguration configPacket){
+        org.pytenix.entity.ServerConfiguration update = new org.pytenix.entity.ServerConfiguration();
+
+        update.setModules(new HashMap<>(configPacket.getModulesMap()));
+        update.setBlacklistedWords(new HashSet<>(configPacket.getWordsList()));
+
+        this.serverConfiguration = update;
+        placeholderService.updateProtectedWords(serverConfiguration.getBlacklistedWords());
+
+
+        onConfigUpdate(update);
+    }
 
     protected abstract void dispatchRaw(byte[] data, String originServer);
 
     protected abstract void handleFullResultPackage(TranslationBatchResult batch);
     protected abstract void handleFullRequestPackage(TranslationBatchRequest batch);
 
-    protected abstract String handlePlaceholders(UUID uuid, String result);
+    public String handlePlaceholders(UUID uuid, String result)
+    {
+
+        List<UUID> lineIds = cachedReferences.getIfPresent(uuid);
+
+
+        if (lineIds == null || lineIds.isEmpty()) {
+
+            return result;
+        }
+
+        //TODO MORGEN TESTEN
+
+        String[] translatedLines = result.split("\n", -1);
+        List<String> finalLines = new ArrayList<>();
+
+        for (int i = 0; i < lineIds.size(); i++) {
+            UUID lineUuid = lineIds.get(i);
+
+            String currentLine = (i < translatedLines.length) ? translatedLines[i] : "";
+
+            if (getPlaceholderService() != null) {
+                currentLine = getPlaceholderService().fromPlaceholders(lineUuid, currentLine);
+            }
+
+            if (getGradientService() != null) {
+                GradientService.GradientInfo gradientInfo = getGradientService().cachedGradients.getIfPresent(lineUuid);
+                if (gradientInfo != null && gradientInfo.isGradient()) {
+                    currentLine = getGradientService().applyGradient(currentLine, gradientInfo);
+                    getGradientService().cachedGradients.invalidate(lineUuid);
+                }
+            }
+
+            finalLines.add(currentLine);
+        }
+
+
+        cachedReferences.invalidate(uuid);
+
+
+        return String.join("\n", finalLines);
+    }
 }
 

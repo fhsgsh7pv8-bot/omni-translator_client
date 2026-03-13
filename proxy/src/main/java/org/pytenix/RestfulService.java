@@ -1,9 +1,10 @@
 package org.pytenix;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.scheduler.ScheduledTask;
+import org.pytenix.entity.ServerConfiguration;
 import org.pytenix.proto.generated.NetworkPackets;
+import org.pytenix.util.UuidUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
@@ -12,7 +13,6 @@ import java.net.http.WebSocket;
 import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.stream.Collectors;
 
 public class RestfulService {
 
@@ -85,7 +85,7 @@ public class RestfulService {
     private void handleConfigUpdate(ServerConfiguration config) {
         System.out.println("[OmniTranslator] Neue Config empfangen & wird verteilt.");
 
-        velocityTranslator.setCachedConfig(config);
+        velocityTranslator.getVelocityBridge().setServerConfiguration(config);
         velocityBridge.broadcastConfigUpdate(config);
     }
 
@@ -261,60 +261,6 @@ public class RestfulService {
             return null;
 
         }
-
-        /*
-        @Override
-        public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
-
-            messageBuilder.append(data);
-
-            if (last) {
-                String fullJson = messageBuilder.toString();
-                messageBuilder.setLength(0);
-
-                CompletableFuture.runAsync(() -> {
-                    try {
-
-                        JsonNode rootNode = mapper.readTree(fullJson);
-
-
-                        if (rootNode.isArray()) {
-                            TranslationResponse[] responses = mapper.treeToValue(rootNode, TranslationResponse[].class);
-                            for (TranslationResponse res : responses) processResponse(res);
-                            return;
-                        }
-
-
-
-
-                        if (rootNode.has("type") && rootNode.get("type").asText().equals("CONFIG_UPDATE")) {
-                            ServerConfiguration config = mapper.treeToValue(rootNode, ServerConfiguration.class);
-                            handleConfigUpdate(config);
-                            return;
-                        }
-
-
-                        if (rootNode.has("id")) {
-                            TranslationResponse res = mapper.treeToValue(rootNode, TranslationResponse.class);
-                            processResponse(res);
-                        } else {
-
-                            ServerConfiguration config = mapper.treeToValue(rootNode, ServerConfiguration.class);
-                            handleConfigUpdate(config);
-                        }
-
-                    } catch (Exception e) {
-                        System.err.println("Error parsing JSON: " + fullJson);
-                        e.printStackTrace();
-                    }
-                });
-            }
-            webSocket.request(1);
-            return null;
-        }
-
-
-         */
 
 
         @Override

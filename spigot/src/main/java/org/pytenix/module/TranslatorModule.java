@@ -31,7 +31,7 @@ public abstract class TranslatorModule {
 
     public boolean isActive()
     {
-        return spigotTranslator.getServerConfiguration().getModules().getOrDefault(moduleName,true);
+        return spigotTranslator.getSpigotBridge().getServerConfiguration().getModules().getOrDefault(moduleName,true);
     }
 
 

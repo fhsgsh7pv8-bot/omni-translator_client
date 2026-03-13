@@ -5,8 +5,9 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyPingEvent;
 import com.velocitypowered.api.proxy.server.ServerPing;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
-import org.pytenix.ServerConfiguration;
+import net.kyori.adventure.text.flattener.ComponentFlattener;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.pytenix.entity.ServerConfiguration;
 import org.pytenix.VelocityTranslator;
 
 import java.util.*;
@@ -20,12 +21,76 @@ public class MotDEvent {
     final GeoService geoService;
 
 
+    LegacyComponentSerializer legacyComponentSerializer = LegacyComponentSerializer.builder()
+            .character('§')
+            .extractUrls()
+            .hexColors()
+            .flattener(ComponentFlattener.basic())
+            .build();
+
+
     public MotDEvent(VelocityTranslator translator) {
         this.translator = translator;
         this.geoService = translator.getGeoService();
 
 
     }
+
+
+    @Subscribe
+    public EventTask onPing(ProxyPingEvent event) {
+        System.out.println("ONPING!");
+        if(translator.getVelocityBridge().getServerConfiguration() == null)
+        {
+            return null;
+        }
+
+        //COLORCODE FIXXEN
+        //TODO
+
+        if (!translator.getVelocityBridge().getServerConfiguration().getModules().getOrDefault(ServerConfiguration.Module.MOTD.getModuleName(), true)) {
+            return null;
+        }
+
+        String ipAddress = event.getConnection().getRemoteAddress().getAddress().getHostAddress();
+
+        final UUID uuid = UUID.randomUUID();
+
+
+        String finalIpAddress = getTestIps().get(new Random().nextInt(getTestIps().size()));
+        return EventTask.async(() -> {
+
+            CompletableFuture<String> localeFuture = geoService.sendGeoRequest(
+                    uuid,
+                    finalIpAddress
+            );
+
+            try {
+                String locale = localeFuture.get(2, TimeUnit.SECONDS);
+
+                String originalMotdText = legacyComponentSerializer
+                        .serialize(event.getPing().getDescriptionComponent());
+
+                System.out.println("SENT- " + originalMotdText + " -> " + locale + " - " + ServerConfiguration.Module.MOTD.getModuleName());
+
+                CompletableFuture<String> translationFuture = translator.getTranslatorService()
+                        .translate( originalMotdText, locale, ServerConfiguration.Module.MOTD.getModuleName());
+
+                String translatedMotd = translationFuture.get(2, TimeUnit.SECONDS);
+                System.out.println("TRANSLATED: " + translatedMotd);
+
+                ServerPing ping = event.getPing();
+                ServerPing.Builder builder = ping.asBuilder();
+
+                builder.description(Component.text(translatedMotd));
+                event.setPing(builder.build());
+
+            } catch (Exception e) {
+                System.out.println("MOTD Translation failed: " + e.getMessage());
+            }
+        });
+    }
+
 
     public static List<String> getTestIps() {
         return new ArrayList<>(Arrays.asList(
@@ -61,59 +126,5 @@ public class MotDEvent {
                 "13.32.0.1", "23.227.38.1", "108.138.0.1", "143.204.0.1", "13.224.0.1",
                 "64.4.0.1", "157.55.0.1", "20.184.0.1", "40.74.0.1", "52.114.0.1"
         ));
-    }
-
-    @Subscribe
-    public EventTask onPing(ProxyPingEvent event) {
-        System.out.println("ONPING!");
-        if(translator.getCachedConfig() == null)
-        {
-            return null;
-        }
-
-        //COLORCODE FIXXEN
-        //TODO
-
-        if (!translator.getCachedConfig().getModules().getOrDefault(ServerConfiguration.Module.MOTD.getModuleName(), true)) {
-            return null;
-        }
-
-        String ipAddress = event.getConnection().getRemoteAddress().getAddress().getHostAddress();
-
-        final UUID uuid = UUID.randomUUID();
-
-
-        String finalIpAddress = getTestIps().get(new Random().nextInt(getTestIps().size()));
-        return EventTask.async(() -> {
-
-            CompletableFuture<String> localeFuture = geoService.sendGeoRequest(
-                    uuid,
-                    finalIpAddress
-            );
-
-            try {
-                String locale = localeFuture.get(2, TimeUnit.SECONDS);
-
-                String originalMotdText = PlainTextComponentSerializer.plainText()
-                        .serialize(event.getPing().getDescriptionComponent());
-
-                System.out.println("SENT- " + originalMotdText + " -> " + locale + " - " + ServerConfiguration.Module.MOTD.getModuleName());
-
-                CompletableFuture<String> translationFuture = translator.getRestfulService()
-                        .sendTranslationRequest(uuid, originalMotdText, locale, ServerConfiguration.Module.MOTD.getModuleName());
-
-                String translatedMotd = translationFuture.get(2, TimeUnit.SECONDS);
-                System.out.println("TRANSLATED: " + translatedMotd);
-
-                ServerPing ping = event.getPing();
-                ServerPing.Builder builder = ping.asBuilder();
-
-                builder.description(Component.text(translatedMotd));
-                event.setPing(builder.build());
-
-            } catch (Exception e) {
-                System.out.println("MOTD Translation failed: " + e.getMessage());
-            }
-        });
     }
 }
