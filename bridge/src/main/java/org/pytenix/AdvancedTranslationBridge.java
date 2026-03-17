@@ -117,7 +117,7 @@ public abstract class AdvancedTranslationBridge {
 
         DeduplicationKey key = new DeduplicationKey(text, targetLang, module);
         CompletableFuture<String> future = new CompletableFuture<>();
-        future.orTimeout(5, TimeUnit.SECONDS).exceptionally(ex -> text);
+        future.orTimeout(15, TimeUnit.SECONDS).exceptionally(ex -> text);
 
         synchronized (deduplicationQueue) {
             UUID requestId = deduplicationQueue.computeIfAbsent(key, k -> id);

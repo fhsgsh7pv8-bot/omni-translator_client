@@ -39,7 +39,7 @@ public class RestfulService {
         this.velocityBridge = velocityBridge;
         this.proxyServer = proxyServer;
         this.apiKey = apiKey;
-        this.url = "ws://"+velocityTranslator.getRemoteAddress()+":8083/v1/translate";
+        this.url = "wss://"+velocityTranslator.getRemoteAddress()+"/";
 
         connect();
     }
@@ -64,6 +64,9 @@ public class RestfulService {
                     });
 
                 }).exceptionally(ex -> {
+                    System.err.println("============= WEB-SOCKET CRASH =============");
+                    ex.printStackTrace();
+                    System.err.println("============================================");
                     scheduleReconnect();
                     return null;
                 });

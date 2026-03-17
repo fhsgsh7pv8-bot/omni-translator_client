@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.pytenix.TranslatorService;
+import org.pytenix.util.TextComponentUtil;
 
 import java.util.Map;
 import java.util.Queue;
@@ -21,45 +22,51 @@ public class MessageSequencer implements Listener {
 
     final PluginChatModule pluginChatModule;
 
-
     private final Map<UUID, Queue<QueuedMessage>> userQueues = new ConcurrentHashMap<>();
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-    private final LegacyComponentSerializer serializer = LegacyComponentSerializer.legacySection();
-
+    private final TextComponentUtil textComponentUtil;
 
     public MessageSequencer(PluginChatModule pluginChatModule) {
-
+        this.textComponentUtil = pluginChatModule.getSpigotTranslator().getTextComponentUtil();
         this.pluginChatModule = pluginChatModule;
         Bukkit.getPluginManager().registerEvents(this, pluginChatModule.getSpigotTranslator());
     }
 
     @EventHandler
-    public void onQuit(PlayerQuitEvent event)
-    {
+    public void onQuit(PlayerQuitEvent event) {
         cleanup(event.getPlayer().getUniqueId());
     }
 
-    public void translateWithOrder(UUID uuid, String text, String locale, boolean isOverlay) {
+    public void translateWithOrder(UUID uuid, Component component, String realMessage, String locale, boolean isOverlay) {
         Queue<QueuedMessage> queue = userQueues.computeIfAbsent(uuid, k -> new ConcurrentLinkedQueue<>());
 
-        QueuedMessage msg = new QueuedMessage(text, isOverlay);
+        QueuedMessage msg = new QueuedMessage(component, isOverlay);
         queue.add(msg);
 
-        pluginChatModule.translate(text, locale).thenAccept(translated -> {
-          completeMessage(uuid, msg, translated);
-        });
-
-        scheduler.schedule(() -> {
-            if (msg.translatedText.get() == null) {
-                msg.translatedText.set(text);
-                System.out.println("[Sequencer] Timeout für: " + text);
+        ScheduledFuture<?> timeoutTask = scheduler.schedule(() -> {
+            if (msg.translatedComponent.compareAndSet(null, component)) {
+                System.out.println("[Sequencer] ⏳ API Hard-Timeout (6s)! Sende Original: " + LegacyComponentSerializer.legacySection().serialize(component));
                 processQueue(uuid);
             }
-        }, 6, TimeUnit.SECONDS);
+        }, 15, TimeUnit.SECONDS);
+
+        // 2. Asynchrone Übersetzung mit ERROR-HANDLING (Der Gamechanger)
+        textComponentUtil.translateComplexMessage(component, realMessage, locale, pluginChatModule.getModuleName())
+                .whenComplete((translatedComponent, throwable) -> {
+                    timeoutTask.cancel(false);
+
+                    if (throwable != null) {
+                        System.err.println("[Sequencer] ❌ Interner Fehler bei der Übersetzung! Stau wird verhindert.");
+                        throwable.printStackTrace();
+                        completeMessage(uuid, msg, component);
+                    } else {
+                        completeMessage(uuid, msg, translatedComponent);
+                    }
+                });
     }
 
-    private void completeMessage(UUID uuid, QueuedMessage msg, String translated) {
-        if (msg.translatedText.compareAndSet(null, translated)) {
+    private void completeMessage(UUID uuid, QueuedMessage msg, Component translatedComponent) {
+        if (msg.translatedComponent.compareAndSet(null, translatedComponent)) {
             processQueue(uuid);
         }
     }
@@ -71,10 +78,10 @@ public class MessageSequencer implements Listener {
         synchronized (queue) {
             while (!queue.isEmpty()) {
                 QueuedMessage head = queue.peek();
-                String textToSend = head.translatedText.get();
+                Component compToSend = head.translatedComponent.get();
 
-                if (textToSend != null) {
-                    boolean success = sendPacket(uuid, textToSend, head.isOverlay);
+                if (compToSend != null) {
+                    boolean success = sendPacket(uuid, compToSend, head.isOverlay);
 
                     if (success) {
                         queue.poll();
@@ -89,17 +96,17 @@ public class MessageSequencer implements Listener {
         }
     }
 
-    private boolean sendPacket(UUID uuid, String text, boolean isOverlay) {
+    private boolean sendPacket(UUID uuid, Component comp, boolean isOverlay) {
         Player player = Bukkit.getPlayer(uuid);
         if (player == null) return false;
 
         try {
-            Component comp = serializer.deserialize(text);
-            WrapperPlayServerSystemChatMessage packet = new WrapperPlayServerSystemChatMessage(isOverlay, comp);
 
+            WrapperPlayServerSystemChatMessage packet = new WrapperPlayServerSystemChatMessage(isOverlay, comp);
             PacketEvents.getAPI().getPlayerManager().getUser(player).sendPacketSilently(packet);
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return true;
         }
     }
@@ -108,13 +115,14 @@ public class MessageSequencer implements Listener {
         userQueues.remove(uuid);
     }
 
-    private static class QueuedMessage {
-        final String originalText;
-        final boolean isOverlay;
-        final AtomicReference<String> translatedText = new AtomicReference<>(null);
 
-        QueuedMessage(String originalText, boolean isOverlay) {
-            this.originalText = originalText;
+    private static class QueuedMessage {
+        final Component originalComponent;
+        final boolean isOverlay;
+        final AtomicReference<Component> translatedComponent = new AtomicReference<>(null);
+
+        QueuedMessage(Component originalComponent, boolean isOverlay) {
+            this.originalComponent = originalComponent;
             this.isOverlay = isOverlay;
         }
     }

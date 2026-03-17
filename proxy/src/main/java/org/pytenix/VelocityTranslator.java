@@ -43,7 +43,7 @@ public class VelocityTranslator {
     private final CaffeineCache caffeineCache;
 
     @Getter
-    String remoteAddress = "178.104.57.199";
+    String remoteAddress = "ws.omni-translate.me";
 
 
     @Getter

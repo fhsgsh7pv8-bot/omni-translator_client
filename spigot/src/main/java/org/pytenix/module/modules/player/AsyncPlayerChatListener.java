@@ -2,6 +2,7 @@ package org.pytenix.module.modules.player;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -36,6 +37,7 @@ public class AsyncPlayerChatListener implements Listener {
     public void onPlayerChat(AsyncChatEvent event) {
         if (!liveChatModule.isActive()) return;
 
+
         Player sender = event.getPlayer();
         Component originalMessage = event.message();
         String rawText = PlainTextComponentSerializer.plainText().serialize(originalMessage);
@@ -59,11 +61,13 @@ public class AsyncPlayerChatListener implements Listener {
         languageGroups.forEach((targetLang, groupMembers) -> {
 
 
-            liveChatModule.translate(rawText, targetLang)
+
+
+            spigotTranslator.getTextComponentUtil().translateComplexMessage(originalMessage,rawText, targetLang, liveChatModule.getModuleName())
                     .orTimeout(5, TimeUnit.SECONDS)
                     .handle((translatedText, ex) -> {
 
-                        String finalText = (ex == null && translatedText != null) ? translatedText : rawText;
+                        Component finalText = (ex == null && translatedText != null) ? translatedText : originalMessage;
 
 
                         for (Player recipient : groupMembers) {
@@ -86,9 +90,9 @@ public class AsyncPlayerChatListener implements Listener {
     }
 
 
-    private Component replaceContent(Component base, String original, String translated) {
+    private Component replaceContent(Component base, String original, Component translated) {
 
-        if (translated == null || translated.isEmpty()) return base;
+        if (translated == null) return base;
 
         try {
             return base.replaceText(config -> {
@@ -98,7 +102,7 @@ public class AsyncPlayerChatListener implements Listener {
             });
         } catch (Exception e) {
 
-            return base.append(Component.text(" (" + translated + ")"));
+            return base.append(translated);
         }
     }
          /*

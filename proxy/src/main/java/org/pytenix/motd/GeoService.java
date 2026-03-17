@@ -37,7 +37,7 @@ public class GeoService {
         this.velocityTranslator = velocityTranslator;
         this.proxyServer = proxyServer;
         this.apiKey = apiKey;
-        this.url = "ws://"+velocityTranslator.getRemoteAddress()+":8083/v1/geo";
+        this.url = "wss://"+velocityTranslator.getRemoteAddress()+"/geo";
 
         connect();
     }

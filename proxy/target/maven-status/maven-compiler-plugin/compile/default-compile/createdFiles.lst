@@ -3,9 +3,11 @@ org\pytenix\RestfulService.class
 org\pytenix\RestfulService$QueuedRequest.class
 org\pytenix\RestfulService$WebSocketListener.class
 org\pytenix\VelocityTranslator.class
+org\pytenix\listener\PlayerConnectionChangeListener.class
 org\pytenix\motd\MotDEvent.class
 org\pytenix\VelocityBridge.class
 org\pytenix\RestfulService$1.class
 org\pytenix\motd\GeoService$QueuedRequest.class
 org\pytenix\motd\GeoService$WebSocketListener.class
+org\pytenix\VelocityTranslator$1.class
 org\pytenix\CaffeineCache.class

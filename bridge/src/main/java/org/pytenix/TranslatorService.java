@@ -38,38 +38,40 @@ public abstract class TranslatorService {
 
 
 
-    public CompletableFuture<String> translate(String text, String lang,String module) {
-
-        final  long started = System.currentTimeMillis();
-        if (text == null || text.isBlank())
-            return CompletableFuture.completedFuture(text);
-
-
-        UUID id = UUID.randomUUID();
+    public String preparePayload(UUID batchId, String text) {
         List<String> processedLines = new ArrayList<>();
         String[] lines = text.split("\n", -1);
         List<UUID> lineUuids = new ArrayList<>();
 
         for (String line : lines) {
             UUID lineId = UUID.randomUUID();
-
-            String cleanText = handleGradient(lineId, line);
-
+            String cleanText = handleGradient(lineId, line); // Gradient raus!
             String maskedText = placeholderService.toPlaceholders(lineId, cleanText);
-
             processedLines.add(maskedText);
-           lineUuids.add(lineId);
+            lineUuids.add(lineId);
         }
 
-        translationBridge.getCachedReferences().put(id, lineUuids);
-        String finalPayload = String.join("\n", processedLines);
+        translationBridge.getCachedReferences().put(batchId, lineUuids);
+        return String.join("\n", processedLines);
+    }
 
-        return process(id, finalPayload, lang, module)
+    public CompletableFuture<String> processAndRestore(UUID batchId, String payload, String lang, String module, long started) {
+        return process(batchId, payload, lang, module)
                 .thenApplyAsync(s -> {
-                    System.out.println("TRANSLATE " + s + " TOOK " + (System.currentTimeMillis()-started) + "ms");
-                    return translationBridge.handlePlaceholders(id, s);
+                    System.out.println("TRANSLATE " + s + " TOOK " + (System.currentTimeMillis() - started) + "ms");
+                    return translationBridge.handlePlaceholders(batchId, s); // Gradients & Farben zurück!
                 });
+    }
 
+    // 3. Deine normale translate-Methode (bleibt unverändert für normale Chat-Nachrichten!)
+    public CompletableFuture<String> translate(String text, String lang, String module) {
+        if (text == null || text.isBlank()) return CompletableFuture.completedFuture(text);
+
+        long started = System.currentTimeMillis();
+        UUID batchId = UUID.randomUUID();
+
+        String prepared = preparePayload(batchId, text);
+        return processAndRestore(batchId, prepared, lang, module, started);
     }
 
     public String handleGradient(UUID uuid, String text)

@@ -11,6 +11,8 @@ public abstract class TranslatorModule {
 
     @Getter
     final SpigotTranslator spigotTranslator;
+
+    @Getter
     final String moduleName;
 
 

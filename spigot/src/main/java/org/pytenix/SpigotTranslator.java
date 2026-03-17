@@ -8,6 +8,7 @@ import lombok.Setter;
 import net.kyori.adventure.text.flattener.ComponentFlattener;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.pytenix.brigde.ConnectionListener;
@@ -20,6 +21,7 @@ import org.pytenix.placeholder.GradientService;
 import org.pytenix.module.ModuleService;
 import org.pytenix.placeholder.PlaceholderService;
 import org.pytenix.util.TaskScheduler;
+import org.pytenix.util.TextComponentUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,6 +48,9 @@ public class SpigotTranslator extends JavaPlugin {
 
     private ObjectMapper mapper = new ObjectMapper();
 
+    @Getter
+    TextComponentUtil textComponentUtil;
+
     LegacyComponentSerializer legacyComponentSerializer = LegacyComponentSerializer.builder()
             .character('§')
             .extractUrls()
@@ -61,6 +66,7 @@ public class SpigotTranslator extends JavaPlugin {
     public void onEnable() {
 
         this.configService = new ConfigService();
+
 
         if(!configService.exists("config.json")) {
             configService.saveConfig("config.json",new ConfigurationFile("DEIN-LIZENZ-SCHLÜSSEL"));
@@ -92,12 +98,26 @@ public class SpigotTranslator extends JavaPlugin {
             }
         };
 
+        this.textComponentUtil = new TextComponentUtil(translatorService);
+
         spigotBridge.initPlayernames();
 
         Bukkit.getPluginManager().registerEvents(new ConnectionListener(this),this);
         Bukkit.getPluginManager().registerEvents(new JoinQuitListener(this),this);
 
         moduleService = new ModuleService(this);
+
+        getServer().getCommandMap().register("translator", new org.bukkit.command.Command("testmsg") {
+
+            private final TestMessageCommand executor = new TestMessageCommand();
+
+            @Override
+            public boolean execute(CommandSender sender, String commandLabel, String[] args) {
+                return executor.onCommand(sender, this, commandLabel, args);
+            }
+        });
+
+        getLogger().info("AITranslator Test-Modul geladen!");
 
     }
 

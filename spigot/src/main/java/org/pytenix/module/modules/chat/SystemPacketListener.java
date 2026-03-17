@@ -9,8 +9,12 @@ import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientCh
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerChatMessage;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerSystemChatMessage;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
 import org.pytenix.SpigotTranslator;
+import org.pytenix.util.TextComponentUtil;
 
 import java.util.UUID;
 
@@ -21,12 +25,17 @@ public class SystemPacketListener implements PacketListener {
     final PluginChatModule pluginChatModule;
     final MessageSequencer messageSequencer;
 
+    final TextComponentUtil textComponentUtil;
+
     public SystemPacketListener(PluginChatModule pluginChatModule)
     {
         this.pluginChatModule = pluginChatModule;
         this.messageSequencer = pluginChatModule.getMessageSequencer();
+        this.textComponentUtil = new TextComponentUtil(pluginChatModule.getTranslatorService());
 
     }
+
+
 
 
     @Override
@@ -43,13 +52,19 @@ public class SystemPacketListener implements PacketListener {
             Component messageComponent = packet.getMessage();
             boolean isOverlay = packet.isOverlay();
 
+
+            System.out.println("DEBUG (REAL): " + LegacyComponentSerializer.legacySection().serialize(messageComponent));
+            System.out.println("DEBUG (MiniMessage): " + MiniMessage.miniMessage().serialize(messageComponent));
+
+            textComponentUtil.printAllEvents(messageComponent, LegacyComponentSerializer.legacySection().serialize(messageComponent)    );
+
             Player player = org.bukkit.Bukkit.getPlayer(event.getUser().getUUID());
             if (player == null) return;
 
 
 
-            String rawTextWithColors = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
-                    .legacySection().serialize(messageComponent);
+            //String rawTextWithColors = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
+         //           .legacySection().serialize(messageComponent);
 
 
             event.setCancelled(true);
@@ -57,7 +72,7 @@ public class SystemPacketListener implements PacketListener {
 
             final UUID uuid = player.getUniqueId();
 
-            messageSequencer.translateWithOrder(uuid,rawTextWithColors,player.getLocale(),isOverlay);
+            messageSequencer.translateWithOrder(uuid,messageComponent,LegacyComponentSerializer.legacySection().serialize(messageComponent) ,player.getLocale(),isOverlay);
 
 
 
