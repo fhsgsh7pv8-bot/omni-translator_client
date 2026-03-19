@@ -26,8 +26,8 @@ public class PlaceholderService {
 
 
     //NOTE: KI GENERATED/IMPROVED
-    public final Pattern PRICE_PATTERN = Pattern.compile("\\d+(?:[.,]\\d+)*");
-    public final Pattern SYSTEM_PROTECTION_PATTERN = Pattern.compile("(?:\\{[a-zA-Z]\\d+\\})|(?:\\[#[A-Z]+-\\d+#\\])|(?:</?[HA]\\d+>)");
+    public static final Pattern PRICE_PATTERN = Pattern.compile("\\d+(?:[.,]\\d+)*");
+    public static final Pattern SYSTEM_PROTECTION_PATTERN = Pattern.compile("(?:\\{[a-zA-Z]\\d+\\})|(?:\\[#[A-Z]+-\\d+#\\])|(?:</?[HA]\\d+>)");
 
 
     final PlayernameProtector playernameProtector;
@@ -41,7 +41,7 @@ public class PlaceholderService {
 
     final PlaceholderNormalizer placeholderNormalizer;
 
-    public final Pattern COLOR_PATTERN = Pattern.compile("(?:§x(?:§[0-9a-fA-F]){6})|(?:§[0-9a-fA-Fk-orK-OR])");
+    public static final Pattern COLOR_PATTERN = Pattern.compile("(?:§x(?:§[0-9a-fA-F]){6})|(?:§[0-9a-fA-Fk-orK-OR])");
     public PlaceholderService(AdvancedTranslationBridge translationBridge) {
 
 
