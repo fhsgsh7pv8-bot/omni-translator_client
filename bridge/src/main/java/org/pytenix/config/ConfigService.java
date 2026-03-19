@@ -5,8 +5,11 @@ import com.google.gson.GsonBuilder;
 import lombok.SneakyThrows;
 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConfigService {
+    private static final Logger LOGGER = Logger.getLogger(ConfigService.class.getName());
     private final Gson gson;
 
     public ConfigService() {
@@ -28,10 +31,10 @@ public class ConfigService {
 
         try (Writer writer = new FileWriter(file)) {
             gson.toJson(config, writer);
-            System.out.println("Config erfolgreich gespeichert: " + file.getAbsolutePath());
+            LOGGER.info("Config erfolgreich gespeichert: " + file.getAbsolutePath());
         } catch (IOException e) {
-            System.err.println("Fehler beim Speichern der Config: " + e.getMessage());
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Fehler beim Speichern der Config: " + e.getMessage(), e);
+
         }
     }
 
@@ -39,7 +42,7 @@ public class ConfigService {
     public <T> T loadConfig(String fileName, Class<T> clazz) {
         File file = new File("plugins/AITranslator/" + fileName);
         if (!file.exists()) {
-            System.out.println("Config-Datei nicht gefunden, erstelle neue Standard-Config.");
+            LOGGER.info("Config-Datei nicht gefunden, erstelle neue Standard-Config.");
             return createInstance(clazz);
         }
 
@@ -48,10 +51,10 @@ public class ConfigService {
             if (config == null) {
                 return createInstance(clazz);
             }
-            System.out.println("Config erfolgreich geladen.");
+            LOGGER.info("Config erfolgreich geladen.");
             return config;
         } catch (IOException e) {
-            System.err.println("Fehler beim Laden der Config: " + e.getMessage());
+            LOGGER.log(Level.SEVERE, "Fehler beim Laden der Config: " + e.getMessage(), e);
             return createInstance(clazz);
         }
     }
