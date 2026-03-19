@@ -58,7 +58,6 @@ public abstract class TranslatorService {
     public CompletableFuture<String> processAndRestore(UUID batchId, String payload, String lang, String module, long started) {
         return process(batchId, payload, lang, module)
                 .thenApplyAsync(s -> {
-                    System.out.println("TRANSLATE " + s + " TOOK " + (System.currentTimeMillis() - started) + "ms");
                     return translationBridge.handlePlaceholders(batchId, s); // Gradients & Farben zurück!
                 });
     }
