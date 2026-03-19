@@ -106,7 +106,7 @@ public class MessageSequencer implements Listener {
             PacketEvents.getAPI().getPlayerManager().getUser(player).sendPacketSilently(packet);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            pluginChatModule.getSpigotTranslator().getLogger().log(java.util.logging.Level.SEVERE, "Failed to send packet", e);
             return true;
         }
     }
