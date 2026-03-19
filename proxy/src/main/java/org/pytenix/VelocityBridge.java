@@ -106,6 +106,11 @@ public class VelocityBridge extends AdvancedTranslationBridge {
                         .thenAcceptAsync(translatedText -> {
                             String finalString = (isSuccessfull(translatedText) && !translatedText.equals(text)) ? translatedText : text;
 
+                            // Cache the successful result to prevent redundant API calls
+                            if (isSuccessfull(translatedText) && !translatedText.equals(text)) {
+                                proxy.getCaffeineCache().set(text, lang, finalString);
+                            }
+
                             serverQueue.add(NetworkPackets.TranslationResult.newBuilder()
                                     .setRequestId(req.getRequestId())
                                     .setResult(finalString)
