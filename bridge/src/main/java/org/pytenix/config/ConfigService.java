@@ -39,7 +39,6 @@ public class ConfigService {
     public <T> T loadConfig(String fileName, Class<T> clazz) {
         File file = new File("plugins/AITranslator/" + fileName);
         if (!file.exists()) {
-            System.out.println("Config-Datei nicht gefunden, erstelle neue Standard-Config.");
             return createInstance(clazz);
         }
 
