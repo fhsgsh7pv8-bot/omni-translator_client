@@ -1,7 +1,5 @@
 package org.pytenix;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import org.pytenix.placeholder.GradientService;
 import org.pytenix.placeholder.PlaceholderService;
 
@@ -9,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
 public abstract class TranslatorService {
 
