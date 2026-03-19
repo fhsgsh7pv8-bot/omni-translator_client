@@ -175,10 +175,36 @@ public class PlaceholderService {
             Map<Integer, String> cache = ph.cachedValues().getIfPresent(id);
             if (cache == null || cache.isEmpty()) continue;
 
-            for (Map.Entry<Integer, String> entry : cache.entrySet()) {
-
-                String token = "{" + ph.placeholder() + entry.getKey() + "}";
-                text = text.replace(token, entry.getValue());
+            String prefix = "{" + ph.placeholder();
+            int pos = text.indexOf(prefix);
+            if (pos != -1) {
+                StringBuilder sb = new StringBuilder();
+                int lastEnd = 0;
+                while (pos != -1) {
+                    int endPos = text.indexOf("}", pos + prefix.length());
+                    if (endPos != -1) {
+                        try {
+                            int key = Integer.parseInt(text.substring(pos + prefix.length(), endPos));
+                            String value = cache.get(key);
+                            if (value != null) {
+                                sb.append(text, lastEnd, pos);
+                                sb.append(value);
+                                lastEnd = endPos + 1;
+                            } else {
+                                sb.append(text, lastEnd, endPos + 1);
+                                lastEnd = endPos + 1;
+                            }
+                        } catch (NumberFormatException e) {
+                             sb.append(text, lastEnd, endPos + 1);
+                             lastEnd = endPos + 1;
+                        }
+                    } else {
+                        break;
+                    }
+                    pos = text.indexOf(prefix, lastEnd);
+                }
+                sb.append(text.substring(lastEnd));
+                text = sb.toString();
             }
         }
 
