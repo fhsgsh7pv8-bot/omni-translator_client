@@ -28,7 +28,6 @@ public class ConfigService {
 
         try (Writer writer = new FileWriter(file)) {
             gson.toJson(config, writer);
-            System.out.println("Config erfolgreich gespeichert: " + file.getAbsolutePath());
         } catch (IOException e) {
             System.err.println("Fehler beim Speichern der Config: " + e.getMessage());
             e.printStackTrace();
