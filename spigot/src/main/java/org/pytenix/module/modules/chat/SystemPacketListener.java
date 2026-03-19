@@ -56,7 +56,6 @@ public class SystemPacketListener implements PacketListener {
             System.out.println("DEBUG (REAL): " + LegacyComponentSerializer.legacySection().serialize(messageComponent));
             System.out.println("DEBUG (MiniMessage): " + MiniMessage.miniMessage().serialize(messageComponent));
 
-            textComponentUtil.printAllEvents(messageComponent, LegacyComponentSerializer.legacySection().serialize(messageComponent)    );
 
             Player player = org.bukkit.Bukkit.getPlayer(event.getUser().getUUID());
             if (player == null) return;

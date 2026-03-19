@@ -91,6 +91,8 @@ public class VelocityBridge extends AdvancedTranslationBridge {
             String text = req.getText();
             String lang = req.getTargetLang();
 
+            System.out.println("PROCESS " + text + " - " + lang );
+
             String cached = proxy.getCaffeineCache().get(text, lang);
 
             if (cached != null) {

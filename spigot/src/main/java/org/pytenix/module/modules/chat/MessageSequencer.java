@@ -51,7 +51,7 @@ public class MessageSequencer implements Listener {
         }, 15, TimeUnit.SECONDS);
 
         // 2. Asynchrone Übersetzung mit ERROR-HANDLING (Der Gamechanger)
-        textComponentUtil.translateComplexMessage(component, realMessage, locale, pluginChatModule.getModuleName())
+        textComponentUtil.translateComplexMessage(component, locale, pluginChatModule.getModuleName())
                 .whenComplete((translatedComponent, throwable) -> {
                     timeoutTask.cancel(false);
 

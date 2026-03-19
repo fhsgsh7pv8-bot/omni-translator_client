@@ -2,6 +2,11 @@ package org.pytenix.brigde;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerRegisterChannelEvent;
+import org.bukkit.event.player.PlayerUnregisterChannelEvent;
 import org.pytenix.AdvancedTranslationBridge;
 import org.pytenix.entity.ServerConfiguration;
 import org.pytenix.SpigotTranslator;
@@ -10,13 +15,15 @@ import org.pytenix.proto.generated.NetworkPackets;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
-public class SpigotBridge extends AdvancedTranslationBridge {
+public class SpigotBridge extends AdvancedTranslationBridge implements Listener {
     private final SpigotTranslator plugin;
     private static final String CHANNEL = "translator:main";
+
+    private final Set<Player> availablePlayers = ConcurrentHashMap.newKeySet();
+
+    private final Queue<byte[]> packetQueue = new ConcurrentLinkedQueue<>();
 
 
     public SpigotBridge(SpigotTranslator plugin) {
@@ -26,17 +33,40 @@ public class SpigotBridge extends AdvancedTranslationBridge {
                 (ch, player, msg) -> this.onReceiveRaw(msg, null));
 
 
-        ScheduledExecutorService flushScheduler = Executors.newSingleThreadScheduledExecutor();
+        Bukkit.getPluginManager().registerEvents(this, plugin);
 
-        flushScheduler.scheduleAtFixedRate(() -> {
-            if (!Bukkit.getOnlinePlayers().isEmpty()) {
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+
+        // Der Flush-Scheduler (baut die Batches zusammen)
+        scheduler.scheduleAtFixedRate(() -> {
+            if (!availablePlayers.isEmpty()) {
                 this.flush();
             }
         }, 10, 10, TimeUnit.MILLISECONDS);
 
+        scheduler.scheduleAtFixedRate(this::drainQueue, 10, 10, TimeUnit.MILLISECONDS);
+    }
 
 
 
+    @EventHandler
+    public void onChannelRegister(PlayerRegisterChannelEvent event) {
+        if (event.getChannel().equals(CHANNEL)) {
+            availablePlayers.add(event.getPlayer());
+            drainQueue();
+        }
+    }
+
+    @EventHandler
+    public void onChannelUnregister(PlayerUnregisterChannelEvent event) {
+        if (event.getChannel().equals(CHANNEL)) {
+            availablePlayers.remove(event.getPlayer());
+        }
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent event) {
+        availablePlayers.remove(event.getPlayer());
     }
 
 
@@ -73,10 +103,30 @@ public class SpigotBridge extends AdvancedTranslationBridge {
 
     @Override
     protected void dispatchRaw(byte[] data, String originServer) {
-        //EXTRA SO; DAMIT DER TRAFFIC GLEICHMÄ?IG AUFGETEILT WIRD!
-        Bukkit.getOnlinePlayers().stream().findAny().ifPresent(p -> p.sendPluginMessage(plugin, CHANNEL, data));
+        packetQueue.add(data);
+
+        drainQueue();
     }
 
+    private void drainQueue() {
+        if (availablePlayers.isEmpty() || packetQueue.isEmpty()) {
+            return;
+        }
+
+        Player carrier = availablePlayers.stream().findAny().orElse(null);
+        if (carrier == null) return;
+
+        byte[] packet;
+        while ((packet = packetQueue.poll()) != null) {
+            try {
+                carrier.sendPluginMessage(plugin, CHANNEL, packet);
+            } catch (Exception e) {
+                packetQueue.add(packet);
+                availablePlayers.remove(carrier);
+                break;
+            }
+        }
+    }
 
 
     @Override

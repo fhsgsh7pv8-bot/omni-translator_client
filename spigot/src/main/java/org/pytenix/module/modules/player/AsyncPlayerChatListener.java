@@ -63,7 +63,7 @@ public class AsyncPlayerChatListener implements Listener {
 
 
 
-            spigotTranslator.getTextComponentUtil().translateComplexMessage(originalMessage,rawText, targetLang, liveChatModule.getModuleName())
+            spigotTranslator.getTextComponentUtil().translateComplexMessage(originalMessage, targetLang, liveChatModule.getModuleName())
                     .orTimeout(5, TimeUnit.SECONDS)
                     .handle((translatedText, ex) -> {
 

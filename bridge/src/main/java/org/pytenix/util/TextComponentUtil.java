@@ -19,154 +19,110 @@ import java.util.regex.Pattern;
 public class TextComponentUtil {
 
 
-    public record FoundEvent(String text, ClickEvent click, HoverEvent<?> hover) {}
+    private final TranslatorService translatorService;
+    private final LegacyComponentSerializer legacySerializer = LegacyComponentSerializer.legacySection();
 
-    final TranslatorService translatorService;
-
-    public TextComponentUtil(TranslatorService translatorService)
-    {
+    public TextComponentUtil(TranslatorService translatorService) {
         this.translatorService = translatorService;
     }
 
-    public void printAllEvents(Component component, String realMessage) {
-
-
-        var mm = MiniMessage.miniMessage();
-
-
-            int a = 0;
-            int b = 0;
-
-        HashMap<Integer,String> toTranslate = new HashMap<>();
-
-        for (FoundEvent allEvent : getAllEvents(component)) {
-
-
-
-            if(allEvent.click() != null)
-            {
-                realMessage = realMessage.replace(allEvent.text, "<A"+a+">"+ allEvent.text+"</A"+a+">");
-                System.out.println("TEXT: " + allEvent.text() + " | " + allEvent.click.value() + " | " + allEvent.click.action().name() + " | " + allEvent.click.examinableName());
-                a++;
-            }
-            else if(allEvent.hover != null){
-                Component hoverComp = (Component) allEvent.hover().value();
-
-                System.out.println("TEXT: " + allEvent.text() + " | " +  LegacyComponentSerializer.legacySection().serialize(hoverComp) + " | " + allEvent.hover.examinableName());
-                toTranslate.put(b, LegacyComponentSerializer.legacySection().serialize(hoverComp));
-                realMessage = realMessage.replace(allEvent.text, "<H"+b+">"+ allEvent.text+"</H"+b+">");
-                b++;
-            }
-
-
-        }
-
-        System.out.println("Edited: " + realMessage);
-        toTranslate.forEach((integer, s) ->
-        {
-            System.out.println("TAG: " + integer + " TEXT: " + s);
-        });
-
+    private static class TranslationContext {
+        int clickIndex = 0;
+        int hoverIndex = 0;
+        final Map<Integer, ClickEvent> clicks = new HashMap<>();
+        final Map<Integer, Component> hovers = new HashMap<>();
     }
 
-    public CompletableFuture<Component> translateComplexMessage(Component originalComponent, String realMessage, String lang, String module) {
-
+    public CompletableFuture<Component> translateComplexMessage(Component originalComponent, String lang, String module) {
         long started = System.currentTimeMillis();
+        TranslationContext ctx = new TranslationContext();
+
+        Component taggedComponent = injectTags(originalComponent, ctx);
+
+        String mainPayload = legacySerializer.serialize(taggedComponent);
 
         UUID mainBatchId = UUID.randomUUID();
-        String preparedMainMessage = realMessage;
-
-        Map<Integer, String> hoversToTranslate = new HashMap<>();
-        Map<Integer, UUID> hoverBatchIds = new HashMap<>();
-        Map<Integer, ClickEvent> clickEventsOriginal = new HashMap<>();
-
-        int hIndex = 0;
-        int aIndex = 0;
-
-        for (FoundEvent event : getAllEvents(originalComponent)) {
-            if (event.click() != null) {
-                preparedMainMessage = preparedMainMessage.replaceFirst(Pattern.quote(event.text()), "<A" + aIndex + ">" + event.text() + "</A" + aIndex + ">");
-                clickEventsOriginal.put(aIndex, event.click());
-                aIndex++;
-            } else if (event.hover() != null) {
-                Component hoverComp = (Component) event.hover().value();
-                String legacyHover = LegacyComponentSerializer.legacySection().serialize(hoverComp);
-
-                UUID hoverBatchId = UUID.randomUUID();
-                String preparedHover = translatorService.preparePayload(hoverBatchId, legacyHover);
-
-                hoversToTranslate.put(hIndex, preparedHover);
-                hoverBatchIds.put(hIndex, hoverBatchId);
-
-                preparedMainMessage = preparedMainMessage.replaceFirst(Pattern.quote(event.text()), "<H" + hIndex + ">" + event.text() + "</H" + hIndex + ">");
-                hIndex++;
-            }
-        }
-
-        preparedMainMessage = translatorService.preparePayload(mainBatchId, preparedMainMessage);
-        CompletableFuture<String> mainTranslationFuture = translatorService.processAndRestore(mainBatchId, preparedMainMessage, lang, module, started);
-
         Map<Integer, CompletableFuture<String>> hoverFutures = new HashMap<>();
-        for (Map.Entry<Integer, String> entry : hoversToTranslate.entrySet()) {
+
+        for (Map.Entry<Integer, Component> entry : ctx.hovers.entrySet()) {
             int id = entry.getKey();
-            hoverFutures.put(id, translatorService.processAndRestore(hoverBatchIds.get(id), entry.getValue(), lang, module, started));
+            UUID hoverBatchId = UUID.randomUUID();
+
+            String legacyHover = legacySerializer.serialize(entry.getValue());
+            String preparedHover = translatorService.preparePayload(hoverBatchId, legacyHover);
+
+            hoverFutures.put(id, translatorService.processAndRestore(hoverBatchId, preparedHover, lang, module, started));
         }
 
-        return mainTranslationFuture.thenCombineAsync(CompletableFuture.allOf(hoverFutures.values().toArray(new CompletableFuture[0])), (translatedMainText, v) -> {
+        String preparedMain = translatorService.preparePayload(mainBatchId, mainPayload);
+        CompletableFuture<String> mainFuture = translatorService.processAndRestore(mainBatchId, preparedMain, lang, module, started);
 
-            Component finalComponent = LegacyComponentSerializer.legacySection().deserialize(translatedMainText);
+        return mainFuture.thenCombineAsync(
+                CompletableFuture.allOf(hoverFutures.values().toArray(new CompletableFuture[0])),
+                (translatedMainText, v) -> {
 
-            finalComponent = finalComponent.replaceText(TextReplacementConfig.builder()
-                    .match("<H(\\d+)>(.*?)</H\\1>")
-                    .replacement((matchResult, builder) -> {
-                        int id = Integer.parseInt(matchResult.group(1));
-                        String translatedWord = matchResult.group(2);
+                    Component finalComponent = legacySerializer.deserialize(translatedMainText);
 
-                        String translatedHoverText = hoverFutures.get(id).join();
-                        Component hoverComp = LegacyComponentSerializer.legacySection().deserialize(translatedHoverText);
+                    finalComponent = finalComponent.replaceText(TextReplacementConfig.builder()
+                            .match("<H(\\d+)>(.*?)</H\\1>")
+                            .replacement((matchResult, builder) -> {
+                                int id = Integer.parseInt(matchResult.group(1));
+                                String translatedWord = matchResult.group(2);
 
-                        return LegacyComponentSerializer.legacySection().deserialize(translatedWord)
-                                .hoverEvent(HoverEvent.showText(hoverComp));
-                    })
-                    .build());
+                                // Den übersetzten Hover-Text holen und deserialisieren
+                                String translatedHoverText = hoverFutures.get(id).join();
+                                Component hoverComp = legacySerializer.deserialize(translatedHoverText);
 
-            finalComponent = finalComponent.replaceText(TextReplacementConfig.builder()
-                    .match("<A(\\d+)>(.*?)</A\\1>")
-                    .replacement((matchResult, builder) -> {
-                        int id = Integer.parseInt(matchResult.group(1));
-                        String translatedWord = matchResult.group(2);
-                        ClickEvent originalClick = clickEventsOriginal.get(id);
+                                return legacySerializer.deserialize(translatedWord)
+                                        .hoverEvent(HoverEvent.showText(hoverComp));
+                            })
+                            .build());
 
-                        return LegacyComponentSerializer.legacySection().deserialize(translatedWord)
-                                .clickEvent(originalClick);
-                    })
-                    .build());
+                    finalComponent = finalComponent.replaceText(TextReplacementConfig.builder()
+                            .match("<A(\\d+)>(.*?)</A\\1>")
+                            .replacement((matchResult, builder) -> {
+                                int id = Integer.parseInt(matchResult.group(1));
+                                String translatedWord = matchResult.group(2);
+                                ClickEvent originalClick = ctx.clicks.get(id);
 
-            return finalComponent;
-        });
+                                return legacySerializer.deserialize(translatedWord)
+                                        .clickEvent(originalClick);
+                            })
+                            .build());
+
+                    return finalComponent;
+                });
     }
 
-    public List<FoundEvent> getAllEvents(Component root) {
-        List<FoundEvent> foundEvents = new ArrayList<>();
-        searchRecursive(root, foundEvents);
-        return foundEvents;
-    }
+    private Component injectTags(Component c, TranslationContext ctx) {
+        List<Component> newChildren = new ArrayList<>();
+        for (Component child : c.children()) {
+            newChildren.add(injectTags(child, ctx));
+        }
 
-    private void searchRecursive(Component node, List<FoundEvent> list) {
-        ClickEvent click = node.clickEvent();
-        HoverEvent<?> hover = node.hoverEvent();
+        Component modified = c.children(newChildren);
 
-        if (click != null || hover != null) {
-            String content = "";
-            if (node instanceof TextComponent tc) {
-                content = tc.content();
+        if (modified instanceof TextComponent tc) {
+            ClickEvent click = tc.clickEvent();
+            HoverEvent<?> hover = tc.hoverEvent();
+
+            if (click != null || hover != null) {
+                String content = tc.content();
+                if (!content.isEmpty()) {
+                    if (click != null) {
+                        int id = ctx.clickIndex++;
+                        ctx.clicks.put(id, click);
+                        content = "<A" + id + ">" + content + "</A" + id + ">";
+                    }
+                    if (hover != null) {
+                        int id = ctx.hoverIndex++;
+                        ctx.hovers.put(id, (Component) hover.value());
+                        content = "<H" + id + ">" + content + "</H" + id + ">";
+                    }
+                    modified = tc.content(content).clickEvent(null).hoverEvent(null);
+                }
             }
-            list.add(new FoundEvent(content, click, hover));
         }
-
-         for (Component child : node.children()) {
-            searchRecursive(child, list);
-        }
+        return modified;
     }
-
 }
