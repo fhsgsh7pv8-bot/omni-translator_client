@@ -71,7 +71,6 @@ public class PlaceholderService {
 
     public boolean registerPlaceholder(int priority, ExtendedPlaceholder placeholder) {
         if (registeredPlaceholders.containsKey(priority)) {
-            System.out.println("Could not register Placeholder: " + placeholder.getClass().getSimpleName() + " Priority already registered!");
             return false;
         }
         registeredPlaceholders.put(priority, placeholder);
