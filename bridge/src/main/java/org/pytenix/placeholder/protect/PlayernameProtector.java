@@ -86,12 +86,36 @@ public class PlayernameProtector {
         public String restoreNames(String translatedText, Map<String, String> replacements) {
             if (replacements.isEmpty()) return translatedText;
 
-            String result = translatedText;
+            int firstP = translatedText.indexOf("{P");
+            if (firstP == -1) return translatedText;
 
-            for (Map.Entry<String, String> entry : replacements.entrySet()) {
-               result = result.replace(entry.getKey(), entry.getValue());
+            StringBuilder sb = new StringBuilder(translatedText.length() + replacements.size() * 10);
+            int lastMatch = 0;
+
+            while (true) {
+                int start = translatedText.indexOf("{P", lastMatch);
+                if (start == -1) {
+                    sb.append(translatedText, lastMatch, translatedText.length());
+                    break;
+                }
+                int end = translatedText.indexOf('}', start + 2);
+                if (end == -1) {
+                    sb.append(translatedText, lastMatch, translatedText.length());
+                    break;
+                }
+
+                String key = translatedText.substring(start, end + 1);
+                String replacement = replacements.get(key);
+
+                sb.append(translatedText, lastMatch, start);
+                if (replacement != null) {
+                    sb.append(replacement);
+                } else {
+                    sb.append(key);
+                }
+                lastMatch = end + 1;
             }
-            return result;
+            return sb.toString();
         }
 
 
