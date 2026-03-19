@@ -39,7 +39,6 @@ public class ExtendedPlaceholder implements BasePlaceholder {
     }
 
 
-    /*
     @Override
     public String toPlaceholder(UUID id, String text) {
         StringBuilder sb = new StringBuilder();
@@ -75,15 +74,28 @@ public class ExtendedPlaceholder implements BasePlaceholder {
         Map<Integer, String> values = cachedValues().getIfPresent(id);
 
         if (values != null && !values.isEmpty()) {
-            for (Map.Entry<Integer, String> integerStringEntry : values.entrySet()) {
-                text = text.replace("{"+placeholder()+"-" + integerStringEntry.getKey() + "}", integerStringEntry.getValue());
+            Pattern pattern = Pattern.compile("\\{" + placeholder() + "-(\\d+)\\}");
+            Matcher matcher = pattern.matcher(text);
+            StringBuilder sb = new StringBuilder();
+            int lastEnd = 0;
+
+            while (matcher.find()) {
+                sb.append(text, lastEnd, matcher.start());
+                int key = Integer.parseInt(matcher.group(1));
+                String value = values.get(key);
+                if (value != null) {
+                    sb.append(value);
+                } else {
+                    sb.append(matcher.group());
+                }
+                lastEnd = matcher.end();
             }
+            sb.append(text.substring(lastEnd));
+            return sb.toString();
         }
 
         return text;
     }
-
-     */
 
     @Override
     public Pattern getPattern() {
