@@ -36,25 +36,6 @@ public class SignViewListener implements PacketListener {
 
         if (event.getConnectionState() !=  com.github.retrooper.packetevents.protocol.ConnectionState.PLAY) return;
 
-       /*
-        String name = event.getPacketType().getName().toLowerCase();
-        if (name.contains("keepalive") || name.contains("rotation") || name.contains("position")
-                || name.contains("sound_effect")|| name.contains("entity_velocity")
-        || name.contains("entity_relative_move") || name.contains("entity_head_look")
-        || name.contains("entity_relative_move_and_rotation")) return;
-
-        System.out.println("[DEBUG] Sende Paket: " + name);
-
-
-        if (event.getPacketType() == PacketType.Play.Server.BLOCK_ENTITY_DATA) {
-            WrapperPlayServerBlockEntityData packet = new WrapperPlayServerBlockEntityData(event);
-            System.out.println(" >>> BLOCK_ENTITY_DATA gefunden! Type: " + packet.getType() + " @ " + packet.getPosition());
-        }
-
-        */
-
-
-       // if(!signsModule.isActive())   return;
         if(event.getPacketType() != PacketType.Play.Server.BLOCK_ENTITY_DATA) return;
 
         WrapperPlayServerBlockEntityData packet = new WrapperPlayServerBlockEntityData(event);
