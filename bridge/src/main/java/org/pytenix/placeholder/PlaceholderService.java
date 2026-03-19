@@ -137,7 +137,7 @@ public class PlaceholderService {
                     int contentId = playerCache.size();
                     playerCache.put(contentId, originalValue);
 
-                    sb.append("{").append(ph.placeholder()).append(contentId).append("}");
+                    sb.append("{").append(ph.placeholder()).append("-").append(contentId).append("}");
                     matched = true;
                     break;
                 }
@@ -168,18 +168,32 @@ public class PlaceholderService {
         List<ExtendedPlaceholder> reverseList = new ArrayList<>(registeredPlaceholders.values());
         Collections.reverse(reverseList);
 
-        text = placeholderNormalizer.denormalizeText(id,text);
+        text = placeholderNormalizer.denormalizeText(id, text);
+
         for (ExtendedPlaceholder ph : reverseList) {
-            if(ph.placeholder().equals("SKIP")) continue;
+            if (ph.placeholder().equals("SKIP")) continue;
 
             Map<Integer, String> cache = ph.cachedValues().getIfPresent(id);
             if (cache == null || cache.isEmpty()) continue;
 
-            for (Map.Entry<Integer, String> entry : cache.entrySet()) {
+            Pattern pattern = Pattern.compile("\\{" + ph.placeholder() + "-(\\d+)\\}");
+            Matcher matcher = pattern.matcher(text);
+            StringBuilder sb = new StringBuilder();
+            int lastEnd = 0;
 
-                String token = "{" + ph.placeholder() + entry.getKey() + "}";
-                text = text.replace(token, entry.getValue());
+            while (matcher.find()) {
+                sb.append(text, lastEnd, matcher.start());
+                int key = Integer.parseInt(matcher.group(1));
+                String value = cache.get(key);
+                if (value != null) {
+                    sb.append(value);
+                } else {
+                    sb.append(matcher.group());
+                }
+                lastEnd = matcher.end();
             }
+            sb.append(text.substring(lastEnd));
+            text = sb.toString();
         }
 
 
