@@ -259,7 +259,10 @@ public abstract class AdvancedTranslationBridge {
     }
 
     private byte[] assemble(Map<Integer, byte[]> parts, int total) {
-        int size = parts.values().stream().mapToInt(b -> b.length).sum();
+        int size = 0;
+        for (byte[] part : parts.values()) {
+            size += part.length;
+        }
         byte[] full = new byte[size];
         int offset = 0;
         for (int i = 0; i < total; i++) {

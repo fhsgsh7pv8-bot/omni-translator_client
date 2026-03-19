@@ -12,8 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PlaceholderNormalizer {
-    private final Pattern CODE_PATTERN = Pattern.compile("(?:\\{C\\d+\\})+");
-    private final Pattern pattern = Pattern.compile("\\{C\\d+\\}");
+    private static final Pattern CODE_PATTERN = Pattern.compile("(?:\\{C\\d+\\})+");
+    private static final Pattern pattern = Pattern.compile("\\{C\\d+\\}");
 
     Cache<UUID, NormalizationResult> cachedNormalized = CacheBuilder.newBuilder()
             .expireAfterWrite(30, TimeUnit.SECONDS).build();
