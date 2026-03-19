@@ -104,13 +104,12 @@ public class PacketListener implements com.github.retrooper.packetevents.event.P
                     try {
                         translateAndSendUpdate(player, windowId, stateId, bukkitItems, carriedItem, locale);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        inventoryModule.getSpigotTranslator().getLogger().log(java.util.logging.Level.SEVERE, "Exception in async translation update", e);
                     }
                 });
 
             } catch (Exception e) {
-                System.out.println("Fehler beim Lesen des Pakets: " + e.getMessage());
-                e.printStackTrace();
+                inventoryModule.getSpigotTranslator().getLogger().log(java.util.logging.Level.SEVERE, "Fehler beim Lesen des Pakets", e);
             }
         }
     }
