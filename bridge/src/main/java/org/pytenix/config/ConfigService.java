@@ -28,7 +28,6 @@ public class ConfigService {
 
         try (Writer writer = new FileWriter(file)) {
             gson.toJson(config, writer);
-            System.out.println("Config erfolgreich gespeichert: " + file.getAbsolutePath());
         } catch (IOException e) {
             System.err.println("Fehler beim Speichern der Config: " + e.getMessage());
             e.printStackTrace();
@@ -39,7 +38,6 @@ public class ConfigService {
     public <T> T loadConfig(String fileName, Class<T> clazz) {
         File file = new File("plugins/AITranslator/" + fileName);
         if (!file.exists()) {
-            System.out.println("Config-Datei nicht gefunden, erstelle neue Standard-Config.");
             return createInstance(clazz);
         }
 
@@ -48,7 +46,6 @@ public class ConfigService {
             if (config == null) {
                 return createInstance(clazz);
             }
-            System.out.println("Config erfolgreich geladen.");
             return config;
         } catch (IOException e) {
             System.err.println("Fehler beim Laden der Config: " + e.getMessage());
