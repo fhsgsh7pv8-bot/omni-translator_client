@@ -32,11 +32,23 @@ public final class NetworkPackets {
         getLicenseKeyBytes();
 
     /**
-     * <code>map&lt;string, bool&gt; modules = 2;</code>
+     * <code>string default_language = 2;</code>
+     * @return The defaultLanguage.
+     */
+    java.lang.String getDefaultLanguage();
+    /**
+     * <code>string default_language = 2;</code>
+     * @return The bytes for defaultLanguage.
+     */
+    com.google.protobuf.ByteString
+        getDefaultLanguageBytes();
+
+    /**
+     * <code>map&lt;string, bool&gt; modules = 3;</code>
      */
     int getModulesCount();
     /**
-     * <code>map&lt;string, bool&gt; modules = 2;</code>
+     * <code>map&lt;string, bool&gt; modules = 3;</code>
      */
     boolean containsModules(
         java.lang.String key);
@@ -47,41 +59,41 @@ public final class NetworkPackets {
     java.util.Map<java.lang.String, java.lang.Boolean>
     getModules();
     /**
-     * <code>map&lt;string, bool&gt; modules = 2;</code>
+     * <code>map&lt;string, bool&gt; modules = 3;</code>
      */
     java.util.Map<java.lang.String, java.lang.Boolean>
     getModulesMap();
     /**
-     * <code>map&lt;string, bool&gt; modules = 2;</code>
+     * <code>map&lt;string, bool&gt; modules = 3;</code>
      */
     boolean getModulesOrDefault(
         java.lang.String key,
         boolean defaultValue);
     /**
-     * <code>map&lt;string, bool&gt; modules = 2;</code>
+     * <code>map&lt;string, bool&gt; modules = 3;</code>
      */
     boolean getModulesOrThrow(
         java.lang.String key);
 
     /**
-     * <code>repeated string words = 3;</code>
+     * <code>repeated string words = 4;</code>
      * @return A list containing the words.
      */
     java.util.List<java.lang.String>
         getWordsList();
     /**
-     * <code>repeated string words = 3;</code>
+     * <code>repeated string words = 4;</code>
      * @return The count of words.
      */
     int getWordsCount();
     /**
-     * <code>repeated string words = 3;</code>
+     * <code>repeated string words = 4;</code>
      * @param index The index of the element to return.
      * @return The words at the given index.
      */
     java.lang.String getWords(int index);
     /**
-     * <code>repeated string words = 3;</code>
+     * <code>repeated string words = 4;</code>
      * @param index The index of the value to return.
      * @return The bytes of the words at the given index.
      */
@@ -102,6 +114,7 @@ public final class NetworkPackets {
     }
     private ServerConfiguration() {
       licenseKey_ = "";
+      defaultLanguage_ = "";
       words_ =
           com.google.protobuf.LazyStringArrayList.emptyList();
     }
@@ -123,7 +136,7 @@ public final class NetworkPackets {
     protected com.google.protobuf.MapFieldReflectionAccessor internalGetMapFieldReflection(
         int number) {
       switch (number) {
-        case 2:
+        case 3:
           return internalGetModules();
         default:
           throw new RuntimeException(
@@ -177,7 +190,46 @@ public final class NetworkPackets {
       }
     }
 
-    public static final int MODULES_FIELD_NUMBER = 2;
+    public static final int DEFAULT_LANGUAGE_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object defaultLanguage_ = "";
+    /**
+     * <code>string default_language = 2;</code>
+     * @return The defaultLanguage.
+     */
+    @java.lang.Override
+    public java.lang.String getDefaultLanguage() {
+      java.lang.Object ref = defaultLanguage_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        defaultLanguage_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string default_language = 2;</code>
+     * @return The bytes for defaultLanguage.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDefaultLanguageBytes() {
+      java.lang.Object ref = defaultLanguage_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        defaultLanguage_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MODULES_FIELD_NUMBER = 3;
     private static final class ModulesDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.Boolean> defaultEntry =
@@ -204,7 +256,7 @@ public final class NetworkPackets {
       return internalGetModules().getMap().size();
     }
     /**
-     * <code>map&lt;string, bool&gt; modules = 2;</code>
+     * <code>map&lt;string, bool&gt; modules = 3;</code>
      */
     @java.lang.Override
     public boolean containsModules(
@@ -221,14 +273,14 @@ public final class NetworkPackets {
       return getModulesMap();
     }
     /**
-     * <code>map&lt;string, bool&gt; modules = 2;</code>
+     * <code>map&lt;string, bool&gt; modules = 3;</code>
      */
     @java.lang.Override
     public java.util.Map<java.lang.String, java.lang.Boolean> getModulesMap() {
       return internalGetModules().getMap();
     }
     /**
-     * <code>map&lt;string, bool&gt; modules = 2;</code>
+     * <code>map&lt;string, bool&gt; modules = 3;</code>
      */
     @java.lang.Override
     public boolean getModulesOrDefault(
@@ -240,7 +292,7 @@ public final class NetworkPackets {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, bool&gt; modules = 2;</code>
+     * <code>map&lt;string, bool&gt; modules = 3;</code>
      */
     @java.lang.Override
     public boolean getModulesOrThrow(
@@ -254,12 +306,12 @@ public final class NetworkPackets {
       return map.get(key);
     }
 
-    public static final int WORDS_FIELD_NUMBER = 3;
+    public static final int WORDS_FIELD_NUMBER = 4;
     @SuppressWarnings("serial")
     private com.google.protobuf.LazyStringArrayList words_ =
         com.google.protobuf.LazyStringArrayList.emptyList();
     /**
-     * <code>repeated string words = 3;</code>
+     * <code>repeated string words = 4;</code>
      * @return A list containing the words.
      */
     public com.google.protobuf.ProtocolStringList
@@ -267,14 +319,14 @@ public final class NetworkPackets {
       return words_;
     }
     /**
-     * <code>repeated string words = 3;</code>
+     * <code>repeated string words = 4;</code>
      * @return The count of words.
      */
     public int getWordsCount() {
       return words_.size();
     }
     /**
-     * <code>repeated string words = 3;</code>
+     * <code>repeated string words = 4;</code>
      * @param index The index of the element to return.
      * @return The words at the given index.
      */
@@ -282,7 +334,7 @@ public final class NetworkPackets {
       return words_.get(index);
     }
     /**
-     * <code>repeated string words = 3;</code>
+     * <code>repeated string words = 4;</code>
      * @param index The index of the value to return.
      * @return The bytes of the words at the given index.
      */
@@ -308,14 +360,17 @@ public final class NetworkPackets {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(licenseKey_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, licenseKey_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(defaultLanguage_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, defaultLanguage_);
+      }
       com.google.protobuf.GeneratedMessageV3
         .serializeStringMapTo(
           output,
           internalGetModules(),
           ModulesDefaultEntryHolder.defaultEntry,
-          2);
+          3);
       for (int i = 0; i < words_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, words_.getRaw(i));
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, words_.getRaw(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -329,6 +384,9 @@ public final class NetworkPackets {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(licenseKey_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, licenseKey_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(defaultLanguage_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, defaultLanguage_);
+      }
       for (java.util.Map.Entry<java.lang.String, java.lang.Boolean> entry
            : internalGetModules().getMap().entrySet()) {
         com.google.protobuf.MapEntry<java.lang.String, java.lang.Boolean>
@@ -337,7 +395,7 @@ public final class NetworkPackets {
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, modules__);
+            .computeMessageSize(3, modules__);
       }
       {
         int dataSize = 0;
@@ -364,6 +422,8 @@ public final class NetworkPackets {
 
       if (!getLicenseKey()
           .equals(other.getLicenseKey())) return false;
+      if (!getDefaultLanguage()
+          .equals(other.getDefaultLanguage())) return false;
       if (!internalGetModules().equals(
           other.internalGetModules())) return false;
       if (!getWordsList()
@@ -381,6 +441,8 @@ public final class NetworkPackets {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + LICENSE_KEY_FIELD_NUMBER;
       hash = (53 * hash) + getLicenseKey().hashCode();
+      hash = (37 * hash) + DEFAULT_LANGUAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getDefaultLanguage().hashCode();
       if (!internalGetModules().getMap().isEmpty()) {
         hash = (37 * hash) + MODULES_FIELD_NUMBER;
         hash = (53 * hash) + internalGetModules().hashCode();
@@ -502,7 +564,7 @@ public final class NetworkPackets {
       protected com.google.protobuf.MapFieldReflectionAccessor internalGetMapFieldReflection(
           int number) {
         switch (number) {
-          case 2:
+          case 3:
             return internalGetModules();
           default:
             throw new RuntimeException(
@@ -513,7 +575,7 @@ public final class NetworkPackets {
       protected com.google.protobuf.MapFieldReflectionAccessor internalGetMutableMapFieldReflection(
           int number) {
         switch (number) {
-          case 2:
+          case 3:
             return internalGetMutableModules();
           default:
             throw new RuntimeException(
@@ -543,6 +605,7 @@ public final class NetworkPackets {
         super.clear();
         bitField0_ = 0;
         licenseKey_ = "";
+        defaultLanguage_ = "";
         internalGetMutableModules().clear();
         words_ =
             com.google.protobuf.LazyStringArrayList.emptyList();
@@ -583,10 +646,13 @@ public final class NetworkPackets {
           result.licenseKey_ = licenseKey_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.defaultLanguage_ = defaultLanguage_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
           result.modules_ = internalGetModules();
           result.modules_.makeImmutable();
         }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
+        if (((from_bitField0_ & 0x00000008) != 0)) {
           words_.makeImmutable();
           result.words_ = words_;
         }
@@ -641,13 +707,18 @@ public final class NetworkPackets {
           bitField0_ |= 0x00000001;
           onChanged();
         }
+        if (!other.getDefaultLanguage().isEmpty()) {
+          defaultLanguage_ = other.defaultLanguage_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
         internalGetMutableModules().mergeFrom(
             other.internalGetModules());
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         if (!other.words_.isEmpty()) {
           if (words_.isEmpty()) {
             words_ = other.words_;
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000008;
           } else {
             ensureWordsIsMutable();
             words_.addAll(other.words_);
@@ -686,20 +757,25 @@ public final class NetworkPackets {
                 break;
               } // case 10
               case 18: {
+                defaultLanguage_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
                 com.google.protobuf.MapEntry<java.lang.String, java.lang.Boolean>
                 modules__ = input.readMessage(
                     ModulesDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
                 internalGetMutableModules().getMutableMap().put(
                     modules__.getKey(), modules__.getValue());
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000004;
                 break;
-              } // case 18
-              case 26: {
+              } // case 26
+              case 34: {
                 java.lang.String s = input.readStringRequireUtf8();
                 ensureWordsIsMutable();
                 words_.add(s);
                 break;
-              } // case 26
+              } // case 34
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -789,6 +865,78 @@ public final class NetworkPackets {
         return this;
       }
 
+      private java.lang.Object defaultLanguage_ = "";
+      /**
+       * <code>string default_language = 2;</code>
+       * @return The defaultLanguage.
+       */
+      public java.lang.String getDefaultLanguage() {
+        java.lang.Object ref = defaultLanguage_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          defaultLanguage_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string default_language = 2;</code>
+       * @return The bytes for defaultLanguage.
+       */
+      public com.google.protobuf.ByteString
+          getDefaultLanguageBytes() {
+        java.lang.Object ref = defaultLanguage_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          defaultLanguage_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string default_language = 2;</code>
+       * @param value The defaultLanguage to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDefaultLanguage(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        defaultLanguage_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string default_language = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDefaultLanguage() {
+        defaultLanguage_ = getDefaultInstance().getDefaultLanguage();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string default_language = 2;</code>
+       * @param value The bytes for defaultLanguage to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDefaultLanguageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        defaultLanguage_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
       private com.google.protobuf.MapField<
           java.lang.String, java.lang.Boolean> modules_;
       private com.google.protobuf.MapField<java.lang.String, java.lang.Boolean>
@@ -808,7 +956,7 @@ public final class NetworkPackets {
         if (!modules_.isMutable()) {
           modules_ = modules_.copy();
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return modules_;
       }
@@ -816,7 +964,7 @@ public final class NetworkPackets {
         return internalGetModules().getMap().size();
       }
       /**
-       * <code>map&lt;string, bool&gt; modules = 2;</code>
+       * <code>map&lt;string, bool&gt; modules = 3;</code>
        */
       @java.lang.Override
       public boolean containsModules(
@@ -833,14 +981,14 @@ public final class NetworkPackets {
         return getModulesMap();
       }
       /**
-       * <code>map&lt;string, bool&gt; modules = 2;</code>
+       * <code>map&lt;string, bool&gt; modules = 3;</code>
        */
       @java.lang.Override
       public java.util.Map<java.lang.String, java.lang.Boolean> getModulesMap() {
         return internalGetModules().getMap();
       }
       /**
-       * <code>map&lt;string, bool&gt; modules = 2;</code>
+       * <code>map&lt;string, bool&gt; modules = 3;</code>
        */
       @java.lang.Override
       public boolean getModulesOrDefault(
@@ -852,7 +1000,7 @@ public final class NetworkPackets {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, bool&gt; modules = 2;</code>
+       * <code>map&lt;string, bool&gt; modules = 3;</code>
        */
       @java.lang.Override
       public boolean getModulesOrThrow(
@@ -866,13 +1014,13 @@ public final class NetworkPackets {
         return map.get(key);
       }
       public Builder clearModules() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         internalGetMutableModules().getMutableMap()
             .clear();
         return this;
       }
       /**
-       * <code>map&lt;string, bool&gt; modules = 2;</code>
+       * <code>map&lt;string, bool&gt; modules = 3;</code>
        */
       public Builder removeModules(
           java.lang.String key) {
@@ -887,11 +1035,11 @@ public final class NetworkPackets {
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.Boolean>
           getMutableModules() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return internalGetMutableModules().getMutableMap();
       }
       /**
-       * <code>map&lt;string, bool&gt; modules = 2;</code>
+       * <code>map&lt;string, bool&gt; modules = 3;</code>
        */
       public Builder putModules(
           java.lang.String key,
@@ -900,17 +1048,17 @@ public final class NetworkPackets {
 
         internalGetMutableModules().getMutableMap()
             .put(key, value);
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>map&lt;string, bool&gt; modules = 2;</code>
+       * <code>map&lt;string, bool&gt; modules = 3;</code>
        */
       public Builder putAllModules(
           java.util.Map<java.lang.String, java.lang.Boolean> values) {
         internalGetMutableModules().getMutableMap()
             .putAll(values);
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
 
@@ -920,10 +1068,10 @@ public final class NetworkPackets {
         if (!words_.isModifiable()) {
           words_ = new com.google.protobuf.LazyStringArrayList(words_);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
       }
       /**
-       * <code>repeated string words = 3;</code>
+       * <code>repeated string words = 4;</code>
        * @return A list containing the words.
        */
       public com.google.protobuf.ProtocolStringList
@@ -932,14 +1080,14 @@ public final class NetworkPackets {
         return words_;
       }
       /**
-       * <code>repeated string words = 3;</code>
+       * <code>repeated string words = 4;</code>
        * @return The count of words.
        */
       public int getWordsCount() {
         return words_.size();
       }
       /**
-       * <code>repeated string words = 3;</code>
+       * <code>repeated string words = 4;</code>
        * @param index The index of the element to return.
        * @return The words at the given index.
        */
@@ -947,7 +1095,7 @@ public final class NetworkPackets {
         return words_.get(index);
       }
       /**
-       * <code>repeated string words = 3;</code>
+       * <code>repeated string words = 4;</code>
        * @param index The index of the value to return.
        * @return The bytes of the words at the given index.
        */
@@ -956,7 +1104,7 @@ public final class NetworkPackets {
         return words_.getByteString(index);
       }
       /**
-       * <code>repeated string words = 3;</code>
+       * <code>repeated string words = 4;</code>
        * @param index The index to set the value at.
        * @param value The words to set.
        * @return This builder for chaining.
@@ -966,12 +1114,12 @@ public final class NetworkPackets {
         if (value == null) { throw new NullPointerException(); }
         ensureWordsIsMutable();
         words_.set(index, value);
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>repeated string words = 3;</code>
+       * <code>repeated string words = 4;</code>
        * @param value The words to add.
        * @return This builder for chaining.
        */
@@ -980,12 +1128,12 @@ public final class NetworkPackets {
         if (value == null) { throw new NullPointerException(); }
         ensureWordsIsMutable();
         words_.add(value);
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>repeated string words = 3;</code>
+       * <code>repeated string words = 4;</code>
        * @param values The words to add.
        * @return This builder for chaining.
        */
@@ -994,23 +1142,23 @@ public final class NetworkPackets {
         ensureWordsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, words_);
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>repeated string words = 3;</code>
+       * <code>repeated string words = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearWords() {
         words_ =
           com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);;
+        bitField0_ = (bitField0_ & ~0x00000008);;
         onChanged();
         return this;
       }
       /**
-       * <code>repeated string words = 3;</code>
+       * <code>repeated string words = 4;</code>
        * @param value The bytes of the words to add.
        * @return This builder for chaining.
        */
@@ -1020,7 +1168,7 @@ public final class NetworkPackets {
         checkByteStringIsUtf8(value);
         ensureWordsIsMutable();
         words_.add(value);
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -10670,44 +10818,44 @@ public final class NetworkPackets {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rpackets.proto\022\021org.pytenix.proto\"\257\001\n\023S" +
+      "\n\rpackets.proto\022\021org.pytenix.proto\"\311\001\n\023S" +
       "erverConfiguration\022\023\n\013license_key\030\001 \001(\t\022" +
-      "D\n\007modules\030\002 \003(\01323.org.pytenix.proto.Ser" +
-      "verConfiguration.ModulesEntry\022\r\n\005words\030\003" +
-      " \003(\t\032.\n\014ModulesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005val" +
-      "ue\030\002 \001(\010:\0028\001\"H\n\017GeoBatchRequest\0225\n\010reque" +
-      "sts\030\001 \003(\0132#.org.pytenix.proto.GeoRequest" +
-      "Packet\"E\n\016GeoBatchResult\0223\n\007results\030\001 \003(" +
-      "\0132\".org.pytenix.proto.GeoResultPacket\":\n" +
-      "\020GeoRequestPacket\022\022\n\nrequest_id\030\001 \001(\014\022\022\n" +
-      "\nip_address\030\002 \001(\t\"7\n\017GeoResultPacket\022\022\n\n" +
-      "request_id\030\001 \001(\014\022\020\n\010language\030\002 \001(\t\"(\n\023Co" +
-      "nfigRequestPacket\022\021\n\ttimestamp\030\001 \001(\003\"[\n\022" +
-      "TranslationRequest\022\022\n\nrequest_id\030\001 \001(\014\022\014" +
-      "\n\004text\030\002 \001(\t\022\023\n\013target_lang\030\003 \001(\t\022\016\n\006mod" +
-      "ule\030\004 \001(\t\"i\n\027TranslationBatchRequest\022\025\n\r" +
-      "origin_server\030\001 \001(\t\0227\n\010requests\030\002 \003(\0132%." +
-      "org.pytenix.proto.TranslationRequest\"f\n\026" +
-      "TranslationBatchResult\022\025\n\rorigin_server\030" +
-      "\001 \001(\t\0225\n\007results\030\002 \003(\0132$.org.pytenix.pro" +
-      "to.TranslationResult\"7\n\021TranslationResul" +
-      "t\022\022\n\nrequest_id\030\001 \001(\014\022\016\n\006result\030\002 \001(\t\"W\n" +
-      "\005Chunk\022\027\n\017transmission_id\030\001 \001(\t\022\022\n\npart_" +
-      "index\030\002 \001(\005\022\023\n\013total_parts\030\003 \001(\005\022\014\n\004data" +
-      "\030\004 \001(\014\"\311\003\n\rPacketWrapper\022C\n\rbatch_reques" +
-      "t\030\001 \001(\0132*.org.pytenix.proto.TranslationB" +
-      "atchRequestH\000\022A\n\014batch_result\030\002 \001(\0132).or" +
-      "g.pytenix.proto.TranslationBatchResultH\000" +
-      "\022)\n\005chunk\030\003 \001(\0132\030.org.pytenix.proto.Chun" +
-      "kH\000\0228\n\006config\030\004 \001(\0132&.org.pytenix.proto." +
-      "ServerConfigurationH\000\022@\n\016config_request\030" +
-      "\005 \001(\0132&.org.pytenix.proto.ConfigRequestP" +
-      "acketH\000\022?\n\021geo_batch_request\030\007 \001(\0132\".org" +
-      ".pytenix.proto.GeoBatchRequestH\000\022=\n\020geo_" +
-      "batch_result\030\010 \001(\0132!.org.pytenix.proto.G" +
-      "eoBatchResultH\000B\t\n\007payloadB-\n\033org.pyteni" +
-      "x.proto.generatedB\016NetworkPacketsb\006proto" +
-      "3"
+      "\030\n\020default_language\030\002 \001(\t\022D\n\007modules\030\003 \003" +
+      "(\01323.org.pytenix.proto.ServerConfigurati" +
+      "on.ModulesEntry\022\r\n\005words\030\004 \003(\t\032.\n\014Module" +
+      "sEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\010:\0028\001\"H" +
+      "\n\017GeoBatchRequest\0225\n\010requests\030\001 \003(\0132#.or" +
+      "g.pytenix.proto.GeoRequestPacket\"E\n\016GeoB" +
+      "atchResult\0223\n\007results\030\001 \003(\0132\".org.pyteni" +
+      "x.proto.GeoResultPacket\":\n\020GeoRequestPac" +
+      "ket\022\022\n\nrequest_id\030\001 \001(\014\022\022\n\nip_address\030\002 " +
+      "\001(\t\"7\n\017GeoResultPacket\022\022\n\nrequest_id\030\001 \001" +
+      "(\014\022\020\n\010language\030\002 \001(\t\"(\n\023ConfigRequestPac" +
+      "ket\022\021\n\ttimestamp\030\001 \001(\003\"[\n\022TranslationReq" +
+      "uest\022\022\n\nrequest_id\030\001 \001(\014\022\014\n\004text\030\002 \001(\t\022\023" +
+      "\n\013target_lang\030\003 \001(\t\022\016\n\006module\030\004 \001(\t\"i\n\027T" +
+      "ranslationBatchRequest\022\025\n\rorigin_server\030" +
+      "\001 \001(\t\0227\n\010requests\030\002 \003(\0132%.org.pytenix.pr" +
+      "oto.TranslationRequest\"f\n\026TranslationBat" +
+      "chResult\022\025\n\rorigin_server\030\001 \001(\t\0225\n\007resul" +
+      "ts\030\002 \003(\0132$.org.pytenix.proto.Translation" +
+      "Result\"7\n\021TranslationResult\022\022\n\nrequest_i" +
+      "d\030\001 \001(\014\022\016\n\006result\030\002 \001(\t\"W\n\005Chunk\022\027\n\017tran" +
+      "smission_id\030\001 \001(\t\022\022\n\npart_index\030\002 \001(\005\022\023\n" +
+      "\013total_parts\030\003 \001(\005\022\014\n\004data\030\004 \001(\014\"\311\003\n\rPac" +
+      "ketWrapper\022C\n\rbatch_request\030\001 \001(\0132*.org." +
+      "pytenix.proto.TranslationBatchRequestH\000\022" +
+      "A\n\014batch_result\030\002 \001(\0132).org.pytenix.prot" +
+      "o.TranslationBatchResultH\000\022)\n\005chunk\030\003 \001(" +
+      "\0132\030.org.pytenix.proto.ChunkH\000\0228\n\006config\030" +
+      "\004 \001(\0132&.org.pytenix.proto.ServerConfigur" +
+      "ationH\000\022@\n\016config_request\030\005 \001(\0132&.org.py" +
+      "tenix.proto.ConfigRequestPacketH\000\022?\n\021geo" +
+      "_batch_request\030\007 \001(\0132\".org.pytenix.proto" +
+      ".GeoBatchRequestH\000\022=\n\020geo_batch_result\030\010" +
+      " \001(\0132!.org.pytenix.proto.GeoBatchResultH" +
+      "\000B\t\n\007payloadB-\n\033org.pytenix.proto.genera" +
+      "tedB\016NetworkPacketsb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -10718,7 +10866,7 @@ public final class NetworkPackets {
     internal_static_org_pytenix_proto_ServerConfiguration_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_pytenix_proto_ServerConfiguration_descriptor,
-        new java.lang.String[] { "LicenseKey", "Modules", "Words", });
+        new java.lang.String[] { "LicenseKey", "DefaultLanguage", "Modules", "Words", });
     internal_static_org_pytenix_proto_ServerConfiguration_ModulesEntry_descriptor =
       internal_static_org_pytenix_proto_ServerConfiguration_descriptor.getNestedTypes().get(0);
     internal_static_org_pytenix_proto_ServerConfiguration_ModulesEntry_fieldAccessorTable = new

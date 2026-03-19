@@ -1,6 +1,8 @@
 package org.pytenix.util;
 
 
+import com.github.benmanes.caffeine.cache.AsyncCache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import com.google.gson.Gson;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -14,13 +16,19 @@ import org.pytenix.TranslatorService;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 public class TextComponentUtil {
-
-
     private final TranslatorService translatorService;
     private final LegacyComponentSerializer legacySerializer = LegacyComponentSerializer.legacySection();
+
+    private final AsyncCache<TranslationKey, Component> translationCache = Caffeine.newBuilder()
+            .maximumSize(10_000)
+            .expireAfterAccess(30, TimeUnit.MINUTES)
+            .buildAsync();
+
+    private record TranslationKey(Component component, String lang, String module) {}
 
     public TextComponentUtil(TranslatorService translatorService) {
         this.translatorService = translatorService;
@@ -33,7 +41,14 @@ public class TextComponentUtil {
         final Map<Integer, Component> hovers = new HashMap<>();
     }
 
+    // 3. Die öffentliche Methode, die von Spigot aufgerufen wird
     public CompletableFuture<Component> translateComplexMessage(Component originalComponent, String lang, String module) {
+        TranslationKey key = new TranslationKey(originalComponent, lang, module);
+
+        return translationCache.get(key, (k, executor) -> doTranslateComplexMessage(k.component(), k.lang(), k.module()));
+    }
+
+    private CompletableFuture<Component> doTranslateComplexMessage(Component originalComponent, String lang, String module) {
         long started = System.currentTimeMillis();
         TranslationContext ctx = new TranslationContext();
 

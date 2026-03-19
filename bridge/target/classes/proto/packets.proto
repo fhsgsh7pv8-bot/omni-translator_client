@@ -8,8 +8,9 @@ option java_outer_classname = "NetworkPackets";
 
 message ServerConfiguration {
   string license_key = 1;
-  map<string, bool> modules = 2;
-  repeated string words = 3;
+  string default_language = 2;
+  map<string, bool> modules = 3;
+  repeated string words = 4;
 }
 
 message GeoBatchRequest {

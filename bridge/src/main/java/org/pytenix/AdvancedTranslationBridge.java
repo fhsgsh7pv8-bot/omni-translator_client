@@ -310,6 +310,7 @@ public abstract class AdvancedTranslationBridge {
 
         update.setModules(new HashMap<>(configPacket.getModulesMap()));
         update.setBlacklistedWords(new HashSet<>(configPacket.getWordsList()));
+        update.setDefaultLanguage(configPacket.getDefaultLanguage());
 
         this.serverConfiguration = update;
         placeholderService.updateProtectedWords(serverConfiguration.getBlacklistedWords());

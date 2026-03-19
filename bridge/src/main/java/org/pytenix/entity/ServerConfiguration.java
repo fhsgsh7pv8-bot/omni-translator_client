@@ -14,9 +14,12 @@ public class ServerConfiguration {
 
     private String type = "CONFIG_UPDATE";
 
+
+
     String licenseKey;
     HashMap<String,Boolean> modules;
 
+    String defaultLanguage;
 
     Set<String> blacklistedWords;
 

@@ -172,6 +172,7 @@ public class VelocityBridge extends AdvancedTranslationBridge {
         NetworkPackets.ServerConfiguration.Builder builder = NetworkPackets.ServerConfiguration.newBuilder();
         if (javaConfig.getModules() != null) builder.putAllModules(javaConfig.getModules());
         if (javaConfig.getBlacklistedWords() != null) builder.addAllWords(javaConfig.getBlacklistedWords());
+        if(javaConfig.getDefaultLanguage() != null) builder.setDefaultLanguage(javaConfig.getDefaultLanguage());
         return builder.build();
     }
 

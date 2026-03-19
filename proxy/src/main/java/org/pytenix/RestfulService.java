@@ -107,6 +107,7 @@ public class RestfulService {
                 .setTargetLang(lang)
                 .setModule(module)
                 .build();
+
        synchronized (pendingRequests) {
 
             pendingRequests.add(new QueuedRequest(request, future, id));
@@ -246,6 +247,7 @@ public class RestfulService {
                                 ServerConfiguration configuration = new ServerConfiguration();
                                 configuration.setModules(new HashMap<>(serverConfiguration.getModulesMap()));
                                 configuration.setLicenseKey(serverConfiguration.getLicenseKey());
+                                configuration.setDefaultLanguage(serverConfiguration.getDefaultLanguage());
                                 configuration.setBlacklistedWords(new HashSet<>(serverConfiguration.getWordsList()));
 
                                  handleConfigUpdate(configuration);

@@ -61,6 +61,9 @@ public class SystemPacketListener implements PacketListener {
             if (player == null) return;
 
 
+            if(pluginChatModule.getSpigotTranslator().getSpigotBridge().getServerConfiguration().getDefaultLanguage() != null)
+               if(player.getLocale().equalsIgnoreCase(pluginChatModule.getSpigotTranslator().getSpigotBridge().getServerConfiguration().getDefaultLanguage()))
+                return;
 
             //String rawTextWithColors = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
          //           .legacySection().serialize(messageComponent);

@@ -1,6 +1,7 @@
 package org.pytenix.module.modules.player;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -12,10 +13,7 @@ import org.bukkit.event.Listener;
 import org.pytenix.SpigotTranslator;
 import org.pytenix.util.TaskScheduler;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -37,57 +35,52 @@ public class AsyncPlayerChatListener implements Listener {
     public void onPlayerChat(AsyncChatEvent event) {
         if (!liveChatModule.isActive()) return;
 
-
         Player sender = event.getPlayer();
         Component originalMessage = event.message();
-        String rawText = PlainTextComponentSerializer.plainText().serialize(originalMessage);
 
-        Set<Player> recipients = new HashSet<>();
-        for (Object audience : event.viewers()) {
-            if (audience instanceof Player p && !((Player) audience).getUniqueId().equals(sender.getUniqueId())) {
-                recipients.add(p);
+        String senderLang = sender.getLocale().split("_")[0].toLowerCase();
+
+        Map<String, List<Player>> languageGroups = new HashMap<>();
+
+        for (Audience audience : event.viewers()) {
+            if (audience instanceof Player p && !p.getUniqueId().equals(sender.getUniqueId())) {
+
+                String targetLang = p.getLocale().split("_")[0].toLowerCase();
+
+                // 2. DER KOSTEN-KILLER: Gleiche Sprache? -> Direkt senden, kein API Call!
+                if (targetLang.equals(senderLang)) {
+                    Component rendered = event.renderer().render(sender, sender.displayName(), originalMessage, p);
+                    liveChatModule.sendSystemMessage(p, rendered);
+                    continue;
+                }
+
+                languageGroups.computeIfAbsent(targetLang, k -> new ArrayList<>()).add(p);
             }
         }
-
 
         event.viewers().clear();
         event.viewers().add(sender);
 
-
-        Map<String, List<Player>> languageGroups = recipients.stream()
-                .collect(Collectors.groupingBy((p) -> p.getLocale().toLowerCase()));
-
+        if (languageGroups.isEmpty()) return;
 
         languageGroups.forEach((targetLang, groupMembers) -> {
 
-
-
-
             spigotTranslator.getTextComponentUtil().translateComplexMessage(originalMessage, targetLang, liveChatModule.getModuleName())
                     .orTimeout(5, TimeUnit.SECONDS)
-                    .handle((translatedText, ex) -> {
+                    .whenComplete((translatedText, ex) -> {
 
                         Component finalText = (ex == null && translatedText != null) ? translatedText : originalMessage;
 
-
                         for (Player recipient : groupMembers) {
+                            if (!recipient.isOnline()) continue;
 
-                            taskScheduler.runForEntity(recipient, () -> {
-                                if (!recipient.isOnline()) return;
-
-                                Component rendered = event.renderer().render(sender, sender.displayName(), originalMessage, recipient);
-
-
-                                Component finalMessage = replaceContent(rendered, rawText, finalText);
-
-
-                                liveChatModule.sendSystemMessage(recipient, finalMessage);
-                            });
+                            Component finalRendered = event.renderer().render(sender, sender.displayName(), finalText, recipient);
+                            liveChatModule.sendSystemMessage(recipient, finalRendered);
                         }
-                        return null;
                     });
         });
     }
+
 
 
     private Component replaceContent(Component base, String original, Component translated) {
