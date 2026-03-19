@@ -1,20 +1,16 @@
 package org.pytenix.util;
 
 
-import com.google.gson.Gson;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import org.jetbrains.annotations.NotNull;
 import org.pytenix.TranslatorService;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
-import java.util.regex.Pattern;
 
 public class TextComponentUtil {
 
