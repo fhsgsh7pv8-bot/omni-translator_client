@@ -122,10 +122,12 @@ if(!liveChatModule.isActive())
             return;
         Player sender = event.getPlayer();
 
-        Set<Player> actualRecipients = Bukkit.getOnlinePlayers().stream()
-                .filter(p -> event.viewers().contains(p))
-                .filter(p -> !p.getUniqueId().equals(sender.getUniqueId()))
-                .collect(Collectors.toSet());
+        Set<Player> actualRecipients = new HashSet<>();
+        for (Object audience : event.viewers()) {
+            if (audience instanceof Player p && !p.getUniqueId().equals(sender.getUniqueId())) {
+                actualRecipients.add(p);
+            }
+        }
 
         event.setCancelled(true);
 

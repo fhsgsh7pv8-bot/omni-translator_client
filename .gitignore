@@ -1,3 +1,5 @@
 /spigot/target/
 /proxy/target/
 /bridge/target/
+Benchmark.class
+*.class
