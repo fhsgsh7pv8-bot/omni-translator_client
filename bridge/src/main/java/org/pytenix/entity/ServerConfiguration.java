@@ -42,6 +42,7 @@ public class ServerConfiguration {
         }
 
         serverConfiguration.setModules(hash);
+        serverConfiguration.setDefaultLanguage("NOT_SET");
         serverConfiguration.setLicenseKey(licenseKey);
         serverConfiguration.setBlacklistedWords(new HashSet<>());
 

@@ -31,6 +31,7 @@ org\pytenix\placeholder\GradientService$GradientInfo.class
 org\pytenix\placeholder\protect\WordProtector$ProtectionResult.class
 org\pytenix\proto\generated\NetworkPackets$ConfigRequestPacket$Builder.class
 org\pytenix\proto\generated\NetworkPackets$GeoBatchRequest$Builder.class
+org\pytenix\util\CaffeineCache.class
 org\pytenix\proto\generated\NetworkPackets$Chunk$Builder.class
 org\pytenix\proto\generated\NetworkPackets$TranslationRequest$Builder.class
 org\pytenix\proto\generated\NetworkPackets$GeoRequestPacketOrBuilder.class

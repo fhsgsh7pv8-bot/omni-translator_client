@@ -91,7 +91,6 @@ public class VelocityBridge extends AdvancedTranslationBridge {
             String text = req.getText();
             String lang = req.getTargetLang();
 
-            System.out.println("PROCESS " + text + " - " + lang );
 
             String cached = proxy.getCaffeineCache().get(text, lang);
 
@@ -110,6 +109,8 @@ public class VelocityBridge extends AdvancedTranslationBridge {
                                     .setRequestId(req.getRequestId())
                                     .setResult(finalString)
                                     .build());
+                            proxy.getCaffeineCache().set(text,lang,finalString);
+
                         }, apiExecutor);
             }
         }
@@ -159,7 +160,7 @@ public class VelocityBridge extends AdvancedTranslationBridge {
         if (getServerConfiguration() == null) return;
         NetworkPackets.ServerConfiguration packet = convertToProto(getServerConfiguration());
         sendConfigProto(packet, originServer);
-    }
+   }
 
     @Override
     protected void onConfigUpdate(ServerConfiguration configuration) {

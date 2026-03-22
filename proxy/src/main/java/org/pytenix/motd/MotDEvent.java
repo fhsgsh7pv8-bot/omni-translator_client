@@ -71,13 +71,11 @@ public class MotDEvent {
                 String originalMotdText = legacyComponentSerializer
                         .serialize(event.getPing().getDescriptionComponent());
 
-                System.out.println("SENT- " + originalMotdText + " -> " + locale + " - " + ServerConfiguration.Module.MOTD.getModuleName());
 
                 CompletableFuture<String> translationFuture = translator.getTranslatorService()
                         .translate( originalMotdText, locale, ServerConfiguration.Module.MOTD.getModuleName());
 
                 String translatedMotd = translationFuture.get(2, TimeUnit.SECONDS);
-                System.out.println("TRANSLATED: " + translatedMotd);
 
                 ServerPing ping = event.getPing();
                 ServerPing.Builder builder = ping.asBuilder();

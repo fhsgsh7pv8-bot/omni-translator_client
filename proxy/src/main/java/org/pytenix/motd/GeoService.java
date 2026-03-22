@@ -112,7 +112,6 @@ public class GeoService {
                     return "TIMEOUT";
                 }).thenApply(translationResponse ->
                 {
-                    System.out.println("TOOK " + (System.currentTimeMillis() - start) + " ms for " + ipAddress);
                     return translationResponse;
                 });
     }
@@ -161,7 +160,6 @@ public class GeoService {
 
                 webSocket.sendBinary(ByteBuffer.wrap(packetWrapper.toByteArray()) , true).thenRun(() ->
                 {
-                    System.out.println("BATCH SENT (" + batch.size() + " Items)");
                 }).exceptionally(ex -> {
                     System.err.println("BATCH SEND FAILED: " + ex.getMessage());
                     return null;

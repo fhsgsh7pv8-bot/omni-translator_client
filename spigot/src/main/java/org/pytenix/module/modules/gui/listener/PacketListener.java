@@ -41,10 +41,16 @@ public class PacketListener implements com.github.retrooper.packetevents.event.P
             if(!inventoryModule.isActive())
                 return;
 
+            if(!inventoryModule.checkIfNeed(event.getUser().getUUID()))
+                return;
+
             handleWindowItems(event);
         }
        else if (event.getPacketType() == PacketType.Play.Server.SET_SLOT) {
             if(!inventoryModule.isActive())
+                return;
+
+            if(!inventoryModule.checkIfNeed(event.getUser().getUUID()))
                 return;
 
            handleSetSlot(event);

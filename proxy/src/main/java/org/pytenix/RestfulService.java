@@ -130,7 +130,6 @@ public class RestfulService {
                     return "TIMEOUT";
                 }).thenApply(translationResponse ->
                 {
-                    System.out.println("TOOK " + (System.currentTimeMillis() - start) + " ms for " + text);
                     return translationResponse;
                 });
     }
@@ -178,8 +177,7 @@ public class RestfulService {
 
                 webSocket.sendBinary(ByteBuffer.wrap(packetWrapper.toByteArray()) , true).thenRun(() ->
                 {
-                    System.out.println("BATCH SENT (" + batch.size() + " Items)");
-                }).exceptionally(ex -> {
+                 }).exceptionally(ex -> {
                     System.err.println("BATCH SEND FAILED: " + ex.getMessage());
                     return null;
                 });

@@ -26,6 +26,8 @@ public class SpigotBridge extends AdvancedTranslationBridge implements Listener 
     private final Queue<byte[]> packetQueue = new ConcurrentLinkedQueue<>();
 
 
+    private boolean hasConfig;
+
     public SpigotBridge(SpigotTranslator plugin) {
         this.plugin = plugin;
         Bukkit.getMessenger().registerOutgoingPluginChannel(plugin, CHANNEL);
@@ -37,14 +39,16 @@ public class SpigotBridge extends AdvancedTranslationBridge implements Listener 
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
 
-        // Der Flush-Scheduler (baut die Batches zusammen)
-        scheduler.scheduleAtFixedRate(() -> {
+        Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             if (!availablePlayers.isEmpty()) {
+                // 1. Flush: Sammelt alle Einzel-Requests aus der deduplicationQueue zu EINEM Batch
+                // und wirft das fertige byte[] in die packetQueue (via dispatchRaw)
                 this.flush();
-            }
-        }, 10, 10, TimeUnit.MILLISECONDS);
 
-        scheduler.scheduleAtFixedRate(this::drainQueue, 10, 10, TimeUnit.MILLISECONDS);
+                // 2. Drain: Nimmt die fertigen Batches aus der packetQueue und sendet sie ab
+                this.drainQueue();
+            }
+        }, 1L, 1L); // Startet nach 1 Tick, wiederholt sich jeden Tick
     }
 
 
@@ -52,7 +56,12 @@ public class SpigotBridge extends AdvancedTranslationBridge implements Listener 
     @EventHandler
     public void onChannelRegister(PlayerRegisterChannelEvent event) {
         if (event.getChannel().equals(CHANNEL)) {
+
+            if(!hasConfig)
+                sendConfigRequest(event.getPlayer());
+
             availablePlayers.add(event.getPlayer());
+
             drainQueue();
         }
     }
@@ -86,6 +95,7 @@ public class SpigotBridge extends AdvancedTranslationBridge implements Listener 
     protected void onConfigUpdate(ServerConfiguration serverConfiguration) {
 
 
+        hasConfig = true;
         plugin.getTaskScheduler().runAsync(() -> {
 
 
@@ -101,33 +111,41 @@ public class SpigotBridge extends AdvancedTranslationBridge implements Listener 
 
     }
 
+    public void sendConfigRequest(Player player)
+    {
+        NetworkPackets.ConfigRequestPacket req = NetworkPackets.ConfigRequestPacket.newBuilder().setTimestamp(System.currentTimeMillis()).build();
+        NetworkPackets.PacketWrapper wrapper = NetworkPackets.PacketWrapper.newBuilder().setConfigRequest(req).build();
+            player.sendPluginMessage(plugin, CHANNEL, wrapper.toByteArray());
+
+    }
     @Override
     protected void dispatchRaw(byte[] data, String originServer) {
         packetQueue.add(data);
-
-        drainQueue();
     }
 
     private void drainQueue() {
-        if (availablePlayers.isEmpty() || packetQueue.isEmpty()) {
+        if (availablePlayers.isEmpty() || packetQueue.isEmpty() || !hasConfig) {
             return;
         }
 
+        // Wir schnappen uns einen Spieler als "Carrier" für den Plugin-Channel
         Player carrier = availablePlayers.stream().findAny().orElse(null);
         if (carrier == null) return;
 
         byte[] packet;
         while ((packet = packetQueue.poll()) != null) {
             try {
+                // Das ist jetzt 100% sicher, da es über den Bukkit-Main-Thread Scheduler aufgerufen wird!
                 carrier.sendPluginMessage(plugin, CHANNEL, packet);
             } catch (Exception e) {
+                // Wenn das Senden fehlschlägt (z.B. Spieler ist genau in dem Moment geleaved),
+                // packen wir das Paket zurück in die Queue und entfernen den kaputten Carrier.
                 packetQueue.add(packet);
                 availablePlayers.remove(carrier);
-                break;
+                break; // Schleife abbrechen, der nächste Tick versucht es mit einem neuen Carrier
             }
         }
     }
-
 
     @Override
     protected void handleFullResultPackage(NetworkPackets.TranslationBatchResult batch) {

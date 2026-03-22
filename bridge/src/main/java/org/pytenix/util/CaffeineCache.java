@@ -1,4 +1,4 @@
-package org.pytenix;
+package org.pytenix.util;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
@@ -9,7 +9,7 @@ public class CaffeineCache {
 
     private final Cache<String, String> translationCache = Caffeine.newBuilder()
             .maximumSize(10_000)
-            .expireAfterWrite(Duration.ofHours(1))
+            .expireAfterWrite(Duration.ofSeconds(3))
             .build();
 
 

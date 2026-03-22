@@ -10,4 +10,3 @@ org\pytenix\RestfulService$1.class
 org\pytenix\motd\GeoService$QueuedRequest.class
 org\pytenix\motd\GeoService$WebSocketListener.class
 org\pytenix\VelocityTranslator$1.class
-org\pytenix\CaffeineCache.class

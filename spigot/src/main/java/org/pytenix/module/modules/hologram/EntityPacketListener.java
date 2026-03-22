@@ -80,6 +80,9 @@ public class EntityPacketListener implements PacketListener, Listener {
     private void processHologram(PacketSendEvent event, com.github.retrooper.packetevents.protocol.player.User user, int entityId, List<EntityData<?>> dataList) {
         if (dataList == null || dataList.isEmpty()) return;
 
+        if(!hologramModule.checkIfNeed(event.getUser().getUUID()))
+            return;
+
 
         CompletableFuture.runAsync(() -> {
             List<EntityData<?>> immediateUpdates = new ArrayList<>();

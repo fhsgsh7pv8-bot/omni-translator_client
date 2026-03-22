@@ -48,6 +48,7 @@ public class AsyncPlayerChatListener implements Listener {
                 String targetLang = p.getLocale().split("_")[0].toLowerCase();
 
                 // 2. DER KOSTEN-KILLER: Gleiche Sprache? -> Direkt senden, kein API Call!
+                //HIER AMBESTEN NICHT AUF DEFAULTLANGUAGE VERLASSEN!!
                 if (targetLang.equals(senderLang)) {
                     Component rendered = event.renderer().render(sender, sender.displayName(), originalMessage, p);
                     liveChatModule.sendSystemMessage(p, rendered);

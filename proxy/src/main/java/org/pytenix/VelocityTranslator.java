@@ -7,15 +7,12 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import lombok.Getter;
-import lombok.Setter;
 import org.pytenix.config.ConfigService;
 import org.pytenix.config.ConfigurationFile;
-import org.pytenix.entity.ServerConfiguration;
 import org.pytenix.listener.PlayerConnectionChangeListener;
 import org.pytenix.motd.GeoService;
 import org.pytenix.motd.MotDEvent;
-import org.pytenix.placeholder.PlaceholderNormalizer;
-import org.pytenix.placeholder.PlaceholderService;
+import org.pytenix.util.CaffeineCache;
 import org.slf4j.Logger;
 
 import java.util.UUID;
@@ -65,6 +62,7 @@ public class VelocityTranslator {
         this.proxyServer = server;
         this.logger = logger;
         this.caffeineCache = new CaffeineCache();
+
 
 
         this.configService = new ConfigService();

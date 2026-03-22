@@ -1,25 +1,19 @@
 package org.pytenix;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import lombok.Getter;
-import lombok.Setter;
 import net.kyori.adventure.text.flattener.ComponentFlattener;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.pytenix.brigde.ConnectionListener;
 import org.pytenix.brigde.SpigotBridge;
 import org.pytenix.config.ConfigService;
 import org.pytenix.config.ConfigurationFile;
 import org.pytenix.entity.ServerConfiguration;
 import org.pytenix.listener.JoinQuitListener;
-import org.pytenix.placeholder.GradientService;
 import org.pytenix.module.ModuleService;
-import org.pytenix.placeholder.PlaceholderService;
+import org.pytenix.util.CaffeineCache;
 import org.pytenix.util.TaskScheduler;
 import org.pytenix.util.TextComponentUtil;
 
@@ -27,8 +21,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
-
 
 
 @Getter
@@ -51,6 +43,8 @@ public class SpigotTranslator extends JavaPlugin {
     @Getter
     TextComponentUtil textComponentUtil;
 
+    CaffeineCache caffeineCache;
+
     LegacyComponentSerializer legacyComponentSerializer = LegacyComponentSerializer.builder()
             .character('§')
             .extractUrls()
@@ -64,6 +58,8 @@ public class SpigotTranslator extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        this.caffeineCache = new CaffeineCache();
 
         this.configService = new ConfigService();
 
@@ -102,7 +98,6 @@ public class SpigotTranslator extends JavaPlugin {
 
         spigotBridge.initPlayernames();
 
-        Bukkit.getPluginManager().registerEvents(new ConnectionListener(this),this);
         Bukkit.getPluginManager().registerEvents(new JoinQuitListener(this),this);
 
         moduleService = new ModuleService(this);

@@ -48,32 +48,32 @@ public class SystemPacketListener implements PacketListener {
             if(!pluginChatModule.isActive())
                 return;
 
+            Player player = org.bukkit.Bukkit.getPlayer(event.getUser().getUUID());
+
+            if (player == null)
+                return;
+
+            final UUID uuid = player.getUniqueId();
+
+            //TODO: WAS IS MIT MSG NACHRICHTEN??
+            if(!pluginChatModule.checkIfNeed(uuid))
+                return;
+
             WrapperPlayServerSystemChatMessage packet = new WrapperPlayServerSystemChatMessage(event);
             Component messageComponent = packet.getMessage();
             boolean isOverlay = packet.isOverlay();
 
 
-            System.out.println("DEBUG (REAL): " + LegacyComponentSerializer.legacySection().serialize(messageComponent));
-            System.out.println("DEBUG (MiniMessage): " + MiniMessage.miniMessage().serialize(messageComponent));
 
 
-            Player player = org.bukkit.Bukkit.getPlayer(event.getUser().getUUID());
-            if (player == null) return;
 
 
-            if(pluginChatModule.getSpigotTranslator().getSpigotBridge().getServerConfiguration().getDefaultLanguage() != null)
-               if(player.getLocale().equalsIgnoreCase(pluginChatModule.getSpigotTranslator().getSpigotBridge().getServerConfiguration().getDefaultLanguage()))
-                return;
 
             //String rawTextWithColors = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
          //           .legacySection().serialize(messageComponent);
 
 
             event.setCancelled(true);
-
-
-            final UUID uuid = player.getUniqueId();
-
             messageSequencer.translateWithOrder(uuid,messageComponent,LegacyComponentSerializer.legacySection().serialize(messageComponent) ,player.getLocale(),isOverlay);
 
 

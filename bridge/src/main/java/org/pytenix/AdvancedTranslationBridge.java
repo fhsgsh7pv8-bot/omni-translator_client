@@ -2,6 +2,7 @@ package org.pytenix;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.google.gson.Gson;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.Getter;
@@ -115,7 +116,6 @@ public abstract class AdvancedTranslationBridge {
     public CompletableFuture<String> translate(UUID id, String text, String targetLang, String module) {
         if (text == null || text.isEmpty()) return CompletableFuture.completedFuture("");
 
-        System.out.println("SENDING " + text + " - " + targetLang + " - " + module);
 
         DeduplicationKey key = new DeduplicationKey(text, targetLang, module);
         CompletableFuture<String> future = new CompletableFuture<>();
@@ -236,6 +236,7 @@ public abstract class AdvancedTranslationBridge {
             handleConfigUpdate(wrapper.getConfig());
 
         } else if (wrapper.hasConfigRequest()) {
+            System.out.println("CONFIG REQURESTTT!!!!! " + originServer);
             handleConfigRequest(originServer);
         }
     }
@@ -295,6 +296,7 @@ public abstract class AdvancedTranslationBridge {
 
     public void sendConfigProto(NetworkPackets.ServerConfiguration packet, String targetServer) {
         PacketWrapper wrapper = PacketWrapper.newBuilder().setConfig(packet).build();
+        System.out.println("SENDING CONFIG!!!");
         dispatchRaw(secureWrap(wrapper.toByteArray()), targetServer);
     }
 
