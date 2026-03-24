@@ -35,50 +35,38 @@ public class SystemPacketListener implements PacketListener {
 
     }
 
-
-
-
     @Override
     public void onPacketSend(PacketSendEvent event) {
-
         if (event.getPacketType() == PacketType.Play.Server.SYSTEM_CHAT_MESSAGE) {
-            if(event.isCancelled())
-                return;
-
-            if(!pluginChatModule.isActive())
-                return;
+            if(event.isCancelled() || !pluginChatModule.isActive()) return;
 
             Player player = org.bukkit.Bukkit.getPlayer(event.getUser().getUUID());
-
-            if (player == null)
-                return;
+            if (player == null) return;
 
             final UUID uuid = player.getUniqueId();
-
-            //TODO: WAS IS MIT MSG NACHRICHTEN??
-            if(!pluginChatModule.checkIfNeed(uuid))
-                return;
+            if(!pluginChatModule.checkIfNeed(uuid)) return;
 
             WrapperPlayServerSystemChatMessage packet = new WrapperPlayServerSystemChatMessage(event);
-            Component messageComponent = packet.getMessage();
             boolean isOverlay = packet.isOverlay();
 
+            if(isOverlay) return;
 
+            Component messageComponent = packet.getMessage();
+            String rawText = LegacyComponentSerializer.legacySection().serialize(messageComponent);
 
+            // 1. DER BODYGUARD IST ZURÜCK! (Blockt den ViaVersion Pufferfish Spam)
+            if (rawText.contains("Can't deliver chat message") || rawText.contains("kann nicht zugestellt werden") || rawText.contains("multiplayer.message_not_delivered")) {
+                event.setCancelled(true);
+                return;
+            }
 
-
-
-
-            //String rawTextWithColors = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
-         //           .legacySection().serialize(messageComponent);
-
+            // 2. Endlosschleifen-Schutz
+            if (messageSequencer.isIgnored(uuid, messageComponent)) {
+                return;
+            }
 
             event.setCancelled(true);
-            messageSequencer.translateWithOrder(uuid,messageComponent,LegacyComponentSerializer.legacySection().serialize(messageComponent) ,player.getLocale(),isOverlay);
-
-
-
+            messageSequencer.translateWithOrder(uuid, messageComponent, rawText, player.getLocale(), isOverlay);
         }
     }
-
 }

@@ -7,6 +7,7 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.Getter;
 import lombok.Setter;
+import org.jspecify.annotations.Nullable;
 import org.pytenix.encryption.HmacService;
 import org.pytenix.placeholder.GradientService;
 import org.pytenix.placeholder.PlaceholderService;
@@ -352,9 +353,9 @@ public abstract class AdvancedTranslationBridge {
             }
 
             if (getGradientService() != null) {
-                GradientService.GradientInfo gradientInfo = getGradientService().cachedGradients.getIfPresent(lineUuid);
-                if (gradientInfo != null && gradientInfo.isGradient()) {
-                    currentLine = getGradientService().applyGradient(currentLine, gradientInfo);
+                @Nullable Map<String, GradientService.GradientData> gradientInfo = getGradientService().cachedGradients.getIfPresent(lineUuid);
+                if (gradientInfo != null) {
+                    currentLine = getGradientService().restoreGradients(lineUuid, currentLine);
                     getGradientService().cachedGradients.invalidate(lineUuid);
                 }
             }

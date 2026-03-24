@@ -1,27 +1,30 @@
 package org.pytenix.util;
 
-
 import com.github.benmanes.caffeine.cache.AsyncCache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import com.google.gson.Gson;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import org.jetbrains.annotations.NotNull;
 import org.pytenix.TranslatorService;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TextComponentUtil {
     private final TranslatorService translatorService;
-    private final LegacyComponentSerializer legacySerializer = LegacyComponentSerializer.legacySection();
+    private final LegacyComponentSerializer legacySerializer = LegacyComponentSerializer.builder()
+            .character('§')
+            .hexColors()
+            .useUnusualXRepeatedCharacterHexFormat()
+            .build();
+
+    private static final Pattern SANITIZE_PATTERN = Pattern.compile("§(?![0-9a-fA-Fk-oK-OrRxX#])");
 
     private final AsyncCache<TranslationKey, Component> translationCache = Caffeine.newBuilder()
             .maximumSize(10_000)
@@ -41,11 +44,18 @@ public class TextComponentUtil {
         final Map<Integer, Component> hovers = new HashMap<>();
     }
 
-    // 3. Die öffentliche Methode, die von Spigot aufgerufen wird
     public CompletableFuture<Component> translateComplexMessage(Component originalComponent, String lang, String module) {
         TranslationKey key = new TranslationKey(originalComponent, lang, module);
-
         return translationCache.get(key, (k, executor) -> doTranslateComplexMessage(k.component(), k.lang(), k.module()));
+    }
+
+    public String sanitizeLegacyText(String text) {
+        if (text == null) return "";
+        String sanitized = SANITIZE_PATTERN.matcher(text).replaceAll("");
+        if (sanitized.endsWith("§")) {
+            sanitized = sanitized.substring(0, sanitized.length() - 1);
+        }
+        return sanitized;
     }
 
     private CompletableFuture<Component> doTranslateComplexMessage(Component originalComponent, String lang, String module) {
@@ -53,7 +63,6 @@ public class TextComponentUtil {
         TranslationContext ctx = new TranslationContext();
 
         Component taggedComponent = injectTags(originalComponent, ctx);
-
         String mainPayload = legacySerializer.serialize(taggedComponent);
 
         UUID mainBatchId = UUID.randomUUID();
@@ -62,10 +71,8 @@ public class TextComponentUtil {
         for (Map.Entry<Integer, Component> entry : ctx.hovers.entrySet()) {
             int id = entry.getKey();
             UUID hoverBatchId = UUID.randomUUID();
-
             String legacyHover = legacySerializer.serialize(entry.getValue());
             String preparedHover = translatorService.preparePayload(hoverBatchId, legacyHover);
-
             hoverFutures.put(id, translatorService.processAndRestore(hoverBatchId, preparedHover, lang, module, started));
         }
 
@@ -75,35 +82,52 @@ public class TextComponentUtil {
         return mainFuture.thenCombineAsync(
                 CompletableFuture.allOf(hoverFutures.values().toArray(new CompletableFuture[0])),
                 (translatedMainText, v) -> {
+                    String cleanMainText = sanitizeLegacyText(translatedMainText);
 
-                    Component finalComponent = legacySerializer.deserialize(translatedMainText);
+                    List<Map.Entry<String, Component>> replacements = new ArrayList<>();
 
-                    finalComponent = finalComponent.replaceText(TextReplacementConfig.builder()
-                            .match("<H(\\d+)>(.*?)</H\\1>")
-                            .replacement((matchResult, builder) -> {
-                                int id = Integer.parseInt(matchResult.group(1));
-                                String translatedWord = matchResult.group(2);
+                    Matcher mA = Pattern.compile("(?s)<A(\\d+)>(.*?)</A\\1>").matcher(cleanMainText);
+                    StringBuffer sbA = new StringBuffer();
+                    while (mA.find()) {
+                        int id = Integer.parseInt(mA.group(1));
+                        String inner = mA.group(2);
+                        String uuid = UUID.randomUUID().toString();
 
-                                // Den übersetzten Hover-Text holen und deserialisieren
-                                String translatedHoverText = hoverFutures.get(id).join();
-                                Component hoverComp = legacySerializer.deserialize(translatedHoverText);
+                        ClickEvent originalClick = ctx.clicks.get(id);
+                        Component innerComp = legacySerializer.deserialize(inner).clickEvent(originalClick);
 
-                                return legacySerializer.deserialize(translatedWord)
-                                        .hoverEvent(HoverEvent.showText(hoverComp));
-                            })
-                            .build());
+                        replacements.add(new AbstractMap.SimpleEntry<>(uuid, innerComp));
+                        mA.appendReplacement(sbA, uuid);
+                    }
+                    mA.appendTail(sbA);
+                    cleanMainText = sbA.toString();
 
-                    finalComponent = finalComponent.replaceText(TextReplacementConfig.builder()
-                            .match("<A(\\d+)>(.*?)</A\\1>")
-                            .replacement((matchResult, builder) -> {
-                                int id = Integer.parseInt(matchResult.group(1));
-                                String translatedWord = matchResult.group(2);
-                                ClickEvent originalClick = ctx.clicks.get(id);
+                    Matcher mH = Pattern.compile("(?s)<H(\\d+)>(.*?)</H\\1>").matcher(cleanMainText);
+                    StringBuffer sbH = new StringBuffer();
+                    while (mH.find()) {
+                        int id = Integer.parseInt(mH.group(1));
+                        String inner = mH.group(2);
+                        String uuid = UUID.randomUUID().toString();
 
-                                return legacySerializer.deserialize(translatedWord)
-                                        .clickEvent(originalClick);
-                            })
-                            .build());
+                        String translatedHoverText = sanitizeLegacyText(hoverFutures.get(id).join());
+                        Component hoverComp = legacySerializer.deserialize(translatedHoverText);
+                        Component innerComp = legacySerializer.deserialize(inner).hoverEvent(HoverEvent.showText(hoverComp));
+
+                        replacements.add(new AbstractMap.SimpleEntry<>(uuid, innerComp));
+                        mH.appendReplacement(sbH, uuid);
+                    }
+                    mH.appendTail(sbH);
+                    cleanMainText = sbH.toString();
+
+                    Component finalComponent = legacySerializer.deserialize(cleanMainText);
+
+                    Collections.reverse(replacements);
+                    for (Map.Entry<String, Component> entry : replacements) {
+                        finalComponent = finalComponent.replaceText(TextReplacementConfig.builder()
+                                .matchLiteral(entry.getKey())
+                                .replacement(entry.getValue())
+                                .build());
+                    }
 
                     return finalComponent;
                 });

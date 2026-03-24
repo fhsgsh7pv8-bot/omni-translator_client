@@ -45,8 +45,11 @@ public abstract class TranslatorService {
 
         for (String line : lines) {
             UUID lineId = UUID.randomUUID();
+            System.out.println("1 " + text);
             String cleanText = handleGradient(lineId, line); // Gradient raus!
+            System.out.println("2 [AFTER GRADIENT] " + cleanText);
             String maskedText = placeholderService.toPlaceholders(lineId, cleanText);
+            System.out.println("3 [AFTER PLACEHOLDER] " + maskedText);
             processedLines.add(maskedText);
             lineUuids.add(lineId);
         }
@@ -62,7 +65,6 @@ public abstract class TranslatorService {
                 });
     }
 
-    // 3. Deine normale translate-Methode (bleibt unverändert für normale Chat-Nachrichten!)
     public CompletableFuture<String> translate(String text, String lang, String module) {
         if (text == null || text.isBlank()) return CompletableFuture.completedFuture(text);
 
@@ -76,8 +78,8 @@ public abstract class TranslatorService {
     public String handleGradient(UUID uuid, String text)
     {
         GradientService.ExtractionResult extractionResult = gradientService.stripAndAnalyze(text);
-        if (extractionResult.info().isGradient()) {
-            gradientService.cachedGradients.put(uuid, extractionResult.info());
+        if (extractionResult.gradients() != null) {
+            gradientService.cachedGradients.put(uuid, extractionResult.gradients());
             return extractionResult.cleanText();
         }
         return text;

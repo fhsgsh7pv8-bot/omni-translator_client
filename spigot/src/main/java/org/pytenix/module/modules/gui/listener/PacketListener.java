@@ -1,5 +1,7 @@
 package org.pytenix.module.modules.gui.listener;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.event.PacketSendEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
@@ -13,15 +15,15 @@ import org.pytenix.module.modules.gui.InventoryModule;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class PacketListener implements com.github.retrooper.packetevents.event.PacketListener {
 
-
     private final InventoryModule inventoryModule;
 
     private final Set<String> activeTranslations = ConcurrentHashMap.newKeySet();
-   private final Map<UUID, Integer> latestStateIdMap = new ConcurrentHashMap<>();
+    private final Map<UUID, Integer> latestStateIdMap = new ConcurrentHashMap<>();
 
     public PacketListener(InventoryModule inventoryModule)
     {
@@ -38,22 +40,16 @@ public class PacketListener implements com.github.retrooper.packetevents.event.P
             return;
 
         if (event.getPacketType() == PacketType.Play.Server.WINDOW_ITEMS) {
-            if(!inventoryModule.isActive())
-                return;
-
-            if(!inventoryModule.checkIfNeed(event.getUser().getUUID()))
+            if(!inventoryModule.isActive() || !inventoryModule.checkIfNeed(event.getUser().getUUID()))
                 return;
 
             handleWindowItems(event);
         }
-       else if (event.getPacketType() == PacketType.Play.Server.SET_SLOT) {
-            if(!inventoryModule.isActive())
+        else if (event.getPacketType() == PacketType.Play.Server.SET_SLOT) {
+            if(!inventoryModule.isActive()|| !inventoryModule.checkIfNeed(event.getUser().getUUID()))
                 return;
 
-            if(!inventoryModule.checkIfNeed(event.getUser().getUUID()))
-                return;
-
-           handleSetSlot(event);
+            handleSetSlot(event);
         }
     }
 
@@ -71,7 +67,7 @@ public class PacketListener implements com.github.retrooper.packetevents.event.P
 
         String lockKey = user.getUUID().toString() + ":" + wrapper.getWindowId() + ":" + wrapper.getStateId();
 
-      if (activeTranslations.contains(lockKey)) {
+        if (activeTranslations.contains(lockKey)) {
             return;
         }
         activeTranslations.add(lockKey);
@@ -80,7 +76,7 @@ public class PacketListener implements com.github.retrooper.packetevents.event.P
 
             Player player = org.bukkit.Bukkit.getPlayer(user.getUUID());
 
-           if (player == null) {
+            if (player == null) {
                 return;
             }
 
@@ -106,7 +102,7 @@ public class PacketListener implements com.github.retrooper.packetevents.event.P
 
 
 
-              CompletableFuture.runAsync(() -> {
+                CompletableFuture.runAsync(() -> {
                     try {
                         translateAndSendUpdate(player, windowId, stateId, bukkitItems, carriedItem, locale);
                     } catch (Exception e) {
@@ -156,9 +152,9 @@ public class PacketListener implements com.github.retrooper.packetevents.event.P
             Integer lastId = latestStateIdMap.get(player.getUniqueId());
             if (lastId != null && stateId < lastId)
 
-            if(player.getOpenInventory() == null || player.getOpenInventory().getTopInventory() == null ||
-                    !player.getOpenInventory().getTopInventory().getItem(slot).isSimilar(item))
-               return;
+                if(player.getOpenInventory() == null || player.getOpenInventory().getTopInventory() == null ||
+                        !player.getOpenInventory().getTopInventory().getItem(slot).isSimilar(item))
+                    return;
 
 
 
@@ -198,7 +194,7 @@ public class PacketListener implements com.github.retrooper.packetevents.event.P
         PacketEvents.getAPI().getPlayerManager().sendPacketSilently(player, updatePacket);
     }
     private void translateAndSendUpdate(Player player, int windowId, int stateId, List<ItemStack> items, ItemStack carriedItem, String locale) {
-      int topInventorySize = items.size() - 36;
+        int topInventorySize = items.size() - 36;
 
         List<ItemStack> batchToTranslate = new ArrayList<>();
 
@@ -207,10 +203,10 @@ public class PacketListener implements com.github.retrooper.packetevents.event.P
         //         WIE IN INTERNE API EIN BATCHING SYSTEM VIA PLUGINMESSAGE CHANNEL
         //          AUF PACKET RATELIMITING ACHTEN, AMBESTEN 1 BATCH = 1 INVENTAR
         //             UND KP OB MAN IN NACHINEIN WENN MAN AUF MEHRERE BATCHES EIN INVENTAR VERTEILT ES UPDATEN KANN
-        
+
         //TODO: BEIM ECONOMY SHOP; WERDEN MANCHE SHOPITEMS SPÄTER NACHGELADEN, HEI?T SET_SLOT WEITER MACHEN
         //
-       for (int i = 0; i < topInventorySize; i++) {
+        for (int i = 0; i < topInventorySize; i++) {
             ItemStack item = items.get(i);
             if (item != null && item.hasItemMeta() && (item.getItemMeta().displayName() != null || item.getItemMeta().lore() != null)) {
 

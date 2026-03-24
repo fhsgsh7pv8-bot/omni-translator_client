@@ -61,6 +61,14 @@ public class TaskScheduler {
         }
     }
 
+    public void runSyncLater(Runnable task, int ticks) {
+        if (isFolia) {
+            Bukkit.getGlobalRegionScheduler().runDelayed(plugin, scheduledTask -> task.run(), ticks);
+        } else {
+            Bukkit.getScheduler().runTaskLater(plugin, task, ticks);
+        }
+    }
+
     public void runTimerAsync(Runnable task, int delayTicks, int periodTicks) {
         if (isFolia) {
 

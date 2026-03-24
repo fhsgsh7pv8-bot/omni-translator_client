@@ -2,6 +2,7 @@ package org.pytenix.module.modules.chat;
 
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerSystemChatMessage;
+import com.google.gson.Gson;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
@@ -50,7 +51,6 @@ public class MessageSequencer implements Listener {
             }
         }, 15, TimeUnit.SECONDS);
 
-        // 2. Asynchrone Übersetzung mit ERROR-HANDLING (Der Gamechanger)
         textComponentUtil.translateComplexMessage(component, locale, pluginChatModule.getModuleName())
                 .whenComplete((translatedComponent, throwable) -> {
                     timeoutTask.cancel(false);
@@ -64,6 +64,47 @@ public class MessageSequencer implements Listener {
                     }
                 });
     }
+
+
+
+    private final com.google.common.cache.Cache<UUID, com.google.common.cache.Cache<String, java.util.concurrent.atomic.AtomicInteger>> ignoredMessagesCache =
+            com.google.common.cache.CacheBuilder.newBuilder().expireAfterAccess(30, java.util.concurrent.TimeUnit.MINUTES).build();
+
+    public void ignoreNextMessage(UUID uuid, Component component) {
+        try {
+            String json = net.kyori.adventure.text.serializer.gson.GsonComponentSerializer.gson().serialize(component);
+
+            com.google.common.cache.Cache<String, java.util.concurrent.atomic.AtomicInteger> playerCache =
+                    ignoredMessagesCache.get(uuid, () -> com.google.common.cache.CacheBuilder.newBuilder().expireAfterWrite(10, java.util.concurrent.TimeUnit.SECONDS).build());
+
+            java.util.concurrent.atomic.AtomicInteger count = playerCache.get(json, () -> new java.util.concurrent.atomic.AtomicInteger(0));
+            count.incrementAndGet();
+
+        } catch (Exception ignored) {}
+    }
+
+    public boolean isIgnored(UUID uuid, Component component) {
+        try {
+            String json = net.kyori.adventure.text.serializer.gson.GsonComponentSerializer.gson().serialize(component);
+
+            com.google.common.cache.Cache<String, java.util.concurrent.atomic.AtomicInteger> playerCache = ignoredMessagesCache.getIfPresent(uuid);
+            if (playerCache != null) {
+                java.util.concurrent.atomic.AtomicInteger count = playerCache.getIfPresent(json);
+
+                if (count != null && count.get() > 0) {
+                    int remaining = count.decrementAndGet();
+
+                    if (remaining <= 0) {
+                        playerCache.invalidate(json);
+                    }
+                    return true;
+                }
+            }
+        } catch (Exception ignored) {}
+
+        return false;
+    }
+
 
     private void completeMessage(UUID uuid, QueuedMessage msg, Component translatedComponent) {
         if (msg.translatedComponent.compareAndSet(null, translatedComponent)) {
@@ -96,14 +137,20 @@ public class MessageSequencer implements Listener {
         }
     }
 
+
+
     private boolean sendPacket(UUID uuid, Component comp, boolean isOverlay) {
         Player player = Bukkit.getPlayer(uuid);
         if (player == null) return false;
 
         try {
+            ignoreNextMessage(uuid, comp);
 
-            WrapperPlayServerSystemChatMessage packet = new WrapperPlayServerSystemChatMessage(isOverlay, comp);
-            PacketEvents.getAPI().getPlayerManager().getUser(player).sendPacketSilently(packet);
+            String rawJson2 = net.kyori.adventure.text.serializer.gson.GsonComponentSerializer.gson().serialize(comp);
+            System.out.println("SENDING PACKET TO PLAYER: " + rawJson2);
+
+            player.sendMessage(comp);
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();

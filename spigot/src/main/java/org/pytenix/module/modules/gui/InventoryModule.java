@@ -1,5 +1,7 @@
 package org.pytenix.module.modules.gui;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.event.PacketListenerPriority;
 import net.kyori.adventure.text.Component;
@@ -16,13 +18,19 @@ import org.pytenix.module.modules.gui.listener.PacketListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class InventoryModule extends TranslatorModule {
 
 
     LegacyComponentSerializer legacyComponentSerializer;
+    private static final Pattern COLOR_PATTERN = Pattern.compile("^§[0-9a-fk-or]+$");
+
+
 
     public InventoryModule(SpigotTranslator spigotTranslator) {
         super(spigotTranslator,"gui");
@@ -32,9 +40,6 @@ public class InventoryModule extends TranslatorModule {
         PacketEvents.getAPI().getEventManager().registerListener(new PacketListener(this),
                 PacketListenerPriority.NORMAL);
     }
-
-
-
 
 
 
@@ -65,7 +70,7 @@ public class InventoryModule extends TranslatorModule {
             for (Component component : meta.lore()) {
                 String serialized = legacyComponentSerializer.serialize(component);
 
-                if (serialized.trim().isEmpty() || serialized.matches("^§[0-9a-fk-or]+$")) {
+                if (serialized.trim().isEmpty() || COLOR_PATTERN.matcher(serialized).matches()) {
 
                     if (!currentBlock.isEmpty()) {
                         CompletableFuture<String> blockFuture = translate(currentBlock.toString(), targetLanguage);
@@ -94,10 +99,10 @@ public class InventoryModule extends TranslatorModule {
         }
 
 
-            //String a = meta.lore().stream().map(legacyComponentSerializer::serialize).collect(Collectors.joining("\n"));
-         //   CompletableFuture<String> future = translate(a,targetLanguage);
-           // loreFutures = future;
-          //  allFutures.add(future);
+        //String a = meta.lore().stream().map(legacyComponentSerializer::serialize).collect(Collectors.joining("\n"));
+        //   CompletableFuture<String> future = translate(a,targetLanguage);
+        // loreFutures = future;
+        //  allFutures.add(future);
 
 
 

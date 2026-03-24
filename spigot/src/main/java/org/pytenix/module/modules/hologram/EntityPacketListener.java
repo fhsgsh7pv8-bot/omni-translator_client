@@ -46,9 +46,9 @@ public class EntityPacketListener implements PacketListener, Listener {
 
 
 
-    private Cache<Component, Component> getPlayerCache(UUID playerId) {
+    private Cache<Component, Component> getHologramCache(String locale) {
         try {
-            return hologramModule.getPlayerTranslationCache().get(playerId, () -> CacheBuilder.newBuilder()
+            return hologramModule.getPlayerTranslationCache().get(locale, () -> CacheBuilder.newBuilder()
                     .expireAfterWrite(2, TimeUnit.MINUTES)
                     .maximumSize(1000)
                     .build());
@@ -76,77 +76,106 @@ public class EntityPacketListener implements PacketListener, Listener {
             processHologram(event,event.getUser(), wrapper.getEntityId(), wrapper.getEntityMetadata());
         }
     }
-
     private void processHologram(PacketSendEvent event, com.github.retrooper.packetevents.protocol.player.User user, int entityId, List<EntityData<?>> dataList) {
         if (dataList == null || dataList.isEmpty()) return;
+
+        final Player player = Bukkit.getPlayer(user.getUUID());
 
         if(!hologramModule.checkIfNeed(event.getUser().getUUID()))
             return;
 
+        Cache<Component, Component> personalCache = getHologramCache(player.getLocale());
+        if (personalCache == null) return;
 
-        CompletableFuture.runAsync(() -> {
-            List<EntityData<?>> immediateUpdates = new ArrayList<>();
-            boolean cachedDataFound = false;
+        List<EntityData<?>> newMetadataList = new ArrayList<>();
+        List<EntityData<?>> toTranslateAsync = new ArrayList<>();
+        boolean packetModified = false;
 
-            Cache<Component, Component> personalCache = getPlayerCache(user.getUUID());
-            for (EntityData data : dataList) {
-                Object value = data.getValue();
-                Component originalComponent = null;
-                boolean wasOptional = false;
+        // ==========================================================
+        // PHASE 1: SYNCHRONER CACHE CHECK (Kein Delay, kein Flickering)
+        // ==========================================================
+        for (EntityData data : dataList) {
+            Object value = data.getValue();
+            Component originalComponent = null;
+            boolean wasOptional = false;
 
-                if (value instanceof Optional<?> opt) {
-                    if (opt.isPresent() && opt.get() instanceof Component comp) {
-                        originalComponent = comp;
-                        wasOptional = true;
-                    }
-                } else if (value instanceof Component comp) {
+            // Extrahiere die Component
+            if (value instanceof Optional<?> opt) {
+                if (opt.isPresent() && opt.get() instanceof Component comp) {
                     originalComponent = comp;
-                    wasOptional = false;
+                    wasOptional = true;
                 }
+            } else if (value instanceof Component comp) {
+                originalComponent = comp;
+                wasOptional = false;
+            }
 
-                if (originalComponent != null) {
-                    Component cachedTranslation = personalCache.getIfPresent(originalComponent);
+            if (originalComponent != null) {
+                Component cachedTranslation = personalCache.getIfPresent(originalComponent);
 
-                    if (cachedTranslation != null) {
-                        Object newValue = wasOptional ? Optional.of(cachedTranslation) : cachedTranslation;
-                        EntityData newData = new EntityData(data.getIndex(), data.getType(), newValue);
+                if (cachedTranslation != null) {
+                    // 🎯 CACHE HIT: Paket sofort austauschen!
+                    Object newValue = wasOptional ? Optional.of(cachedTranslation) : cachedTranslation;
+                    EntityData newData = new EntityData(data.getIndex(), data.getType(), newValue);
+                    newMetadataList.add(newData);
+                    packetModified = true;
+                } else {
+                    newMetadataList.add(data);
+                    toTranslateAsync.add(data);
+                }
+            } else {
+                newMetadataList.add(data);
+            }
+        }
 
-                        immediateUpdates.add(newData);
-                        cachedDataFound = true;
-                        continue;
+        if (packetModified) {
+            dataList.clear();
+            dataList.addAll(newMetadataList);
+            event.markForReEncode(true);
+        }
+
+        if (!toTranslateAsync.isEmpty()) {
+            CompletableFuture.runAsync(() -> {
+                for (EntityData dataToTranslate : toTranslateAsync) {
+                    Object value = dataToTranslate.getValue();
+                    Component originalComponent = null;
+                    boolean wasOptional = false;
+
+                    if (value instanceof Optional<?> opt) {
+                        originalComponent = (Component) opt.get();
+                        wasOptional = true;
+                    } else {
+                        originalComponent = (Component) value;
                     }
 
                     String legacyText = hologramModule.getSpigotTranslator().getLegacyComponentSerializer().serialize(originalComponent);
 
                     if (!legacyText.trim().isEmpty()) {
-
                         final Component keyComponent = originalComponent;
                         final boolean isOptionalFinal = wasOptional;
 
-                        translateHologramLine(Bukkit.getPlayer(user.getUUID()), legacyText)
+                        translateHologramLine(player, legacyText)
                                 .thenAccept(translatedComponent -> {
                                     if (translatedComponent == null) return;
 
+                                    // 1. Für die Zukunft in den Cache legen
                                     personalCache.put(keyComponent, translatedComponent);
 
+                                    // 2. Ein Update-Paket (Fake) schicken, damit der Spieler es jetzt sieht
                                     Object newValue = isOptionalFinal ? Optional.of(translatedComponent) : translatedComponent;
-                                    EntityData newData = new EntityData(data.getIndex(), data.getType(), newValue);
+                                    EntityData newDataUpdate = new EntityData(dataToTranslate.getIndex(), dataToTranslate.getType(), newValue);
 
                                     List<EntityData<?>> singleUpdateList = new ArrayList<>();
-                                    singleUpdateList.add(newData);
+                                    singleUpdateList.add(newDataUpdate);
+
+                                    // Sendet das Paket still an den Spieler
                                     sendUpdatePacket(user, entityId, singleUpdateList);
                                 });
                     }
                 }
-            }
-
-
-            if (cachedDataFound && !immediateUpdates.isEmpty()) {
-                sendUpdatePacket(user, entityId, immediateUpdates);
-            }
-        });
+            });
+        }
     }
-
     private CompletableFuture<Component> translateHologramLine(Player player, String text) {
         if (player == null) return CompletableFuture.completedFuture(null);
         String lang = player.getLocale();

@@ -27,7 +27,7 @@ public class PlaceholderService {
 
     //NOTE: KI GENERATED/IMPROVED
     public static final Pattern PRICE_PATTERN = Pattern.compile("\\d+(?:[.,]\\d+)*");
-    public static final Pattern SYSTEM_PROTECTION_PATTERN = Pattern.compile("(?:\\{[a-zA-Z]\\d+\\})|(?:\\[#[A-Z]+-\\d+#\\])|(?:</?[HA]\\d+>)");
+    public static final Pattern SYSTEM_PROTECTION_PATTERN = Pattern.compile("(?:\\{[a-zA-Z]\\d+\\})|(?:\\[#[A-Z]+-\\d+#\\])|(?:</?[HAG]\\d+>)");
 
 
     final PlayernameProtector playernameProtector;

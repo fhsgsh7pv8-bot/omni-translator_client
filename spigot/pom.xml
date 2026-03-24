@@ -134,6 +134,10 @@
                                     <pattern>org.msgpack</pattern>
                                     <shadedPattern>org.pytenix.libs.msgpack</shadedPattern>
                                 </relocation>
+                                <relocation>
+                                    <pattern>com.google.protobuf</pattern>
+                                    <shadedPattern>org.pytenix.libs.protobuf</shadedPattern>
+                                </relocation>
 
 
 

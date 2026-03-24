@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @Getter
 public class HologramModule extends TranslatorModule {
 
-    public final Cache<UUID, Cache<Component, Component>> playerTranslationCache = CacheBuilder.newBuilder()
+    public final Cache<String, Cache<Component, Component>> playerTranslationCache = CacheBuilder.newBuilder()
             .expireAfterAccess(30, TimeUnit.MINUTES)
             .build();
 

@@ -12,6 +12,7 @@ import org.pytenix.config.ConfigService;
 import org.pytenix.config.ConfigurationFile;
 import org.pytenix.entity.ServerConfiguration;
 import org.pytenix.listener.JoinQuitListener;
+import org.pytenix.listener.LocaleChangeEvent;
 import org.pytenix.module.ModuleService;
 import org.pytenix.util.CaffeineCache;
 import org.pytenix.util.TaskScheduler;
@@ -99,6 +100,7 @@ public class SpigotTranslator extends JavaPlugin {
         spigotBridge.initPlayernames();
 
         Bukkit.getPluginManager().registerEvents(new JoinQuitListener(this),this);
+        Bukkit.getPluginManager().registerEvents(new LocaleChangeEvent(this),this);
 
         moduleService = new ModuleService(this);
 

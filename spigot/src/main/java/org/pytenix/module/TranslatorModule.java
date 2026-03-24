@@ -56,6 +56,8 @@ public abstract class TranslatorModule {
 
     public CompletableFuture<String> translate(String text, String locale)
     {
+
+
         String cached = spigotTranslator.getCaffeineCache().get(text, locale);
 
         if(cached != null)

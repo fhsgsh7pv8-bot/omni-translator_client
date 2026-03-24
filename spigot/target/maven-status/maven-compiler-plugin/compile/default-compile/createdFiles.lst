@@ -22,4 +22,5 @@ org\pytenix\module\TranslatorModule.class
 org\pytenix\module\modules\hologram\EntityPacketListener.class
 org\pytenix\SpigotTranslator.class
 org\pytenix\module\modules\gui\InventoryModule.class
+org\pytenix\listener\LocaleChangeEvent.class
 org\pytenix\module\modules\player\AsyncPlayerChatListener.class
