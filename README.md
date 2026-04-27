@@ -2,6 +2,8 @@
 ***
 # Omni Translator Client
 
+//THIS IS ONLY THE CLIENT.
+
 **Omni Translator Client** (Project ID: `Omni`) is a high-performance, modular translation plugin designed for Minecraft networks. It enables seamless real-time translation of in-game content such as chat messages, signs, inventories, and holograms, ensuring a localized experience for every player.
 
 The project is built as a multi-module Maven project, featuring native integrations for **Spigot/Paper** servers and **Velocity** proxy servers.
